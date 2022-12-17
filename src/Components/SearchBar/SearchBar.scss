@@ -1,0 +1,25 @@
+.serach-bar{
+    background-color: var(--primary-color);
+    height: 35vh;
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--secondary-color);
+    .search-bar-input{
+        
+        .ant-select-selector{
+            
+            background-color: var(--tertiary-color);
+            border: 2px solid var(--border-primary-color);
+           
+            .ant-select-selection-placeholder{
+                // padding: 0.5rem 1rem;
+                color: #ffffffc2;
+            }
+            .ant-select-selection-search{
+                input{
+                    color: white;
+                }       
+            }
+        }
+    }
+}

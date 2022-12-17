@@ -1,0 +1,21 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    font-family: "Open Sans", "sans-serif";
+}
+p,
+h1,
+h2,
+h3{
+    color: white;
+}
+:root{
+    --primary-color: #0D1416;
+    --secondary-color: #161C1F;
+    --tertiary-color: #616364;                             
+
+    --border-primary-color: #484e50;
+}
