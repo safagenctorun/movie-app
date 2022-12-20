@@ -1,0 +1,60 @@
+.movie-banner {
+    // background-image: url("https://image.tmdb.org/t/p/w500/bQXAqRx2Fgc46uCVWgoPz5L5Dtr.jpg");
+    // background-repeat: no-repeat;
+    height: 85vh;
+    min-width: 1000px;
+    background-color: rgb(116, 112, 112);
+    display: flex;
+    justify-content: center;
+    p{
+        font-size: 20px;
+    }
+    .movie-poster {
+        display: flex;
+        align-items: center;
+        position: relative;
+        margin-left: 3rem;
+
+        img {
+            max-height: 75vh;
+            height: auto;
+        }
+    }
+
+    .movie-info {
+
+        position: relative;
+        margin-top: 2rem;
+        margin-left: 2.5rem;
+
+        .title {
+            letter-spacing: 0.6px;
+            font-size: 25px;
+        }
+
+        .type {
+
+            margin-top: 1rem;
+        }
+
+        .rating {
+
+            margin-top: 1rem;
+        }
+
+        .tagline {
+            margin-top: 1rem;
+        }
+        .overview{
+            margin-top: 1rem;
+            h3{
+                font-size: 1.4rem;
+                letter-spacing: 1px;
+            }
+            p{
+                margin-top: 1rem;
+                font-size: 18px;
+            }
+        }
+    }
+}
