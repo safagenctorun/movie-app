@@ -9,6 +9,7 @@ const MainPage = () => {
     const [searchItem, setSearchItem] = useState<any>("");
     const [searchItemsData, setSearchItemsData] = useState<any[]>([]);
     const [moviesData, setMoviesData] = useState<any[]>([]);
+    // const [selectedMovieProperties, setSelectedMovieProperties] = useState<any[]>([])
 
     useEffect(() => {
 
@@ -28,10 +29,10 @@ const MainPage = () => {
         });
     }, []);
 
-
     return (
-        <div>
-            <SearchBar searchItemsData={searchItemsData} setSearchItem={setSearchItem} />
+        <div className="main-page">
+
+            <SearchBar searchItemsData={searchItemsData} setSearchItem={setSearchItem}  />
             <PopularMovies moviesData={moviesData} />
         </div>
     )

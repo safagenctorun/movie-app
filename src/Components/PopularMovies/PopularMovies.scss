@@ -1,49 +1,58 @@
-.popular-movies {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.popular-movies-with-text{
     background-color: var(--primary-color);
-    .movie {
-        width: 300px;
-        margin: 1rem;
-        border-radius: 3px; //3 - 5 
-        box-shadow: 0.2px 4px 5px rgba(0, 0, 0, 1 ); // uğraş bununla
-        background-color: var(--secondary-color);
+    h1{
         position: relative;
-        overflow: hidden;
-        img {
-            max-width: 300px;
-            height: auto;
-        }
-        .movie-info {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            letter-spacing: 0.6px;
-            margin: 0 0.3rem 0.2rem 0.3rem;
-            span{
-                background-color: var(--primary-color);
-                padding: 0.25rem 0.5rem;
-                border-radius: 3px;
-                font-weight: bold;
-            }
-        }
-        .overview{
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: var(--primary-color);
-            padding: 1rem;
-            max-height: 100%;
-            transform:translateY(101%); // oyna
-            transition: transform 0.35s ease-out;
-            h3{
-                color: rgba(0, 255, 149, 0.726);
-            }
-        }
+        top: 0.2rem;
+        margin-left: 2rem;
+        
     }
-    .movie:hover .overview{
-        transform: translateY(0);
+    .popular-movies {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        
+        .movie {
+            width: 300px;
+            margin: 1rem;
+            border-radius: 3px; //3 - 5 
+            box-shadow: 0.2px 4px 5px rgba(0, 0, 0, 1 ); // uğraş bununla
+            background-color: var(--secondary-color);
+            position: relative;
+            overflow: hidden;
+            img {
+                max-width: 300px;
+                height: auto;
+            }
+            .movie-info {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                letter-spacing: 0.6px;
+                margin: 0 0.3rem 0.2rem 0.3rem;
+                span{
+                    background-color: var(--primary-color);
+                    padding: 0.25rem 0.5rem;
+                    border-radius: 3px;
+                    font-weight: bold;
+                }
+            }
+            .overview{
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: var(--primary-color);
+                padding: 1rem;
+                max-height: 100%;
+                transform:translateY(101%); // oyna
+                transition: transform 0.35s ease-out;
+                h3{
+                    color: rgba(0, 255, 149, 0.726);
+                }
+            }
+        }
+        .movie:hover .overview{
+            transform: translateY(0);
+        }
     }
 }
