@@ -1,35 +1,64 @@
 import React from 'react'
 import "./MovieBanner.scss"
-const MovieBanner = () => {
-    return (
-        <div className='movie-banner'>
-            <div className="movie-poster">
-                <img src="https://image.tmdb.org/t/p/w500/pFlaoHTZeyNkG83vxsAJiGzfSsa.jpg" alt="Black Adam" />
-            </div>
-            <div className="movie-info">
-                <div className="title">
-                    <h1>Black Adam (2022)   </h1>
-                    
-                </div>
-                <div className="type">
+import { IMG_URL, IMG_SIZE_500, IMG_SIZE_1920 } from '../../config/Urls'
+const MovieBanner = ({ movieDetail, movieCredits }: any) => {
 
-                    10+
-                    10/21/2022 (TR)
-                    Action, Fantasy, Science Fiction
-                    2h 5m
-                </div>
-                <div className="rating">
-                    user score
-                </div>
-                <div className="tagline">
-                    The world needed a hero. It got Black Adam.
-                </div>
-                <div className="overview">
-                    <h3>Overview</h3>
-                    <p>Nearly 5,000 years after he was bestowed with the almighty powers of the Egyptian gods—and imprisoned just as quickly—Black Adam is freed from his earthly tomb, ready to unleash his unique form of justice on the modern world.</p>
-                </div>
-                <div className="credit">
-                    
+
+
+
+    const backgroundStyle = IMG_URL + IMG_SIZE_1920 + movieDetail.backdrop_path
+    return (
+        <div  className='movie-banner' >
+            <div style={{ backgroundImage: `url(${backgroundStyle})` }} className="movie-background">
+
+                <div className="background-blackout">
+                    <div className="about-movie">
+                        <div className="movie-poster">
+                            <img src={IMG_URL + IMG_SIZE_500 + movieDetail.poster_path} alt={movieDetail.title} />
+                        </div>
+                        <div className="movie-info">
+                            <div className="title">
+                                <h1>{movieDetail.title}   </h1>
+                            </div>
+
+                            <div className="type">
+                                <p>10+</p>
+                                <p>  {movieDetail.release_date.split("-").join("/")}</p>
+                                {movieDetail.genres.map((el: any) => (
+                                    <p key={el.id}> {el.name}</p>
+                                ))}
+
+                                <p>    2h 5m</p>
+
+
+                            </div>
+                            <div className="rating">
+                                <span style={{ color: movieDetail.vote_average > 8 ? "lightgreen" : movieDetail.vote_average > 5 ? "orange" : "red" }}> {Math.round(movieDetail.vote_average * 10)}</span>
+                                <p>User Score</p>
+                            </div>
+                            <div className="tagline">
+                                <p>{movieDetail.tagline}</p>
+                            </div>
+                            <div className="overview">
+                                <h3>Overview</h3>
+                                <p>{movieDetail.overview}</p>
+                            </div>
+                            <div className="credit">
+
+                                {movieCredits.crew.map((credit: any) => (
+
+                                    credit.job === "Director" &&
+                                    <div key={credit.id} className='crew-member' >
+
+                                        <h4 >{credit.name} </h4>
+                                        <p >{credit.job} </p>
+                                    </div>
+                                ))}
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

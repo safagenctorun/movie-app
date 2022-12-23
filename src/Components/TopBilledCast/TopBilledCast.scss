@@ -1,0 +1,31 @@
+*{
+    
+}
+.top-billed-cast{
+   h1{
+        color: #000;
+        position: relative;
+        margin-left: 1rem;
+    }
+    .actors{
+       display: flex;
+       justify-content: center;
+
+        .actor{
+            p{
+                color: black;
+            }
+            width: 138px;
+            display: flex;
+            flex-direction: column;
+            margin-right: 5px;
+            .original-name{
+                font-weight: bold;
+            }
+            img{
+                max-width: 138;
+            }
+        }
+    }
+}
+    

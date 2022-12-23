@@ -1,22 +1,50 @@
 import React, { useEffect, useState, useContext } from 'react'
+import axios from 'axios'
 import MovieBanner from '../Components/MovieBanner/MovieBanner'
-import { Context } from '../context/GlobalContext'
+import { MOVIE_URL, API_KEY } from '../config/Urls'
+import TopBilledCast from '../Components/TopBilledCast/TopBilledCast'
+
 
 const MovieDetail = () => {
 
-  const { selectedMovieProperties } = useContext(Context)
-  // useEffect(() => {
-    // axios.get(MOVIE_URL + properties.key + "?" + API_KEY).then(res => console.log(res))
+    const [selectedMovieId, setSelectedMovieId] = useState<string>("")
+    const [movieDetail, setMovieDetail] = useState<any>([])
+    const [movieCredits, setMovieCredits] = useState<any>([])
 
-    console.log(window.location.pathname.split("/")[2])
+    useEffect(() => {
 
-  // }, [selectedMovieProperties])
+        setSelectedMovieId(window.location.pathname.split("/")[2])
 
-  return (
-    <div className='movie-detail'>
-      <MovieBanner />
-    </div>
-  )
+    }, [selectedMovieId])
+
+    async function axiosProcesses(){
+        if (selectedMovieId !== "") {
+
+            let movieDetailResponse = await axios.get(MOVIE_URL + selectedMovieId + "?" + API_KEY)
+            let movieCreditsResponse = await axios.get(MOVIE_URL + selectedMovieId + "/credits?" + API_KEY)
+            
+            setMovieDetail(movieDetailResponse.data);
+            setMovieCredits(movieCreditsResponse.data)
+            console.log(movieDetailResponse.data)
+            console.log(movieCreditsResponse.data)
+           
+        }
+    } 
+
+    useEffect(() => {
+        axiosProcesses();
+    }, [selectedMovieId])
+
+
+    return (
+        <div className='movie-detail'>
+            
+            {Object.keys(movieDetail).length > 0 && <MovieBanner movieDetail={movieDetail} movieCredits={movieCredits}/>}
+            {Object.keys(movieDetail).length > 0 && <TopBilledCast  movieCredits={movieCredits}/>}
+
+            
+        </div>
+    )
 }
 
 export default MovieDetail

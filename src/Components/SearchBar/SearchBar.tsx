@@ -2,18 +2,15 @@ import React, { useState, useContext } from "react";
 import "./SearchBar.scss"
 import { AutoComplete, Input } from 'antd';
 import { MOVIE_URL, API_KEY } from "../../config/Urls";
-import { Context } from "../../context/GlobalContext";
+// import { Context } from "../../context/GlobalContext";
 
 
 const SearchBar = ({ setSearchItem, searchItemsData }: any) => {
-    
-    const {setSelectedMovieProperties} = useContext(Context)
 
-    const select = (value:string, properties:any) => {
-        setSelectedMovieProperties(properties)
+    // const {setSelectedMovieProperties} = useContext(Context)
+
+    const changePage = (value: string, properties: any) => {
         window.location.replace(`/moviedetail/${properties.key}`)
-        
-        
     }
 
     const optionsGenerator = () => {
@@ -28,19 +25,20 @@ const SearchBar = ({ setSearchItem, searchItemsData }: any) => {
 
     return (
         <div className="search-bar">
-            <Input.Group compact className="general-search">
-                <AutoComplete
+            <div className="search-margin">
 
-                    className="search-bar-input"
-                    onSelect={select}
-                    onChange={(text) => setSearchItem(text)}
-                    style={{ width: "25%", }}
-                    options={optionsGenerator()}
-                    placeholder="search"
-                />
-            </Input.Group>
+                <Input.Group compact className="general-search">
+                    <AutoComplete
 
-            {/* <select></select> */}
+                        className="search-bar-input"
+                        onSelect={changePage}
+                        onChange={(text) => setSearchItem(text)}
+                        style={{ width: "25%", }}
+                        options={optionsGenerator()}
+                        placeholder="search"
+                    />
+                </Input.Group>
+            </div>
         </div>
     );
 };
