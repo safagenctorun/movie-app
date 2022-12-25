@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import MovieBanner from '../Components/MovieBanner/MovieBanner'
-import { MOVIE_URL, API_KEY } from '../config/Urls'
+import { MOVIE_URL, API_KEY, CERTIFICATIONS_URL } from '../config/Urls'
 import TopBilledCast from '../Components/TopBilledCast/TopBilledCast'
+import MovieReviews from '../Components/MovieReviews/MovieReviews'
 
 
 const MovieDetail = () => {
@@ -10,6 +11,7 @@ const MovieDetail = () => {
     const [selectedMovieId, setSelectedMovieId] = useState<string>("")
     const [movieDetail, setMovieDetail] = useState<any>([])
     const [movieCredits, setMovieCredits] = useState<any>([])
+    const [movieReviews, setMovieReviews] = useState<any>([])
 
     useEffect(() => {
 
@@ -17,32 +19,60 @@ const MovieDetail = () => {
 
     }, [selectedMovieId])
 
-    async function axiosProcesses(){
+    async function axiosProcesses() {
         if (selectedMovieId !== "") {
 
             let movieDetailResponse = await axios.get(MOVIE_URL + selectedMovieId + "?" + API_KEY)
             let movieCreditsResponse = await axios.get(MOVIE_URL + selectedMovieId + "/credits?" + API_KEY)
-            
+            let movieReviewsResponse = await axios.get(MOVIE_URL + selectedMovieId + "/reviews?" + API_KEY)
+
+            // let movieCertificationsResponse = await axios.get(CERTIFICATIONS_URL)
+
             setMovieDetail(movieDetailResponse.data);
             setMovieCredits(movieCreditsResponse.data)
-            console.log(movieDetailResponse.data)
-            console.log(movieCreditsResponse.data)
-           
+            setMovieReviews(movieReviewsResponse.data)
+            // console.log(movieDetailResponse.data)
+            // console.log(movieReviewsResponse.data);
+
+
+
+
+
         }
-    } 
+    }
 
     useEffect(() => {
         axiosProcesses();
-    }, [selectedMovieId])
+    }, [selectedMovieId, movieReviews])
+
 
 
     return (
         <div className='movie-detail'>
-            
-            {Object.keys(movieDetail).length > 0 && <MovieBanner movieDetail={movieDetail} movieCredits={movieCredits}/>}
-            {Object.keys(movieDetail).length > 0 && <TopBilledCast  movieCredits={movieCredits}/>}
 
-            
+            {
+                Object.keys(movieDetail).length > 0 &&
+                <MovieBanner
+                    movieDetail={movieDetail}
+                    movieCredits={movieCredits}
+                />
+            }
+            {
+                Object.keys(movieDetail).length > 0 &&
+                <TopBilledCast
+                    movieCredits={movieCredits}
+                />
+            }
+
+            {
+                Object.keys(movieReviews).length > 0 &&
+                <MovieReviews
+                    movieReviews={movieReviews}
+                />
+            }
+
+
+
         </div>
     )
 }
