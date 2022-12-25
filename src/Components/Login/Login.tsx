@@ -5,30 +5,27 @@ import { Button, Form, Input, message } from 'antd'
 
 
 const Login = () => {
-    const [requestToken, setRequestToken] = useState("")
 
-    useEffect(() => {
-        axios.get(REQUEST_TOKEN_URL).then(res => {
-            console.log(res);
 
-            setRequestToken(res.data.request_token);
-        })
-    }, [])
     // useEffect(() => {
+        const requestTokenHandler = () => {
+
+            axios.get(REQUEST_TOKEN_URL).then(res => {
+                
+    
+                if(res.data.request_token !== ""){
+                    window.open(
+                        `https://www.themoviedb.org/authenticate/${res.data.request_token}?redirect_to=http://localhost:3000/approved`,
+    
+                      );
+                  }
+            })
+        }
 
 
-    // if (requestToken !== "") {
-    //     console.log(requestToken);
+    // }, [])
 
-    //     axios.post(SESSION_URL,
-    //         { request_token: requestToken }).then(res => console.log(res))
-    // }
-
-
-    // }, [requestToken])
-
-
-
+    
     // const login = (values: any) => {
     //     axios.post(LOGIN_URL,
     //         {
@@ -51,10 +48,11 @@ const Login = () => {
 
     return (
         <div className='login'>
+            <button onClick={requestTokenHandler}>Token al</button>
             <div className='login-section'>
 
 
-                <Form
+                {/* <Form
                     className='formLogin'
                     name="basic"
                     layout="vertical"
@@ -109,9 +107,9 @@ const Login = () => {
                             Giriş Yap
                         </Button>
                     </Form.Item>
-                </Form>
+                </Form>*/}
 
-            </div>
+            </div> 
         </div>
     )
 }
