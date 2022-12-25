@@ -43,7 +43,7 @@ const MovieDetail = () => {
 
     useEffect(() => {
         axiosProcesses();
-    }, [selectedMovieId, movieReviews])
+    }, [selectedMovieId ])
 
 
 
@@ -68,6 +68,7 @@ const MovieDetail = () => {
                 Object.keys(movieReviews).length > 0 &&
                 <MovieReviews
                     movieReviews={movieReviews}
+                    selectedMovieId = {selectedMovieId }
                 />
             }
 

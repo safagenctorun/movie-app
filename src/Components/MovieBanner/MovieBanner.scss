@@ -2,7 +2,7 @@
     
 
     position: relative;// navbar fixed giderse silinmesi gerek padding 64 ile birlikte
-    padding-top: 64px;
+    padding-top: var(--navbar-height);
     .movie-background{
         background-repeat: no-repeat;
         background-size: cover;

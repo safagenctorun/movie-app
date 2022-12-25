@@ -12,7 +12,7 @@ const MainPage = () => {
     // const [selectedMovieProperties, setSelectedMovieProperties] = useState<any[]>([])
 
     useEffect(() => {
-
+        
         if (searchItem === "")
             setSearchItemsData([])
         else {
