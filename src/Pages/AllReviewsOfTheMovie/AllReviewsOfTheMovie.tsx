@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import MoreReviews from '../Components/MoreReviews/MoreReviews'
 import axios from 'axios'
-import { MOVIE_URL, API_KEY, CERTIFICATIONS_URL } from '../config/Urls'
+import "./AllReviewsOfTheMovie.scss"
+import MoreReviews from '../../Components/MoreReviews/MoreReviews'
+import MakeReviews from '../../Components/MakeReviews/MakeReviews'
+import { MOVIE_URL, API_KEY, CERTIFICATIONS_URL } from '../../config/Urls'
 
 const AllReviewsOfTheMovie = () => {
     const [selectedMovieId, setSelectedMovieId] = useState<string>("")
@@ -26,7 +28,8 @@ const AllReviewsOfTheMovie = () => {
 
 
     return (
-        <div>
+        <div className='all-reviews'>
+            <MakeReviews/>
             {
                 Object.keys(movieReviews).length > 0 &&
                 <MoreReviews
