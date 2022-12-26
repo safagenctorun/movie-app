@@ -39,7 +39,7 @@ const MovieBanner = ({ movieDetail, movieCredits }: any) => {
                         </div>
                         <div className="movie-info">
                             <div className="title">
-                                <h1>{movieDetail.title}   </h1>
+                                <h1>{movieDetail.title} {`(${movieDetail.release_date.split("-")[0]})`}  </h1>
                             </div>
 
                             <div className="type">

@@ -4,7 +4,6 @@ import "./MoreReviews.scss"
 import { StarOutlined } from '@ant-design/icons';
 
 const MoreReviews = ({ movieReviews }: any) => {
-    console.log(movieReviews !== undefined && movieReviews.results[4].author_details.avatar_path);
     return (
         <div className='more-reviews'>
             <h1>Reviews</h1>
@@ -23,12 +22,14 @@ const MoreReviews = ({ movieReviews }: any) => {
                                 </div>
 
                             </div>
-                            <p>
-                                Written by
-                                {review.author}
-                                on
-                                {moment(review.created_at).format("DD/MM/YYYY")}
-                            </p>
+                            <div className="written-by">
+
+                                <p>Written by</p>
+                                <p className='by'>{review.author}</p>
+                                <p>on</p>
+                                <p>{moment(review.created_at).format("DD/MM/YYYY")}</p>
+                            </div>
+
                         </div>
                     </div>
                     <div className="content">

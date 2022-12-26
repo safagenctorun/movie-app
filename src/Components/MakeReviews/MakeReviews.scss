@@ -3,9 +3,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position: relative;
-    padding-top: 80px;
-
+    margin-top: 0.7rem;
     .write-reviews{
         width: 20%;
         background-color: var(--secondary-color);
@@ -37,7 +35,7 @@
             display: flex;
             justify-content: flex-end;
             .submit{
-                background-color: #1af08c;
+                background-color: var(--submit-button-color);
                 border: 1px solid var(--border-secondary-color);
                 font-weight: bold;
             }

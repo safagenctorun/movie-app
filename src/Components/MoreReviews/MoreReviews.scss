@@ -8,18 +8,19 @@
         padding: 1rem;
         box-shadow: 0 2px 8px #0000001a;
         margin-bottom: 2rem;
+        font-size: 1.15em;
 
         .user-infos {
             display: flex;
             align-items: center;
             margin-bottom: 2rem;
-            img{
+            img {
                 border-radius: 50%;
             }
 
             .text {
                 margin-left: 1rem;
-
+                
                 .upper-text {
                     display: flex;
 
@@ -44,22 +45,28 @@
                         }
                     }
                 }
-
-                p {
-                    font-style: italic;
-                    font-size: 0.9em;
-
+                .written-by{
+                    display: flex;
+                    p{
+                        font-style: italic;
+                        font-size: 0.9em;
+                        margin-right: 0.3rem;
+                        color: black;
+                    }
                 }
+
             }
         }
-        .content{
+
+        .content {
             margin-left: 80px;
+            p {
+                color: black;
+            }
         }
     }
 
-    p {
-        color: black;
-    }
+
 
 
 }
