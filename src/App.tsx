@@ -4,7 +4,7 @@ import MainPage from "./Pages/MainPage";
 import MovieDetail from "./Pages/MovieDetail";
 import Navbar from "./Pages/Navbar";
 import LoginPage from "./Pages/LoginPage";
-import AllReviewsOfTheMovie from "./Pages/AllReviewsOfTheMovie";
+import AllReviewsOfTheMovie from "./Pages/AllReviewsOfTheMovie/AllReviewsOfTheMovie";
 import Approved from "./Pages/Approved";
 
 

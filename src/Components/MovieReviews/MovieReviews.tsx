@@ -47,7 +47,7 @@ const MovieReviews = ({ movieReviews, selectedMovieId }: any) => {
                         <p> {movieReviews.results[randomReviews].content}</p>
                     </div>
                     <Divider />
-                    <span className='page-changer' onClick={goToAllReviews}> More Reviews</span>
+                    <span className='page-changer' onClick={goToAllReviews}> Read All Reviews</span>
                 </div>
             }
 
