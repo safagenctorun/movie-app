@@ -8,12 +8,6 @@ import { Link } from 'react-router-dom';
 const MovieReviews = ({ movieReviews, selectedMovieId }: any) => {
     const [randomReviews, setRandomReviews] = useState<number>()
 
-
-    console.log(randomReviews !== undefined && movieReviews.results[randomReviews]);
-
-
-
-
     useEffect(() => {
 
         setRandomReviews(Math.floor(Math.random() * movieReviews.results.length))  //toplam yorumlar içinden 1 tanesini seçiyor
