@@ -12,7 +12,7 @@ const TopBilledCast = ({ movieCredits }: any) => {
                     <div  key={actor.id} className="actor">
                         <img src={`${IMG_URL}/t/p/w138_and_h175_face${actor.profile_path}`} alt={actor.original_name} />
                         <p className='original-name'> {actor.original_name} </p>
-                        <p className='film-name'> {actor.character}</p>
+                        <p className='movie-name'> {actor.character}</p>
                     </div>
                 ))}
             </div>

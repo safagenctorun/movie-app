@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
-import MovieBanner from '../Components/MovieBanner/MovieBanner'
-import { MOVIE_URL, API_KEY, CERTIFICATIONS_URL } from '../config/Urls'
-import TopBilledCast from '../Components/TopBilledCast/TopBilledCast'
-import MovieReviews from '../Components/MovieReviews/MovieReviews'
+import "./MovieDetail.scss"
+import MovieBanner from '../../Components/MovieBanner/MovieBanner'
+import { MOVIE_URL, API_KEY, CERTIFICATIONS_URL } from '../../config/Urls'
+import TopBilledCast from '../../Components/TopBilledCast/TopBilledCast'
+import MovieReviews from '../../Components/MovieReviews/MovieReviews'
 
 
 const MovieDetail = () => {
@@ -43,7 +44,7 @@ const MovieDetail = () => {
 
     useEffect(() => {
         axiosProcesses();
-    }, [selectedMovieId ])
+    }, [selectedMovieId])
 
 
 
@@ -57,20 +58,23 @@ const MovieDetail = () => {
                     movieCredits={movieCredits}
                 />
             }
-            {
-                Object.keys(movieDetail).length > 0 &&
-                <TopBilledCast
-                    movieCredits={movieCredits}
-                />
-            }
+            <div className="movie-detail-except-banner">
 
-            {
-                Object.keys(movieReviews).length > 0 &&
-                <MovieReviews
-                    movieReviews={movieReviews}
-                    selectedMovieId = {selectedMovieId }
-                />
-            }
+                {
+                    Object.keys(movieDetail).length > 0 &&
+                    <TopBilledCast
+                        movieCredits={movieCredits}
+                    />
+                }
+
+                {
+                    Object.keys(movieReviews).length > 0 &&
+                    <MovieReviews
+                        movieReviews={movieReviews}
+                        selectedMovieId={selectedMovieId}
+                    />
+                }
+            </div>
 
 
 

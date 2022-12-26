@@ -1,12 +1,76 @@
+.movie-reviews {
+    h1 {
+        color: rgb(34, 84, 190);
+    }
+    font-size: 1.1rem;
+    .review {
+        border: 1px solid var(--border-secondary-color);
+        padding: 1rem;
+        box-shadow: 0 2px 8px #0000001a;
+        margin-bottom: 2rem;
 
-.movie-reviews{
+        .user-infos {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            img{
+                border-radius: 50%;
+            }
 
-        p,h1{
-            color: black;
+            .text {
+                margin-left: 1rem;
+
+                .upper-text {
+                    display: flex;
+
+                    h4 {
+                        font-weight: bold;
+                    }
+
+                    .span {
+
+                        background-color: var(--primary-color);
+                        color: white;
+                        padding: 1px 0.7rem;
+                        margin-left: 1rem;
+                        text-align: center;
+                        border-radius: 10px;
+
+                        span {
+
+                            margin: 0;
+                            padding-right: 0px;
+
+                        }
+                    }
+                }
+                .written-by{
+                    display: flex;
+                    p{
+                        font-style: italic;
+                        font-size: 0.9em;
+                        margin-right: 0.3rem;
+                        margin-top: 0.1rem;
+                        color: black;
+                    }
+                }
+
+                .by{
+                    font-style: normal;
+                    font-weight: 600;
+                }
+            }
         }
+        .content{
+            margin-left: 80px;
+            p {
+                color: black;
+            }
+        }
+    }
+    .page-changer{
+        margin-left: 5rem;
+        font-weight: bold;
+    }
+}
 
-   
-}
-.page-changer{
-    cursor: pointer;
-}

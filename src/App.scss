@@ -12,6 +12,10 @@ h2,
 h3{
     color: white;
 }
+a{
+    text-decoration: none;
+    color: black;
+}
 :root{
     --primary-color: #0D1416;
     --secondary-color: #161C1F;
@@ -20,4 +24,6 @@ h3{
     --border-primary-color: #484e50;
     --border-secondary-color: #d3d3d9;
     --navbar-height: 64px;
+
+    --submit-button-color: #1af08c
 }
