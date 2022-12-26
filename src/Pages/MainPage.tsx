@@ -24,7 +24,6 @@ const MainPage = () => {
 
     useMemo(() => {
         axios.get(POPULAR_URL).then((res) => {
-            console.log(res.data.results);
             setMoviesData(res.data.results);
         });
     }, []);

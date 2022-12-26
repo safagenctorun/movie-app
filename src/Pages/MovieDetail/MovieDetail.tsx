@@ -32,13 +32,6 @@ const MovieDetail = () => {
             setMovieDetail(movieDetailResponse.data);
             setMovieCredits(movieCreditsResponse.data)
             setMovieReviews(movieReviewsResponse.data)
-            // console.log(movieDetailResponse.data)
-            // console.log(movieReviewsResponse.data);
-
-
-
-
-
         }
     }
 

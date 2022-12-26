@@ -1,16 +1,11 @@
 import React from 'react'
 import "./BackToDetail.scss"
-import { IMG_SIZE_1920, IMG_SIZE_500, IMG_URL } from '../../config/Urls'
+import {  IMG_SIZE_500, IMG_URL } from '../../config/Urls'
 import { Link } from 'react-router-dom';
 
 
 
 const BackToDetail = ({ movieDetail, selectedMovieId }: any) => {
-
-
-    const goToMovieDetail = () => {
-        window.location.replace(`/moviedetail/${selectedMovieId}`)
-    }
 
     return (
 
