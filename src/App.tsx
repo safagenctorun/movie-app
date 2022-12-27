@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import "./App.scss";
 import { Route, Routes } from "react-router-dom";
 import MainPage from "./Pages/MainPage";
@@ -15,16 +16,17 @@ const App = () => {
     return (
         <div className="App">
             {
-                !window.location.pathname.includes("login") && <Navbar /> 
+                !window.location.pathname.includes("login") &&
+                <Navbar />
             }
             <Routes>
                 <Route path={`/login/*`} element={<LoginPage />} />
                 <Route path={``} element={<MainPage />} />
                 <Route path={'/moviedetail/:id'} element={<MovieDetail />} />
                 <Route path={'/moviedetail/:id/reviews'} element={<AllReviewsOfTheMovie />} />
-                
+
                 <Route path={'/approved'} element={<Approved />} />
-                
+
             </Routes>
 
         </div>

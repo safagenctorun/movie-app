@@ -1,0 +1,14 @@
+.movie-videos {
+    .movie-content {
+        .movie-content-img {
+            display: flex;
+            overflow-x: auto;
+
+            .image {
+                margin-right: 1rem;
+                cursor: pointer;
+            }
+
+        }
+    }
+}

@@ -1,0 +1,21 @@
+
+.movie-media{
+    h1,h3{color: black}
+    border: 1px solid var(--border-secondary-color);
+    padding: 1rem;
+    box-shadow: 0 2px 8px #0000001a;
+    .titles{
+        
+        display: flex;
+        align-items: center;
+        h1{
+            margin-right: 2rem;
+        }
+        h3{
+            margin-right: 2rem;
+            cursor: pointer;
+            
+        }
+    }
+    margin-bottom: 50vh;
+}
