@@ -1,4 +1,7 @@
 .movie-reviews {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     h1 {
         color: rgb(34, 84, 190);
     }

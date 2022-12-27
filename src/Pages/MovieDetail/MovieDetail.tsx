@@ -5,7 +5,7 @@ import MovieBanner from '../../Components/MovieBanner/MovieBanner'
 import { MOVIE_URL, API_KEY, CERTIFICATIONS_URL } from '../../config/Urls'
 import TopBilledCast from '../../Components/TopBilledCast/TopBilledCast'
 import MovieReviews from '../../Components/MovieReviews/MovieReviews'
-import MovieVideos from '../../Components/MovieVideos/MovieVideos'
+import MovieMedia from '../../Components/MovieMedia/MovieMedia'
 
 
 const MovieDetail = () => {
@@ -15,6 +15,7 @@ const MovieDetail = () => {
     const [movieCredits, setMovieCredits] = useState<any>([])
     const [movieReviews, setMovieReviews] = useState<any>([])
     const [movieVideos, setMovieVideos] = useState<any>([])
+    const [movieImages, setMovieImages] = useState<any>([])
 
     useEffect(() => {
 
@@ -29,6 +30,7 @@ const MovieDetail = () => {
             let movieCreditsResponse = await axios.get(MOVIE_URL + selectedMovieId + "/credits?" + API_KEY)
             let movieReviewsResponse = await axios.get(MOVIE_URL + selectedMovieId + "/reviews?" + API_KEY)
             let movieVideosResponse = await axios.get(MOVIE_URL + selectedMovieId + "/videos?" + API_KEY)
+            let movieImagesResponse = await axios.get(MOVIE_URL + selectedMovieId + "/images?" + API_KEY)
 
             // let movieCertificationsResponse = await axios.get(CERTIFICATIONS_URL)
 
@@ -36,6 +38,8 @@ const MovieDetail = () => {
             setMovieCredits(movieCreditsResponse.data)
             setMovieReviews(movieReviewsResponse.data)
             setMovieVideos(movieVideosResponse.data)
+            setMovieImages(movieImagesResponse.data)
+            console.log(movieReviewsResponse.data)
 
         }
     }
@@ -72,14 +76,15 @@ const MovieDetail = () => {
                         selectedMovieId={selectedMovieId}
                     />
                 }
-
                 {
                     Object.keys(movieVideos).length > 0 &&
-                    <MovieVideos
+                    Object.keys(movieImages).length > 0 &&
+                    <MovieMedia
                         movieVideos={movieVideos}
-                        // selectedMovieId={selectedMovieId}
+                        movieImages={movieImages}
                     />
                 }
+
             </div>
 
 

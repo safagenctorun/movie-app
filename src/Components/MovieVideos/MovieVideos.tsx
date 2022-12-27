@@ -10,37 +10,34 @@ const MovieVideos = ({ movieVideos }: any) => {
     const [videoUrl, setvideoUrl] = useState("")
     const { setisVideoOpen } = useContext(Context)
 
-    const activateOverlay = (url:string) => {
+    const activateOverlay = (url: string) => {
         setIsOverlayOpen(true)
         setisVideoOpen(true)
         setvideoUrl(url);
-        
-        
+
+
     }
 
     console.log(movieVideos);
 
     return (
-        <div className='movie-videos'>
+        <div className='movie-contents'>
             {/* <button onClick={activateOverlay}>video</button> */}
-            <div className="movie-video">
-                <div className="movie-video-img">
+            <div className="movie-content">
+                <div className="movie-content-img">
 
                     {movieVideos.results.map((img: any) => (
                         img.type === "Trailer" &&
 
                         <img
-                            onClick={e=>activateOverlay(img.key)}
+                            onClick={e => activateOverlay(img.key)}
                             key={img.key} className='image'
                             src={`https://i.ytimg.com/vi/${img.key}/hqdefault.jpg`}
-                            alt={img.name} 
+                            alt={img.name}
                         />
 
 
                     ))}
-                    <div className="play-button">
-
-                    </div>
                 </div>
                 <OverlayVideo
                     isOverlayOpen={isOverlayOpen}
