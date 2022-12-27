@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import "./MovieVideos.scss"
-import { Context } from "../../context/GlobalContext";
-import OverlayVideo from '../OverlayVideo/OverlayVideo';
+import { Context } from "../../../context/GlobalContext";
+import OverlayVideo from './OverlayVideo/OverlayVideo';
 
 
 const MovieVideos = ({ movieVideos }: any) => {
@@ -18,10 +18,8 @@ const MovieVideos = ({ movieVideos }: any) => {
 
     }
 
-    console.log(movieVideos);
-
     return (
-        <div className='movie-contents'>
+        <div className='movie-videos'>
             {/* <button onClick={activateOverlay}>video</button> */}
             <div className="movie-content">
                 <div className="movie-content-img">

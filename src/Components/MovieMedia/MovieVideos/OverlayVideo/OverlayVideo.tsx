@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import "./OverlayVideo.scss"
-import { Context } from "../../context/GlobalContext";
+import { Context } from "../../../../context/GlobalContext";
 
 const OverlayVideo = ({ isOverlayOpen, setIsOverlayOpen, movieVideos, videoUrl }: any) => {
 

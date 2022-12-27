@@ -1,12 +1,12 @@
-.movie-contents {
+.movie-backdrops {
     .movie-content {
         .movie-content-img {
             display: flex;
             overflow-x: auto;
-
+            padding-top: 0.5rem;
+            padding-bottom: 1rem;
             .image {
-                margin-right: 1rem;
-                cursor: pointer;
+                margin-right: 0.5rem;
             }
 
         }

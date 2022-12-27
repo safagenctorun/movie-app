@@ -1,18 +1,12 @@
 import React, { useState } from 'react'
 import "./MovieMedia.scss"
 import { Link } from 'react-router-dom'
-import MovieVideos from '../MovieVideos/MovieVideos'
+import MovieVideos from './MovieVideos/MovieVideos'
+import MovieBackdrops from './MovieBackdrops/MovieBackdrops'
+import MoviePosters from './MoviePosters/MoviePosters'
 
 const MovieMedia = ({ movieVideos, movieImages }: any) => {
     const [selectedType, setSelectedType] = useState("videos")
-
-
-    const text = 'ahmet**gençoğlu';
-
-    const splittedTextArray = text.split('**');
-
-    
-
 
     const typeSelectHandler = (e: any) => {
         setSelectedType(e.target.className);
@@ -30,16 +24,29 @@ const MovieMedia = ({ movieVideos, movieImages }: any) => {
                 <Link to={""}>View All {selectedType.charAt(0).toUpperCase()}{selectedType.slice(1)} </Link> {/* baş harfi büyütme işlemi*/}
             </div>
             <div className="contents">
-            {splittedTextArray[0]}
-            {splittedTextArray[1]}
-{/*     
+    
                 {
                     selectedType === "videos" &&
                     Object.keys(movieVideos).length > 0 &&
                     <MovieVideos
                         movieVideos={movieVideos}
                     />
-                } */}
+                }
+
+                {
+                    selectedType === "backdrops" &&
+                    Object.keys(movieImages).length > 0 &&
+                    <MovieBackdrops
+                        movieImages={movieImages}
+                    />
+                }
+                {
+                    selectedType === "posters" &&
+                    Object.keys(movieImages).length > 0 &&
+                    <MoviePosters
+                        movieImages={movieImages}
+                    />
+                }
                 
             </div>
         </div>
