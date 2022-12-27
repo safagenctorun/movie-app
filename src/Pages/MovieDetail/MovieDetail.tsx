@@ -5,6 +5,7 @@ import MovieBanner from '../../Components/MovieBanner/MovieBanner'
 import { MOVIE_URL, API_KEY, CERTIFICATIONS_URL } from '../../config/Urls'
 import TopBilledCast from '../../Components/TopBilledCast/TopBilledCast'
 import MovieReviews from '../../Components/MovieReviews/MovieReviews'
+import MovieVideos from '../../Components/MovieVideos/MovieVideos'
 
 
 const MovieDetail = () => {
@@ -13,6 +14,7 @@ const MovieDetail = () => {
     const [movieDetail, setMovieDetail] = useState<any>([])
     const [movieCredits, setMovieCredits] = useState<any>([])
     const [movieReviews, setMovieReviews] = useState<any>([])
+    const [movieVideos, setMovieVideos] = useState<any>([])
 
     useEffect(() => {
 
@@ -26,12 +28,15 @@ const MovieDetail = () => {
             let movieDetailResponse = await axios.get(MOVIE_URL + selectedMovieId + "?" + API_KEY)
             let movieCreditsResponse = await axios.get(MOVIE_URL + selectedMovieId + "/credits?" + API_KEY)
             let movieReviewsResponse = await axios.get(MOVIE_URL + selectedMovieId + "/reviews?" + API_KEY)
+            let movieVideosResponse = await axios.get(MOVIE_URL + selectedMovieId + "/videos?" + API_KEY)
 
             // let movieCertificationsResponse = await axios.get(CERTIFICATIONS_URL)
 
             setMovieDetail(movieDetailResponse.data);
             setMovieCredits(movieCreditsResponse.data)
             setMovieReviews(movieReviewsResponse.data)
+            setMovieVideos(movieVideosResponse.data)
+
         }
     }
 
@@ -65,6 +70,14 @@ const MovieDetail = () => {
                     <MovieReviews
                         movieReviews={movieReviews}
                         selectedMovieId={selectedMovieId}
+                    />
+                }
+
+                {
+                    Object.keys(movieVideos).length > 0 &&
+                    <MovieVideos
+                        movieVideos={movieVideos}
+                        // selectedMovieId={selectedMovieId}
                     />
                 }
             </div>
