@@ -1,0 +1,15 @@
+.videos{
+    display: flex;
+    flex-direction: column;
+    h1{
+        color: black;
+        z-index: 999;
+    }
+    .video-images{
+        display: flex;
+       flex-wrap: wrap;
+    }
+    
+
+
+}
