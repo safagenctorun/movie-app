@@ -1,25 +1,19 @@
 .movie-recommendations {
-    // box-shadow: 0 2px 8px #0000001a;
-    // border: 1px solid var(--border-secondary-color);
-    // margin-top: 1rem;
-    // // padding: ;
-    h1 {
-
-        color: black;
-    }
+    box-shadow: 0 2px 8px #0000001a;
+    border: 1px solid var(--border-secondary-color);
+    margin-top: 1rem;
+    padding: 0rem 1rem 0rem 1rem;
 
     .recommendations {
         display: flex;
         overflow-x: auto;
-        padding: 1rem 1rem 1rem 0rem;
+        padding: 0.2rem 0;
 
         .recommendation {
             display: flex;
             flex-direction: column;
-            // align-items: center;
             position: relative;
-            // overflow-y: hidden;
-
+            
 
             .movie-detail{
                 display: flex;
@@ -40,6 +34,7 @@
                 height: auto;
             }
             .movie-name{
+                color: white;
                 margin-right: 0.6rem;
             }
         }
@@ -50,5 +45,6 @@
             }
         }
     }
+
     margin-bottom: 200px;
 }

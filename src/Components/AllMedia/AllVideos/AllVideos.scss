@@ -2,14 +2,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    p{
-        color: black;
-    }
     .video-choices {
         display: flex;
 
         p {
-            color: black;
             cursor: pointer;
             margin-right: 1rem;
         }
