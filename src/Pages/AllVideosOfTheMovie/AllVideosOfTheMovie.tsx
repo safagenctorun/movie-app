@@ -3,6 +3,7 @@ import axios from 'axios'
 import { MOVIE_URL, API_KEY } from '../../config/Urls'
 import "./AllVideosOfTheMovie.scss"
 import BackToDetail from '../../Components/BackToDetail/BackToDetail'
+import AllVideos from '../../Components/AllMedia/AllVideos/AllVideos'
 
 const AllVideosOfTheMovie = () => {
     const [selectedMovieId, setSelectedMovieId] = useState<string>("")
@@ -18,7 +19,7 @@ const AllVideosOfTheMovie = () => {
     async function axiosProcesses() {
         if (selectedMovieId !== "") {
             let movieDetailResponse = await axios.get(MOVIE_URL + selectedMovieId + "?" + API_KEY)
-            let movieVideosResponse = await axios.get(MOVIE_URL + selectedMovieId + "/reviews?" + API_KEY)
+            let movieVideosResponse = await axios.get(MOVIE_URL + selectedMovieId + "/videos?" + API_KEY)
             setMovieDetail(movieDetailResponse.data);
             setMovieVideos(movieVideosResponse.data)
         }
@@ -37,9 +38,12 @@ const AllVideosOfTheMovie = () => {
                     selectedMovieId={selectedMovieId}
                 />
             }
-            <div className='all-videos'>
-                
-            </div>
+            {
+                Object.keys(movieVideos).length > 0 &&
+                <div className='all-videos'>
+                    <AllVideos movieVideos={movieVideos} />
+                </div>
+            }
 
         </div>
     )

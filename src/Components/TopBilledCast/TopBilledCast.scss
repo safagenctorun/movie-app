@@ -13,13 +13,13 @@
         display: flex;
         overflow-x: auto;
         padding: 1rem 1rem 1rem 0rem;
-        justify-content: center;
         .actor {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             box-shadow: 0 2px 8px #0000001a;
             border: 1px solid var(--border-secondary-color);
             width: 160px;
-            display: flex;
-            flex-direction: column;
             margin-right: 0.8rem;
             
             p {

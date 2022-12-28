@@ -6,6 +6,7 @@ import { MOVIE_URL, API_KEY, CERTIFICATIONS_URL } from '../../config/Urls'
 import TopBilledCast from '../../Components/TopBilledCast/TopBilledCast'
 import MovieReviews from '../../Components/MovieReviews/MovieReviews'
 import MovieMedia from '../../Components/MovieMedia/MovieMedia'
+import MovieRecommendations from '../../Components/MovieRecommendations/MovieRecommendations'
 
 
 const MovieDetail = () => {
@@ -16,6 +17,7 @@ const MovieDetail = () => {
     const [movieReviews, setMovieReviews] = useState<any>([])
     const [movieVideos, setMovieVideos] = useState<any>([])
     const [movieImages, setMovieImages] = useState<any>([])
+    const [movieRecommendations, setMovieRecommendations] = useState<any>([])
 
     useEffect(() => {
 
@@ -31,6 +33,7 @@ const MovieDetail = () => {
             let movieReviewsResponse = await axios.get(MOVIE_URL + selectedMovieId + "/reviews?" + API_KEY)
             let movieVideosResponse = await axios.get(MOVIE_URL + selectedMovieId + "/videos?" + API_KEY)
             let movieImagesResponse = await axios.get(MOVIE_URL + selectedMovieId + "/images?" + API_KEY)
+            let movieRecommendationsResponse = await axios.get(MOVIE_URL + selectedMovieId + "/recommendations?" + API_KEY)
 
             // let movieCertificationsResponse = await axios.get(CERTIFICATIONS_URL)
 
@@ -39,7 +42,8 @@ const MovieDetail = () => {
             setMovieReviews(movieReviewsResponse.data)
             setMovieVideos(movieVideosResponse.data)
             setMovieImages(movieImagesResponse.data)
-            console.log(movieReviewsResponse.data)
+            setMovieRecommendations(movieRecommendationsResponse.data)
+            console.log(movieRecommendationsResponse.data)
 
         }
     }
@@ -84,6 +88,10 @@ const MovieDetail = () => {
                         movieImages={movieImages}
                         selectedMovieId={selectedMovieId}
                     />
+                }
+                {
+                    Object.keys(movieRecommendations).length > 0 &&
+                    <MovieRecommendations movieRecommendations={movieRecommendations}/>
                 }
 
             </div>
