@@ -20,7 +20,6 @@ const MovieVideos = ({ movieVideos }: any) => {
 
     return (
         <div className='movie-videos'>
-            {/* <button onClick={activateOverlay}>video</button> */}
             <div className="movie-content">
                 <div className="movie-content-img">
 
@@ -37,12 +36,15 @@ const MovieVideos = ({ movieVideos }: any) => {
 
                     ))}
                 </div>
+                {isOverlayOpen === true &&
+                
                 <OverlayVideo
                     isOverlayOpen={isOverlayOpen}
                     setIsOverlayOpen={setIsOverlayOpen}
                     movieVideos={movieVideos}
                     videoUrl={videoUrl}
                 />
+                }
 
             </div>
 

@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import "./AllReviewsOfTheMovie.scss"
-import MoreReviews from '../../Components/MoreReviews/MoreReviews'
-import MakeReviews from '../../Components/MakeReviews/MakeReviews'
 import { MOVIE_URL, API_KEY } from '../../config/Urls'
+import "./AllVideosOfTheMovie.scss"
 import BackToDetail from '../../Components/BackToDetail/BackToDetail'
 
-const AllReviewsOfTheMovie = () => {
+const AllVideosOfTheMovie = () => {
     const [selectedMovieId, setSelectedMovieId] = useState<string>("")
     const [movieDetail, setMovieDetail] = useState<any>([])
-    const [movieReviews, setMovieReviews] = useState<any>([])
-
+    const [movieVideos, setMovieVideos] = useState<any>([])
 
     useEffect(() => {
 
@@ -21,9 +18,9 @@ const AllReviewsOfTheMovie = () => {
     async function axiosProcesses() {
         if (selectedMovieId !== "") {
             let movieDetailResponse = await axios.get(MOVIE_URL + selectedMovieId + "?" + API_KEY)
-            let movieReviewsResponse = await axios.get(MOVIE_URL + selectedMovieId + "/reviews?" + API_KEY)
+            let movieVideosResponse = await axios.get(MOVIE_URL + selectedMovieId + "/reviews?" + API_KEY)
             setMovieDetail(movieDetailResponse.data);
-            setMovieReviews(movieReviewsResponse.data)
+            setMovieVideos(movieVideosResponse.data)
         }
     }
 
@@ -31,9 +28,8 @@ const AllReviewsOfTheMovie = () => {
         axiosProcesses();
     }, [selectedMovieId])
 
-
     return (
-        <div className='all-reviews-back-to-detail'>
+        <div className='all-videos-back-to-detail'>
             {
                 Object.keys(movieDetail).length > 0 &&
                 <BackToDetail
@@ -41,19 +37,12 @@ const AllReviewsOfTheMovie = () => {
                     selectedMovieId={selectedMovieId}
                 />
             }
-            <div className='all-reviews'>
-
-                <MakeReviews />
-                {
-                    Object.keys(movieReviews).length > 0 &&
-                    <MoreReviews
-                        movieReviews={movieReviews}
-                    />
-                }
+            <div className='all-videos'>
+                
             </div>
 
         </div>
     )
 }
 
-export default AllReviewsOfTheMovie
+export default AllVideosOfTheMovie

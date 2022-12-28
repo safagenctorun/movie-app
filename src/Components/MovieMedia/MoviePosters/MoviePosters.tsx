@@ -6,7 +6,7 @@ const MoviePosters = ({ movieImages }: any) => {
     console.log(movieImages);
     
     return (
-        <div className='movie-backdrops'>
+        <div className='movie-posters'>
             <div className="movie-content">
                 <div className="movie-content-img">
 

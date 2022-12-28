@@ -1,9 +1,10 @@
 .movie-videos {
     .movie-content {
+        display: flex;
+        justify-content: center;
         .movie-content-img {
             display: flex;
             overflow-x: auto;
-
             .image {
                 margin-right: 1rem;
                 cursor: pointer;
