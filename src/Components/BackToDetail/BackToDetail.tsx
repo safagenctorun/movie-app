@@ -1,13 +1,11 @@
 import React from 'react'
 import "./BackToDetail.scss"
-import {  IMG_SIZE_500, IMG_URL } from '../../config/Urls'
+import { IMG_SIZE_500, IMG_URL } from '../../config/Urls'
 import { Link } from 'react-router-dom';
 
 
 
 const BackToDetail = ({ movieDetail, selectedMovieId, }: any) => {
-    console.log(movieDetail.release_date.split("-")[0]);
-    
 
     return (
 

@@ -11,6 +11,7 @@
 
     .actors {
         display: flex;
+        
         overflow-x: auto;
         padding: 1rem 1rem 1rem 0rem;
         .actor {
@@ -26,6 +27,7 @@
                 color: black;
                 padding-left: 0.4rem;
                 padding-right: 0.4rem;
+                text-align: center;
             }
             .original-name {
                 font-weight: bold;

@@ -1,7 +1,4 @@
-a{
-    text-decoration: none;
-}
-.nav{
+.nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -11,14 +8,17 @@ a{
     height: var(--navbar-height);
     width: 100%;
     z-index: 10;
-    box-shadow: 0.1px 1px 5px rgba(0, 0, 0, 1 );
-    .main-page{
+    box-shadow: 0.1px 1px 5px rgba(0, 0, 0, 1);
+
+    p {
+        color: white;
+    }
+
+    .main-page {
         margin-left: 3rem;
     }
-    .movies{
 
-    }
-    .log-in-out{
+    .log-in-out {
         margin-right: 3rem;
 
     }

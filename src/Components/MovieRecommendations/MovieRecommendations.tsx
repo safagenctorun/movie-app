@@ -7,12 +7,16 @@ const MovieRecommendations = ({ movieRecommendations }: any) => {
         <div className='movie-recommendations'>
             <h1>Recommendations </h1>
             <div className="recommendations">
-                {movieRecommendations.results.map((movie: any, index:number) => (
+                {movieRecommendations.results.map((movie: any, index: number) => (
                     // index < 9 && 
-                    <div  key={movie.id} className="recommendation">
-                        <img src={`${IMG_URL}/t/p/w250_and_h141_face${movie.backdrop_path}`} alt={movie.title} />
-                         <p className='movie-name'> {movie.title} </p> 
-                         {/* <p className='movie-name'> {`${movie.vote_average*10}%`}</p>  */}
+                    <div key={movie.id} className="recommendation">
+                        
+                        <a href={`/moviedetail/${movie.id}`}><img src={`${IMG_URL}/t/p/w500${movie.backdrop_path}`} alt={movie.title} /></a>
+                        <div className="movie-detail">
+                            <p className='movie-name'> {movie.title} </p>
+                            <p style={{ color: movie.vote_average > 8 ? "lightgreen" : movie.vote_average > 5 ? "orange" : "red" }} className='movie-vote-average'> {`${Math.floor(movie.vote_average * 10)}%`}</p>
+
+                        </div>
                     </div>
                 ))}
             </div>
