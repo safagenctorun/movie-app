@@ -1,5 +1,7 @@
 .movie-backdrops {
     .movie-content {
+        display: flex;
+        justify-content: center;
         .movie-content-img {
             display: flex;
             overflow-x: auto;
@@ -7,6 +9,8 @@
             padding-bottom: 1rem;
             .image {
                 margin-right: 0.5rem;
+                height: 350px;
+                width: auto;
             }
 
         }

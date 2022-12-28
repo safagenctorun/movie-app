@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 
 
 
-const BackToDetail = ({ movieDetail, selectedMovieId }: any) => {
+const BackToDetail = ({ movieDetail, selectedMovieId, }: any) => {
+    console.log(movieDetail.release_date.split("-")[0]);
+    
 
     return (
 

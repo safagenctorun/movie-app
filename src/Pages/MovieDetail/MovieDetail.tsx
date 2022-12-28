@@ -82,6 +82,7 @@ const MovieDetail = () => {
                     <MovieMedia
                         movieVideos={movieVideos}
                         movieImages={movieImages}
+                        selectedMovieId={selectedMovieId}
                     />
                 }
 

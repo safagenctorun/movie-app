@@ -1,15 +1,19 @@
 .top-billed-cast {
+    border: 1px solid var(--border-secondary-color);
+    padding: 0.4rem 1rem 1rem 1rem;
+    box-shadow: 0 2px 8px #0000001a;
+    margin-top: 1rem;
     h1 {
         color: #000;
         position: relative;
-        // margin-left: 1rem;
+        
     }
 
     .actors {
         display: flex;
         overflow-x: auto;
-        padding: 1rem;
-        //    justify-content: center;
+        padding: 1rem 1rem 1rem 0rem;
+        justify-content: center;
         .actor {
             box-shadow: 0 2px 8px #0000001a;
             border: 1px solid var(--border-secondary-color);
