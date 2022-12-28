@@ -1,0 +1,21 @@
+.movie-recommendations {
+    h1 {
+
+        color: black;
+    }
+
+    .recommendations {
+        display: flex;
+        overflow-x: auto;
+        padding: 1rem 1rem 1rem 0rem;
+
+        .recommendation {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .movie-name{
+                color: black;
+            }
+        }
+    }
+}
