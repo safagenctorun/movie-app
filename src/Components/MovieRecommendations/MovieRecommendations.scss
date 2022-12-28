@@ -1,4 +1,8 @@
 .movie-recommendations {
+    // box-shadow: 0 2px 8px #0000001a;
+    // border: 1px solid var(--border-secondary-color);
+    // margin-top: 1rem;
+    // // padding: ;
     h1 {
 
         color: black;
@@ -12,10 +16,39 @@
         .recommendation {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            // align-items: center;
+            position: relative;
+            // overflow-y: hidden;
+
+
+            .movie-detail{
+                display: flex;
+                justify-content: center;
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: var(--primary-color);
+                padding: 1rem;
+                margin-bottom: 5px;
+                max-height: 100%;
+                opacity: 0;
+                transition: opacity 0.35s ease-out;
+            }
+            img{
+                width: 400px;
+                height: auto;
+            }
             .movie-name{
-                color: black;
+                margin-right: 0.6rem;
+            }
+        }
+        .recommendation:hover{
+            .movie-detail{
+                opacity: 1;
+
             }
         }
     }
+    margin-bottom: 200px;
 }

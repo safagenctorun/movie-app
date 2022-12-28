@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.scss";
 import { Route, Routes } from "react-router-dom";
-import MainPage from "./Pages/MainPage";
+import MainPage from "./Pages/MainPage/MainPage";
 import MovieDetail from "./Pages/MovieDetail/MovieDetail";
 import Navbar from "./Pages/Navbar";
 import LoginPage from "./Pages/LoginPage";

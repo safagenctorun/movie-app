@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
-import { SERACH_URL, POPULAR_URL } from "../config/Urls";
-import SearchBar from '../Components/SearchBar/SearchBar';
-import PopularMovies from "../Components/PopularMovies/PopularMovies";
+import "./MainPage.scss"
+import { SERACH_URL, POPULAR_URL } from "../../config/Urls";
+import SearchBar from '../../Components/SearchBar/SearchBar';
+import PopularMovies from "../../Components/PopularMovies/PopularMovies";
 
 
 const MainPage = () => {

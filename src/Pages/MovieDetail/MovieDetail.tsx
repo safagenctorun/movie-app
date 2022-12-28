@@ -91,7 +91,9 @@ const MovieDetail = () => {
                 }
                 {
                     Object.keys(movieRecommendations).length > 0 &&
-                    <MovieRecommendations movieRecommendations={movieRecommendations}/>
+                    <MovieRecommendations
+                        movieRecommendations={movieRecommendations}
+                    />
                 }
 
             </div>
