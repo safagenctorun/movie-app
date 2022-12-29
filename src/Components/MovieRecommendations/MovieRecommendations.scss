@@ -1,19 +1,18 @@
 .movie-recommendations {
     box-shadow: 0 2px 8px #0000001a;
     border: 1px solid var(--border-secondary-color);
-    margin-top: 1rem;
+    margin-top: 2rem;
     padding: 0rem 1rem 0rem 1rem;
-
+    
     .recommendations {
         display: flex;
         overflow-x: auto;
         padding: 0.2rem 0;
-
+        
         .recommendation {
             display: flex;
             flex-direction: column;
             position: relative;
-            
 
             .movie-detail{
                 display: flex;
@@ -28,10 +27,15 @@
                 max-height: 100%;
                 opacity: 0;
                 transition: opacity 0.35s ease-out;
+                margin-right: 1rem;
+                border-radius: 2rem;
             }
             img{
+                border-radius: 2rem;
                 width: 400px;
+                min-width: 400px;
                 height: auto;
+                margin-right: 1rem;
             }
             .movie-name{
                 color: white;

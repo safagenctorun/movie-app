@@ -19,7 +19,7 @@ const MovieReviews = ({ movieReviews, selectedMovieId }: any) => {
         <div className='movie-reviews'>
             <h1 >Reviews</h1>
             {randomReviews !== undefined &&
-
+                Object.keys(movieReviews.results).length > 0 ? //eğer hiç yorum yoksa devreye giriyor
                 <div className="review">
 
                     <div className="user-infos">
@@ -51,6 +51,8 @@ const MovieReviews = ({ movieReviews, selectedMovieId }: any) => {
                     <Divider />
                     <Link className='page-changer' to={`/moviedetail/${selectedMovieId}/reviews`}>Read All Reviews</Link>
                 </div>
+                :
+                <div className='review'>We don't have any reviews</div>
             }
 
         </div>

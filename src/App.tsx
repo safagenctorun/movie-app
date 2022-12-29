@@ -8,6 +8,8 @@ import LoginPage from "./Pages/LoginPage";
 import Approved from "./Pages/Approved";
 import AllReviewsOfTheMovie from "./Pages/AllReviewsOfTheMovie/AllReviewsOfTheMovie";
 import AllVideosOfTheMovie from "./Pages/AllVideosOfTheMovie/AllVideosOfTheMovie";
+import AllBackdropsOfTheMovie from "./Pages/AllBackdropsOfTheMovie/AllBackdropsOfTheMovie";
+import AllPostersOfThePage from "./Pages/AllPostersOfThePage/AllPostersOfThePage";
 
 
 
@@ -26,6 +28,8 @@ const App = () => {
                 <Route path={'/moviedetail/:id'} element={<MovieDetail />} />
                 <Route path={'/moviedetail/:id/reviews'} element={<AllReviewsOfTheMovie />} />
                 <Route path={'/moviedetail/:id/videos'} element={<AllVideosOfTheMovie />} />
+                <Route path={'/moviedetail/:id/backdrops'} element={<AllBackdropsOfTheMovie />} />
+                <Route path={'/moviedetail/:id/posters'} element={<AllPostersOfThePage />} />
 
                 <Route path={'/approved'} element={<Approved />} />
 

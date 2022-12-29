@@ -1,13 +1,12 @@
 .movie-reviews {
-    h1 {
-        color: rgb(34, 84, 190);
-    }
     font-size: 1.1rem;
+    border: 1px solid var(--border-secondary-color);
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 8px #0000001a;
+    margin: 2rem 0;
+
     .review {
-        border: 1px solid var(--border-secondary-color);
-        padding: 1rem;
-        box-shadow: 0 2px 8px #0000001a;
-        margin-bottom: 2rem;
+
         .user-infos {
             display: flex;
             align-items: center;
