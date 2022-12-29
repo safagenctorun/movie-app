@@ -4,7 +4,7 @@ import { IMG_SIZE_500, IMG_URL } from '../../../config/Urls';
 
 const MoviePosters = ({ movieImages }: any) => {
     console.log(movieImages);
-    
+
     return (
         <div className='movie-posters'>
             <div className="movie-content">
@@ -12,12 +12,15 @@ const MoviePosters = ({ movieImages }: any) => {
 
                     {movieImages.posters.map((img: any, index: number) => (
                         img.iso_639_1 === "en" &&
-                        <img
-                            key={index}
-                            className='image'
-                            src={IMG_URL + IMG_SIZE_500 + img.file_path}
-                            alt=""
-                        />
+                        <a href={IMG_URL + IMG_SIZE_500 + img.file_path}>
+                            <img
+                                key={index}
+                                className='image'
+                                src={IMG_URL + IMG_SIZE_500 + img.file_path}
+                                alt=""
+                            />
+                        </a>
+
 
                     ))}
                 </div>

@@ -14,7 +14,7 @@ const REQUEST_TOKEN_URL = BASE_URL + AUTHENTICATION + "token/new?" + API_KEY
 const SESSION_URL = BASE_URL + AUTHENTICATION + "session/new?" + API_KEY
 const LOGIN_URL = BASE_URL + AUTHENTICATION + "token/validate_with_login?" + API_KEY
 const CERTIFICATIONS_URL = BASE_URL + "/certification/movie/list?" + API_KEY
-
+const CONFIGURATION_URL = BASE_URL + "/configuration/" 
 
 
 export {
@@ -29,4 +29,5 @@ export {
     LOGIN_URL,
     SESSION_URL,
     CERTIFICATIONS_URL,
+    CONFIGURATION_URL
 };

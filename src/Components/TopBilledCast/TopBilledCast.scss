@@ -21,6 +21,7 @@
             box-shadow: 0 2px 8px #0000001a;
             border: 1px solid var(--border-secondary-color);
             width: 160px;
+            min-width: 160px;
             margin-right: 0.8rem;
             
             p {
@@ -36,7 +37,7 @@
                 padding-bottom: 0.2rem;
             }
             img {
-                max-width: 138;
+                width: 158px;
             }
         }
     }

@@ -23,7 +23,11 @@ const MovieMedia = ({ movieVideos, movieImages, selectedMovieId }: any) => {
                     <h3 onClick={typeSelectHandler} style={{ borderBottom: selectedType === "posters" ? "2px solid #000" : "" }} className="posters"> Posters {movieImages.posters.length}</h3>
                 </div>
 
-                <Link to={`/moviedetail/${selectedMovieId}/${selectedType}`}>View All {selectedType.charAt(0).toUpperCase()}{selectedType.slice(1)} </Link> {/* baş harfi büyütme işlemi*/}
+                <Link
+                    to={`/moviedetail/${selectedMovieId}/${selectedType}`}
+                >
+                    View All {selectedType.charAt(0).toUpperCase()}{selectedType.slice(1)}
+                </Link> {/* baş harfi büyütme işlemi*/}
 
             </div>
             <div className="contents">

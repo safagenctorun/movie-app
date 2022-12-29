@@ -43,7 +43,7 @@ const MovieDetail = () => {
             setMovieVideos(movieVideosResponse.data)
             setMovieImages(movieImagesResponse.data)
             setMovieRecommendations(movieRecommendationsResponse.data)
-            console.log(movieRecommendationsResponse.data)
+            console.log(movieImagesResponse.data)
 
         }
     }
@@ -74,7 +74,7 @@ const MovieDetail = () => {
                 }
 
                 {
-                    Object.keys(movieReviews).length > 0 &&
+                    Object.keys(movieReviews).length > 0 &&  
                     <MovieReviews
                         movieReviews={movieReviews}
                         selectedMovieId={selectedMovieId}

@@ -21,13 +21,13 @@ const MovieBackdrops = ({ movieImages }: any) => {
                     {movieImages.backdrops.map((img: any, index:number) => (
                         
                         index < 9 &&
-                        <img
-                            // onClick={e => activateOverlay(img.key)}
-                            key={index} className='image'
-                            src={IMG_URL + IMG_SIZE_500 + img.file_path }
-                            alt=""
-                        
-                        />
+                        <a href={IMG_URL + IMG_SIZE_500 + img.file_path}>
+                            <img
+                                key={index} className='image'
+                                src={IMG_URL + IMG_SIZE_500 + img.file_path }
+                                alt=""
+                            />
+                        </a>
 
 
                     ))}
