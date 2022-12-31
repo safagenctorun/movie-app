@@ -5,23 +5,13 @@ import { IMG_SIZE_500, IMG_URL } from '../../../config/Urls';
 const AllPosters = ({ movieImages, language }: any) => {
     const [selectedLanguage, setSelectedLanguage] = useState("No Language")
 
-    // const [languageDict, setLanguageDict] = useState<any>({})
 
-    // language.forEach((lang:any) => {
-    //     setLanguageDict({...languageDict, [lang.iso_639_1]: lang.english_name}) 
-    // })
+    let languageDict :any= {};
+    language.forEach((lang:any) => {
+        languageDict[lang.iso_639_1] =  lang.english_name
+    })
+    languageDict["null"] = "No Language"  // resimlerin dili olmadığında null geldiği için en sona ekliyoruz 
 
-    const dictionary: any = {
-
-        en: "English",
-        no: "Norwegian",
-        pt: "Portuguese",
-        te: "Telugu",
-        it: "Italian",
-        fr: "French",
-        zh: "Chinese",
-        null: "No Language"
-    };
 
     let languageArray: any = []
     movieImages.backdrops.forEach((el: any) => {
@@ -38,16 +28,16 @@ const AllPosters = ({ movieImages, language }: any) => {
         <div className='posters'>
             <div className="posters-choices">
                 {languageArrayWithoutDuplicates.map((lang: any, index: number) => (
-                    <p key={index} style={{ borderBottom: selectedLanguage === dictionary[lang] ? "2px solid #000" : "" }} onClick={e => setSelectedLanguage(e.currentTarget.innerText)}>{lang === "ptr" ? "No Language" : dictionary[lang]} </p>
+                    <p key={index} style={{ borderBottom: selectedLanguage === languageDict[lang] ? "2px solid #000" : "" }} onClick={e => setSelectedLanguage(e.currentTarget.innerText)}>{languageDict[lang]} </p>
                 ))}
 
             </div>
 
 
             <div className="posters-images">
-                {movieImages.backdrops.map((img: any, index: number) => (
+                {movieImages.posters.map((img: any, index: number) => (
 
-                    dictionary[img.iso_639_1] === selectedLanguage &&
+                    languageDict[img.iso_639_1] === selectedLanguage &&
 
                     <div className="posters-image" key={index}>
                         <a
