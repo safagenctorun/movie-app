@@ -15,7 +15,13 @@ const Approved = () => {
         if (requestToken !== "") {
 
             axios.post(SESSION_URL,
-                { request_token: requestToken }).then(res => console.log(res.data.session_id))
+                { request_token: requestToken }).then(res =>{
+                    if (res.status === 200){
+                        localStorage.setItem("session_id", res.data.session_id) 
+                        console.log(res.data.session_id);
+                        
+                    }
+                })
         }
 
     }, [requestToken])
@@ -25,11 +31,7 @@ const Approved = () => {
             <p>safa</p>
             <p>safa</p>
             <p>safa</p>
-            <p>safa</p>
-            <p>safa</p>
-            <p>safa</p>
-            <p>safa</p>
-            <span>safa</span>
+
         </div>
     )
 }

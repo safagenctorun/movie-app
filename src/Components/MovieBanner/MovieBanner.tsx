@@ -6,14 +6,14 @@ import type { MenuProps } from 'antd';
 import { Rate, Dropdown, Space } from 'antd';
 import moment from "moment";
 
-const MovieBanner = ({ movieDetail, movieCredits }: any) => {
+const MovieBanner = ({ movieDetail, movieCredits, setMovieRate }: any) => {
 
 
     const rateHandler = (rate: number) => {
         if (rate  === 0 )        
-        console.log(rate + 0.5);
+        setMovieRate(rate + 0.5);
         else
-        console.log(rate * 2);
+        setMovieRate(rate * 2);
 
 
     }

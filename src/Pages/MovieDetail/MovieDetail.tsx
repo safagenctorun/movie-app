@@ -18,6 +18,7 @@ const MovieDetail = () => {
     const [movieVideos, setMovieVideos] = useState<any>([])
     const [movieImages, setMovieImages] = useState<any>([])
     const [movieRecommendations, setMovieRecommendations] = useState<any>([])
+    const [movieRate, setMovieRate] = useState<string>("")
 
     useEffect(() => {
 
@@ -34,6 +35,7 @@ const MovieDetail = () => {
             let movieVideosResponse = await axios.get(MOVIE_URL + selectedMovieId + "/videos?" + API_KEY)
             let movieImagesResponse = await axios.get(MOVIE_URL + selectedMovieId + "/images?" + API_KEY)
             let movieRecommendationsResponse = await axios.get(MOVIE_URL + selectedMovieId + "/recommendations?" + API_KEY)
+            
 
             // let movieCertificationsResponse = await axios.get(CERTIFICATIONS_URL)
 
@@ -43,7 +45,7 @@ const MovieDetail = () => {
             setMovieVideos(movieVideosResponse.data)
             setMovieImages(movieImagesResponse.data)
             setMovieRecommendations(movieRecommendationsResponse.data)
-            console.log(movieImagesResponse.data)
+            // console.log(movieRateResponse.data)
 
         }
     }
@@ -52,7 +54,17 @@ const MovieDetail = () => {
         axiosProcesses();
     }, [selectedMovieId])
 
+    useEffect(() => {
+        if (movieRate !== ""){
 
+            axios.post(MOVIE_URL + selectedMovieId + "/rating?session_id=" +localStorage.getItem("session_id")+ "?"+ API_KEY,{
+                value: movieRate
+            }).then(res=> console.log(res))
+
+
+        }
+    }, [movieRate])
+    
 
     return (
         <div className='movie-detail'>
@@ -62,6 +74,7 @@ const MovieDetail = () => {
                 <MovieBanner
                     movieDetail={movieDetail}
                     movieCredits={movieCredits}
+                    setMovieRate={setMovieRate}
                 />
             }
             <div className="movie-detail-except-banner">
