@@ -10,9 +10,8 @@ const MovieRecommendations = ({ movieRecommendations }: any) => {
                 Object.keys(movieRecommendations.results).length > 0 ? //eğer hiç yorum yoksa devreye giriyor
                 <div className="recommendations">
                     {movieRecommendations.results.map((movie: any, index: number) => (
-                        // index < 9 && 
+                        
                         <div key={movie.id} className="recommendation">
-
                             <a href={`/moviedetail/${movie.id}`}><img src={`${IMG_URL}/t/p/w500${movie.backdrop_path}`} alt={movie.title} /></a>
                             <div className="movie-detail">
                                 <p className='movie-name'> {movie.title} </p>
