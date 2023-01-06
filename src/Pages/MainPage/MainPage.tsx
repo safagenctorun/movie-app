@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import "./MainPage.scss"
-import { SERACH_URL, POPULAR_URL } from "../../config/Urls";
+import { SERACH_URL, /*POPULAR_URL,*/ MOVIE_URL, API_KEY } from "../../config/Urls";
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import PopularMovies from "../../Components/PopularMovies/PopularMovies";
 
@@ -24,8 +24,9 @@ const MainPage = () => {
     }, [searchItem])
 
     useMemo(() => {
-        axios.get(POPULAR_URL).then((res) => {
+        axios.get(MOVIE_URL + "popular?" + API_KEY).then((res) => {
             setMoviesData(res.data.results);
+            
         });
     }, []);
 

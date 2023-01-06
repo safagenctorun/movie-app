@@ -18,7 +18,7 @@ const Nav = () => {
                 </div>
 
                 <div className="movies">
-                    <p>Movies</p>
+                    <a href='http://localhost:3000/moviefilter'>Movies</a>
                 </div>
                 <div className="log-in-out">
                     <Button type="primary" danger onClick={changePage}>Login</Button>
