@@ -45,7 +45,7 @@ const MovieDetail = () => {
             setMovieVideos(movieVideosResponse.data)
             setMovieImages(movieImagesResponse.data)
             setMovieRecommendations(movieRecommendationsResponse.data)
-            // console.log(movieRateResponse.data)
+            console.log(movieRecommendationsResponse.data)
 
         }
     }

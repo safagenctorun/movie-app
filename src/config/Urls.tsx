@@ -2,7 +2,7 @@
 
 const API_KEY = "api_key=099719111c03c88dd7a06da496820e3d"
 const BASE_URL = "https://api.themoviedb.org/3"
-const POPULAR_URL: string = BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY
+// const POPULAR_URL: string = BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY
 
 const IMG_URL = "https://image.tmdb.org/t/p"
 const IMG_SIZE_500 = "/w500"
@@ -18,7 +18,7 @@ const CONFIGURATION_URL = BASE_URL + "/configuration/"
 
 
 export {
-    POPULAR_URL,
+    // POPULAR_URL,
     IMG_URL,
     SERACH_URL,
     MOVIE_URL,

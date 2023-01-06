@@ -1,7 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import "./SearchBar.scss"
-import { AutoComplete, Input } from 'antd';
-import { MOVIE_URL, API_KEY } from "../../config/Urls";
+import { AutoComplete } from 'antd';
+
 // import { Context } from "../../context/GlobalContext";
 
 
@@ -25,21 +25,26 @@ const SearchBar = ({ setSearchItem, searchItemsData }: any) => {
 
     return (
         <div className="search-bar">
-            <div className="search-margin">
 
-                <Input.Group compact className="general-search">
-                    <AutoComplete
 
-                        className="search-bar-input"
-                        onSelect={changePage}
-                        onChange={(text) => setSearchItem(text)}
-                        style={{ width: "25%", }}
-                        options={optionsGenerator()}
-                        placeholder="search"
-                    />
-                </Input.Group>
-            </div>
+            <AutoComplete
+
+
+                onSelect={changePage}
+                onChange={(text) => setSearchItem(text)}
+                options={optionsGenerator()}
+
+
+            >
+                <input
+                    placeholder="search"
+                    type="text"
+                    className="search-bar-input"
+                />
+            </AutoComplete>
+
         </div>
+
     );
 };
 

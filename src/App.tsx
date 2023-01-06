@@ -10,6 +10,7 @@ import AllReviewsOfTheMovie from "./Pages/AllReviewsOfTheMovie/AllReviewsOfTheMo
 import AllVideosOfTheMovie from "./Pages/AllVideosOfTheMovie/AllVideosOfTheMovie";
 import AllBackdropsOfTheMovie from "./Pages/AllBackdropsOfTheMovie/AllBackdropsOfTheMovie";
 import AllPostersOfThePage from "./Pages/AllPostersOfThePage/AllPostersOfThePage";
+import MovieFilter from "./Pages/MovieFilter/MovieFilter";
 
 
 
@@ -30,6 +31,7 @@ const App = () => {
                 <Route path={'/moviedetail/:id/videos'} element={<AllVideosOfTheMovie />} />
                 <Route path={'/moviedetail/:id/backdrops'} element={<AllBackdropsOfTheMovie />} />
                 <Route path={'/moviedetail/:id/posters'} element={<AllPostersOfThePage />} />
+                <Route path={'/moviefilter'} element={<MovieFilter />} />
 
                 <Route path={'/approved'} element={<Approved />} />
 

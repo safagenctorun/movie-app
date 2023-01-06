@@ -12,19 +12,23 @@ const MovieBackdrops = ({ movieImages }: any) => {
 
     // vote_array.sort(function(a:any, b:any){return b - a})
     // console.log(vote_array);
-    
+
     return (
         <div className='movie-backdrops'>
             <div className="movie-content">
                 <div className="movie-content-img">
 
-                    {movieImages.backdrops.map((img: any, index:number) => (
-                        
+                    {movieImages.backdrops.map((img: any, index: number) => (
+
                         index < 9 &&
-                        <a href={IMG_URL + IMG_SIZE_500 + img.file_path}>
+                        <a
+                            href={IMG_URL + IMG_SIZE_500 + img.file_path}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
                             <img
                                 key={index} className='image'
-                                src={IMG_URL + IMG_SIZE_500 + img.file_path }
+                                src={IMG_URL + IMG_SIZE_500 + img.file_path}
                                 alt=""
                             />
                         </a>
