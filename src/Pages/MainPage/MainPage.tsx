@@ -10,6 +10,7 @@ const MainPage = () => {
     const [searchItem, setSearchItem] = useState<any>("");
     const [searchItemsData, setSearchItemsData] = useState<any[]>([]);
     const [moviesData, setMoviesData] = useState<any[]>([]);
+    const [loadMoreNumber, setLoadMoreNumber] = useState<number>(1)
     // const [selectedMovieProperties, setSelectedMovieProperties] = useState<any[]>([])
 
     useEffect(() => {
@@ -23,18 +24,18 @@ const MainPage = () => {
 
     }, [searchItem])
 
-    useMemo(() => {
-        axios.get(MOVIE_URL + "popular?" + API_KEY).then((res) => {
+    useEffect(() => {
+        axios.get(MOVIE_URL + "popular?" + API_KEY + "&page=" + loadMoreNumber).then((res) => { // page yazan yer bitmedi geri dönecem
             setMoviesData(res.data.results);
-            
+        
         });
-    }, []);
+    }, [loadMoreNumber]);
 
     return (
         <div className="main-page">
 
             <SearchBar searchItemsData={searchItemsData} setSearchItem={setSearchItem}  />
-            <PopularMovies moviesData={moviesData} />
+            <PopularMovies moviesData={moviesData} dataType={"Popular"} setLoadMoreNumber={setLoadMoreNumber} loadMoreNumber={loadMoreNumber} />
         </div>
     )
 }

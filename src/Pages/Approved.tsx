@@ -18,7 +18,7 @@ const Approved = () => {
                 { request_token: requestToken }).then(res =>{
                     if (res.status === 200){
                         localStorage.setItem("session_id", res.data.session_id) 
-                        console.log(res.data.session_id);
+                        
                         
                     }
                 })
