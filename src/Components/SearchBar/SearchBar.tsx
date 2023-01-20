@@ -22,19 +22,13 @@ const SearchBar = ({ setSearchItem, searchItemsData }: any) => {
         return options;
     };
 
-
     return (
         <div className="search-bar">
 
-
             <AutoComplete
-
-
                 onSelect={changePage}
                 onChange={(text) => setSearchItem(text)}
                 options={optionsGenerator()}
-
-
             >
                 <input
                     placeholder="search"

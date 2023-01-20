@@ -2,14 +2,15 @@ import React from 'react'
 import "./PopularMovies.scss"
 import { IMG_URL, IMG_SIZE_500 } from '../../config/Urls'
 
-const changePage = (value: string, properties: any) => {
-    window.location.replace(`/moviedetail/${properties.key}`)
-}
 
-const PopularMovies = ({ moviesData }: any) => {
+const PopularMovies = ({ moviesData, dataType, setLoadMoreNumber, loadMoreNumber }: any) => {
+    const increaseNumber = () => {
+        setLoadMoreNumber(loadMoreNumber++)
+    }
+
     return (
         <div className='popular-movies-with-text'>
-            <h1>Popular Movies</h1>
+            <h1>{dataType} Movies</h1>
             <div className='popular-movies'>
 
                 {moviesData.map((movie: any) => (
@@ -27,6 +28,7 @@ const PopularMovies = ({ moviesData }: any) => {
                     </div>
                 ))}
             </div>
+            <button onClick={increaseNumber}>Load More</button>
         </div>
     )
 }

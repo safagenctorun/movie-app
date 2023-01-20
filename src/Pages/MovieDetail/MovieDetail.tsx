@@ -36,7 +36,6 @@ const MovieDetail = () => {
             let movieImagesResponse = await axios.get(MOVIE_URL + selectedMovieId + "/images?" + API_KEY)
             let movieRecommendationsResponse = await axios.get(MOVIE_URL + selectedMovieId + "/recommendations?" + API_KEY)
             
-
             // let movieCertificationsResponse = await axios.get(CERTIFICATIONS_URL)
 
             setMovieDetail(movieDetailResponse.data);
@@ -45,7 +44,7 @@ const MovieDetail = () => {
             setMovieVideos(movieVideosResponse.data)
             setMovieImages(movieImagesResponse.data)
             setMovieRecommendations(movieRecommendationsResponse.data)
-            console.log(movieRecommendationsResponse.data)
+           
 
         }
     }
@@ -57,7 +56,7 @@ const MovieDetail = () => {
     useEffect(() => {
         if (movieRate !== ""){
 
-            axios.post(MOVIE_URL + selectedMovieId + "/rating?session_id=" +localStorage.getItem("session_id")+ "?"+ API_KEY,{
+            axios.post(MOVIE_URL + selectedMovieId + "/rating?session_id=" +localStorage.getItem("session_id")+ "&"+ API_KEY,{
                 value: movieRate
             }).then(res=> console.log(res))
 
@@ -65,7 +64,7 @@ const MovieDetail = () => {
         }
     }, [movieRate])
     
-
+    
     return (
         <div className='movie-detail'>
 
