@@ -1,13 +1,69 @@
 import React from 'react'
 import "./Filters.scss";
-import { Collapse } from 'antd';
+import { Checkbox, Collapse, InputNumber, Slider } from 'antd';
 
-const Filter = () => {
+const Filter = ({ genres, setSelectedGenres, selectedGenres, setVoteCountValue, setRuntimeValue, setIncludeAdult }: any) => {
+
+    const genresHandler = (key: any) => {
+        if (!selectedGenres.includes(key))
+            setSelectedGenres([...selectedGenres, key])
+        else
+            setSelectedGenres(selectedGenres.filter((el: any) => el !== key));
+    }
+
+    const voteCountHandler = (newValue: number) => {
+        setVoteCountValue(newValue);
+        console.log(newValue);
+
+    };
+
+    const runtimeHandler = (value: number | [number, number]) => {
+        setRuntimeValue(value)
+    };
+
     return (
         <div>
-            <Collapse onChange={e => console.log(e)}>
+            <Collapse style={{ width: "250px", backgroundColor: "white" }}>
                 <Collapse.Panel header="Filters" key="1">
-                    This is panel header 1"
+
+                    <Collapse style={{ width: "245px", backgroundColor: "white" }}>
+                        <Collapse.Panel header="Genres" key="2">
+
+                            <div className="genres">
+                                {genres.map((genre: any) => (
+
+                                    <span style={{ backgroundColor: selectedGenres.includes(genre.id) && "#1b79b8", color: selectedGenres.includes(genre.id) && "#fff" }} onClick={e => genresHandler(genre.id)} key={genre.id}>
+                                        {genre.name}
+                                    </span>
+
+                                ))}
+                            </div>
+
+                        </Collapse.Panel>
+                    </Collapse>
+                    <Collapse style={{ width: "245px", backgroundColor: "white" }}>
+                        <Collapse.Panel header="Minimum User Votes" key="3">
+                            <Slider
+                                min={0}
+                                max={500}
+                                onChange={voteCountHandler}
+                                marks={{ 0: 0, 100: 100, 200: 200, 300: 300, 400: 400, 500: 500, }}
+                            />
+                        </Collapse.Panel>
+                    </Collapse>
+                    <Collapse style={{ width: "245px", backgroundColor: "white" }}>
+                        <Collapse.Panel header="Runtime" key="3">
+                            <Slider
+                                range
+                                min={0}
+                                max={400}
+                                defaultValue={[200, 200]}
+                                marks={{ 0: 0, 100: 100, 200: 200, 300: 300, 400: 400, }}
+                                onAfterChange={runtimeHandler}
+                            />
+                        </Collapse.Panel>
+                    </Collapse>
+                    <Checkbox style={{ padding: "10px" }} defaultChecked onChange={e=>setIncludeAdult(e.target.checked)}> Include Adult </Checkbox>
                 </Collapse.Panel>
             </Collapse>
         </div>

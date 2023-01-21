@@ -10,7 +10,8 @@ const PopularMovies = ({ moviesData, dataType, setLoadMoreNumber, loadMoreNumber
 
     return (
         <div className='popular-movies-with-text'>
-            <h1>{dataType} Movies</h1>
+
+            <h1 style={{display: dataType === "Popular" ? "flex" : "none"}}>{dataType} Movies</h1>
             <div className='popular-movies'>
 
                 {moviesData.map((movie: any) => (
