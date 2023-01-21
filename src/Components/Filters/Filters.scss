@@ -1,0 +1,25 @@
+.genres{
+    display: flex;
+    flex-wrap: wrap;
+
+    span{
+        border: 1px solid #1b79b8;
+        background-color: #fff;
+        color: #1b79b8;
+        margin: 0.25rem;
+        padding: 0.25rem;
+        border-radius: 10px;
+        font-weight: 600;
+        user-select: none;
+        cursor: pointer;
+        
+    }
+    span:hover{
+        background-color: #1b79b8;
+        color: #fff;
+    }
+}
+#root > div > div.movie-filter > div.filter-section > div > div > div > div.ant-collapse-content.ant-collapse-content-active > div{
+    padding: 0;
+    padding-top: 10px;
+} //ant design cssi beceremiyorum böyle saçma kodlar ortaya çıkıyor 
