@@ -5,6 +5,10 @@ import { SERACH_URL, /*POPULAR_URL,*/ MOVIE_URL, API_KEY } from "../../config/Ur
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import PopularMovies from "../../Components/PopularMovies/PopularMovies";
 
+// export  interface PopularMoviesOutput {
+//     adult: boolean;
+// }
+
 
 const MainPage = () => {
     const [searchItem, setSearchItem] = useState<any>("");
@@ -20,6 +24,8 @@ const MainPage = () => {
         else {
             axios.get(SERACH_URL + "&query=" + searchItem)
                 .then((res) => setSearchItemsData(res.data.results))
+                
+                
         }
 
     }, [searchItem])
@@ -27,6 +33,8 @@ const MainPage = () => {
     useEffect(() => {
         axios.get(MOVIE_URL + "popular?" + API_KEY + "&page=" + loadMoreNumber).then((res) => { // page yazan yer bitmedi geri dönecem
             setMoviesData(res.data.results);
+            console.log(res.data.results);
+            
         
         });
     }, [loadMoreNumber]);

@@ -13,7 +13,7 @@ const MoviePosters = ({ movieImages }: any) => {
                     {movieImages.posters.map((img: any, index: number) => (
                         img.iso_639_1 === "en" &&
                         <a
-                            href={IMG_URL + IMG_SIZE_500 + img.file_path}
+                            href={IMG_URL + "/original/" + img.file_path}
                             target="_blank"
                             rel="noreferrer"
                         >

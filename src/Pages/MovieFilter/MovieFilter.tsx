@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react'
+import React, { useState, useMemo } from 'react'
 import axios from "axios";
 import "./MovieFilter.scss";
 import PopularMovies from '../../Components/PopularMovies/PopularMovies';
@@ -10,6 +10,7 @@ import { Button } from 'antd';
 const MovieFilter = () => {
     const [moviesData, setMoviesData] = useState<any[]>([]);
     const [sortData, setSortData] = useState("")
+    const [releaseDate, setReleaseDate] = useState([])
     const [genres, setGenres] = useState([])
     const [selectedGenres, setSelectedGenres] = useState([])
     const [loadMoreNumber, setLoadMoreNumber] = useState<number>(1)
@@ -32,7 +33,7 @@ const MovieFilter = () => {
 
     
     const confirmHandler = () => {
-        let path = (DISCOVER_URL + "?" + API_KEY + "&with_genres=" + selectedGenres.join(",").trim() + "&sort_by=" + sortData
+        let path = (DISCOVER_URL + "?" + API_KEY 
         + "&page=" + loadMoreNumber + "&vote_count.gte=" + voteCountValue 
         + "&include_adult=" + includeAdult)
         
@@ -43,26 +44,19 @@ const MovieFilter = () => {
         if (runtimeValue[1]) {
             path += `&with_runtime.lte=${runtimeValue[1]}`
         }
+
+        let params = {}
+
+        if (sortData || selectedGenres ) {
+            params = { ...params, sort_by: sortData, with_genres: selectedGenres.join(",").trim() }
+        }
         
         axios.get
-            (path)
+            (path, { params })
             .then(res => {
-                // let updatedArray:any = []
-                // res.data.results.forEach((el:any) => {
-                //     updatedArray.push(...updatedArray,{ ...el, key: el.id });
-                // })
-                // console.log(updatedArray);
-
-                // setMoviesData(updatedArray);
                 setMoviesData(res.data.results);
             })
 
-            // axios.get
-            // (DISCOVER_URL + "?" + API_KEY + "&vote_count.gte=" + voteCountValue)
-            // .then(res => {
-            //     console.log(res);
-                
-            // })
     }
     
 
@@ -79,18 +73,21 @@ const MovieFilter = () => {
                     setVoteCountValue={setVoteCountValue}
                     setRuntimeValue={setRuntimeValue}
                     setIncludeAdult={setIncludeAdult}
+                    setReleaseDate={setReleaseDate}
+                    releaseDate={releaseDate}
                 />
                 <Button onClick={confirmHandler}> Confirm </Button>
             </div>
 
             {
-                Object.keys(moviesData).length > 0 &&
+                Object.keys(moviesData).length > 0 ?
                 <PopularMovies
                     moviesData={moviesData}
                     dataType={"Top Rated"}
                     setLoadMoreNumber={setLoadMoreNumber}
                     loadMoreNumber={loadMoreNumber}
                 />
+                : <div className='not-respond'>Films that you filtered weren't found</div>
             }
 
         </div>

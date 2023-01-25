@@ -22,7 +22,7 @@ const MovieBackdrops = ({ movieImages }: any) => {
 
                         index < 9 &&
                         <a
-                            href={IMG_URL + IMG_SIZE_500 + img.file_path}
+                            href={IMG_URL + "/original/" + img.file_path}
                             target="_blank"
                             rel="noreferrer"
                         >

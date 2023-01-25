@@ -6,9 +6,10 @@
     p,
     h1,
     h2,
-    h3{
+    h3 {
         color: white;
     }
+
     .movie-background {
         background-repeat: no-repeat;
         background-size: cover;
@@ -65,7 +66,18 @@
                         margin-top: 1rem;
 
                         span {
+                            margin-left: 0.5rem;
                             margin-right: 0.5rem;
+                        }
+
+                        .share {
+                            #facebook {
+                                color: #4267B2;
+                            }
+
+                            #twitter {
+                                color: #1DA1F2;
+                            }
                         }
 
                     }
