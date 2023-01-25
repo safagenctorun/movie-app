@@ -8,7 +8,8 @@ const Sort = ({ setSortData }: any) => {
             <Collapse style={{ width: "250px", backgroundColor: "white", marginBottom: "15px", marginTop: "15px" }} >
                 <Collapse.Panel header="Sort" key="1">
                     <Select
-                        style={{ width: 210 }}
+                        placeholder="Sort"
+                        style={{  display:"flex", justifyContent:"center", margin: "1rem" }}
                         onChange={value=>setSortData(value)}
                         options={[
                             { value: 'popularity.desc', label: 'Popularity Descending' },

@@ -1,14 +1,23 @@
 import React from 'react'
 import "./Filters.scss";
-import { Checkbox, Collapse, InputNumber, Slider } from 'antd';
+import { Checkbox, Collapse, DatePicker, Slider, DatePickerProps, Space } from 'antd';
 
-const Filter = ({ genres, setSelectedGenres, selectedGenres, setVoteCountValue, setRuntimeValue, setIncludeAdult }: any) => {
+const Filter = ({ genres, setSelectedGenres, selectedGenres, setVoteCountValue, setRuntimeValue, setIncludeAdult, setReleaseDate, releaseDate }: any) => {
+
+    const onChange: DatePickerProps['onChange'] = (date, dateString) => {
+        
+        setReleaseDate({ ...releaseDate, from: dateString })
+
+
+        console.log(releaseDate);
+
+    };
 
     const genresHandler = (key: any) => {
         if (!selectedGenres.includes(key))
             setSelectedGenres([...selectedGenres, key])
         else
-            setSelectedGenres(selectedGenres.filter((el: any) => el !== key));
+            setSelectedGenres(selectedGenres.filter((fil: any) => fil !== key));
     }
 
     const voteCountHandler = (newValue: number) => {
@@ -27,7 +36,16 @@ const Filter = ({ genres, setSelectedGenres, selectedGenres, setVoteCountValue, 
                 <Collapse.Panel header="Filters" key="1">
 
                     <Collapse style={{ width: "245px", backgroundColor: "white" }}>
-                        <Collapse.Panel header="Genres" key="2">
+                        <Collapse.Panel header="Release Dates" key="2">
+                            <Space direction="vertical">
+                                <DatePicker placeholder='from' style={{ display: "flex", justifyContent: "center" }} onChange={onChange} />
+                                <DatePicker placeholder='to' style={{ display: "flex", justifyContent: "center" }} onChange={onChange} />
+                            </Space>
+                        </Collapse.Panel>
+                    </Collapse>
+
+                    <Collapse style={{ width: "245px", backgroundColor: "white" }}>
+                        <Collapse.Panel header="Genres" key="3">
 
                             <div className="genres">
                                 {genres.map((genre: any) => (
@@ -42,7 +60,7 @@ const Filter = ({ genres, setSelectedGenres, selectedGenres, setVoteCountValue, 
                         </Collapse.Panel>
                     </Collapse>
                     <Collapse style={{ width: "245px", backgroundColor: "white" }}>
-                        <Collapse.Panel header="Minimum User Votes" key="3">
+                        <Collapse.Panel header="Minimum User Votes" key="4">
                             <Slider
                                 min={0}
                                 max={500}
@@ -52,7 +70,7 @@ const Filter = ({ genres, setSelectedGenres, selectedGenres, setVoteCountValue, 
                         </Collapse.Panel>
                     </Collapse>
                     <Collapse style={{ width: "245px", backgroundColor: "white" }}>
-                        <Collapse.Panel header="Runtime" key="3">
+                        <Collapse.Panel header="Runtime" key="5">
                             <Slider
                                 range
                                 min={0}
@@ -63,7 +81,7 @@ const Filter = ({ genres, setSelectedGenres, selectedGenres, setVoteCountValue, 
                             />
                         </Collapse.Panel>
                     </Collapse>
-                    <Checkbox style={{ padding: "10px" }} defaultChecked onChange={e=>setIncludeAdult(e.target.checked)}> Include Adult </Checkbox>
+                    <Checkbox style={{ padding: "10px" }} defaultChecked onChange={e => setIncludeAdult(e.target.checked)}> Include Adult </Checkbox>
                 </Collapse.Panel>
             </Collapse>
         </div>

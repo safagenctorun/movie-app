@@ -19,6 +19,7 @@ const GENRES_URL = BASE_URL + "/genre/movie/list?"+ API_KEY
 
 
 export {
+    BASE_URL,
     IMG_URL,
     SERACH_URL,
     MOVIE_URL,

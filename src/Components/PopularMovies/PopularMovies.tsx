@@ -3,7 +3,7 @@ import "./PopularMovies.scss"
 import { IMG_URL, IMG_SIZE_500 } from '../../config/Urls'
 
 
-const PopularMovies = ({ moviesData, dataType, setLoadMoreNumber, loadMoreNumber }: any) => {
+const PopularMovies = ({ moviesData, dataType, setLoadMoreNumber, loadMoreNumber }:any) => {
     const increaseNumber = () => {
         setLoadMoreNumber(loadMoreNumber++)
     }
