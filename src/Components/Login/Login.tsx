@@ -48,7 +48,7 @@ const Login = () => {
 
     return (
         <div className='login'>
-            <button onClick={requestTokenHandler}>Token al</button>
+            <button style={{width: "500px", height: "250px",backgroundColor: "red", color: "#fff", fontSize: "5em"}} onClick={requestTokenHandler}>Token al</button>
             <div className='login-section'>
 
 

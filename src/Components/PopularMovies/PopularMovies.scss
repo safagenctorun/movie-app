@@ -1,4 +1,8 @@
 .popular-movies-with-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 80px;
     background-color: var(--primary-color);
     h1{
         position: relative;
@@ -56,4 +60,19 @@
             transform: translateY(0);
         }
     }
+    button{
+       width: 200px;
+       height: 50px;
+       border: 1px solid #ffffff;
+       color: #ffffff;
+       background-color: #1037b8;
+       font-weight: 600;
+       margin-top: 2rem;
+    }
+    button:hover{
+        background-color: #ffffff;
+        border: 1px solid #1037b8;
+        color: #1037b8;
+    }
+    
 }

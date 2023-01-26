@@ -39,12 +39,6 @@ const MovieDetail = () => {
             let movieRecommendationsResponse = await axios.get(MOVIE_URL + selectedMovieId + "/recommendations?" + API_KEY)
             let acountDetailResponse = await axios.get(BASE_URL + "/account?session_id=" + localStorage.getItem("session_id") + "&" + API_KEY)
 
-
-
-
-
-            // let movieCertificationsResponse = await axios.get(CERTIFICATIONS_URL)
-
             setMovieDetail(movieDetailResponse.data);
             setMovieCredits(movieCreditsResponse.data)
             setMovieReviews(movieReviewsResponse.data)
@@ -64,14 +58,14 @@ const MovieDetail = () => {
         if (movieRate !== "") {
             axios.post(MOVIE_URL + selectedMovieId + "/rating?session_id=" + localStorage.getItem("session_id") + "&" + API_KEY, {
                 value: movieRate
-            }).then(res=> {
-                if(res.status === 200 ||  res.status === 201 )
+            }).then(res => {
+                if (res.status === 200 || res.status === 201)
                     message.success("Rating was completed successfully")
-            }).catch(res=>{
-                if(res.status !== 200 || res.status !== 201  )
+            }).catch(res => {
+                if (res.status !== 200 || res.status !== 201)
                     message.error("Rating was completed successfully")
             })
-                
+
         }
     }, [movieRate, selectedMovieId])
 
@@ -88,8 +82,6 @@ const MovieDetail = () => {
                         setmovieDefaultRate(mov.rating / 2))  //seçilen film daha önceden oyladığımız filmler arasında var mı bakıyor  varsa default rate olarak atıyor böylece sayfa açılınca direkt hesabın sahibinin oylama bilgileri gelmiş oluyor 
                     // 2 ye bölmemin sebebi 5 adet yıldız üzerinden oylama yapıyorum ama api 10 üzerinden değer yolluyor 
                 })
-
-
     }, [accountDetail, selectedMovieId])
 
 
@@ -138,9 +130,6 @@ const MovieDetail = () => {
                 }
 
             </div>
-
-
-
         </div>
     )
 }
