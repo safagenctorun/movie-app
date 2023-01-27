@@ -26,7 +26,7 @@ const MovieBanner = ({ movieDetail, movieCredits, setMovieRate, movieDefaultRate
 
     const items: MenuProps['items'] = [
         {
-            label: <Rate allowHalf onChange={rateHandler} defaultValue={movieDefaultRate} />, //büyük bir hata geliyor
+            label: <Rate allowHalf onChange={rateHandler} defaultValue={movieDefaultRate} />, 
             key: '1',
         }
 
@@ -49,7 +49,6 @@ const MovieBanner = ({ movieDetail, movieCredits, setMovieRate, movieDefaultRate
                             </div>
 
                             <div className="type">
-                                {/* <p>10+</p> */}  {/* apiden bu bilgiyi alamıyorum */}
 
                                 <p>  {moment(movieDetail.release_date).format("DD/MM/YYYY")}</p>
                                 {movieDetail.genres.map((el: any) => (

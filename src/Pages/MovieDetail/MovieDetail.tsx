@@ -63,7 +63,7 @@ const MovieDetail = () => {
                     message.success("Rating was completed successfully")
             }).catch(res => {
                 if (res.status !== 200 || res.status !== 201)
-                    message.error("Rating was completed successfully")
+                    message.error("Rating wasn't completed successfully")
             })
 
         }

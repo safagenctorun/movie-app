@@ -79,7 +79,7 @@ const Filter = ({ genres, setSelectedGenres, selectedGenres, setVoteCountValue, 
                             />
                         </Collapse.Panel>
                     </Collapse>
-                    <Checkbox style={{ padding: "10px" }} defaultChecked onChange={e => setIncludeAdult(e.target.checked)}> Include Adult </Checkbox>
+                    <Checkbox style={{ padding: "10px" }} onChange={e => setIncludeAdult(e.target.checked)}> Include Adult </Checkbox>
                 </Collapse.Panel>
             </Collapse>
         </div>

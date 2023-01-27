@@ -16,9 +16,9 @@ const SearchBar = ({ setSearchItem, searchItemsData }: any) => {
     const optionsGenerator = () => {
         let options: any = [];
         searchItemsData.forEach((item: any) => {
-            options.push({ value: item.title, key: item.id, /*name: item */ });
+            options.push({ value: item.title, key: item.id,  popularity: item.popularity });
         });
-
+        options.sort((a:any,b:any) => b.popularity - a.popularity);
         return options;
     };
 

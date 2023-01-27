@@ -16,7 +16,7 @@ const MovieFilter = () => {
     const [selectedGenres, setSelectedGenres] = useState([])
     const [voteCountValue, setVoteCountValue] = useState("");
     const [runtimeValue, setRuntimeValue] = useState([])
-    const [includeAdult, setIncludeAdult] = useState(true)
+    const [includeAdult, setIncludeAdult] = useState(false)
     const [pageCount, setPageCount] = useState(2) // aynı fonk içinde olduğu için tıkladığında alsında bir önceki değeri basıyor
 
     useMemo(() => {
@@ -31,51 +31,51 @@ const MovieFilter = () => {
     }, []);
 
 
-    const confirmHandler = (e:any) => {
-        
-        let path = (DISCOVER_URL + "?" + API_KEY 
-        + "&include_adult=" + includeAdult
+    const confirmHandler = (e: any) => {
+
+        let path = (DISCOVER_URL + "?" + API_KEY
+            + "&include_adult=" + includeAdult
         )
 
-        if(startReleaseDate)
+        if (startReleaseDate)
             path += `&release_date.gte=${startReleaseDate}`
 
-        if(endReleaseDate)
+        if (endReleaseDate)
             path += `&release_date.lte=${endReleaseDate}`
 
-        if(endReleaseDate)
+        if (endReleaseDate)
             path += `&vote_count.gte=${voteCountValue}`
-        
-        if (runtimeValue[0]) 
+
+        if (runtimeValue[0])
             path += `&with_runtime.gte=${runtimeValue[0]}`
-        
-        if (runtimeValue[1]) 
+
+        if (runtimeValue[1])
             path += `&with_runtime.lte=${runtimeValue[1]}`
 
-        if(e.target.name === "load-more" ){
+        if (e.target.name === "load-more") {
             setPageCount(pageCount + 1);
             path += `&page=${pageCount}`
         }
 
         let params = {}
 
-        if (sortData || selectedGenres ) {
+        if (sortData || selectedGenres) {
             params = { ...params, sort_by: sortData, with_genres: selectedGenres.join(",").trim() }
         }
-        
+
         axios.get
             (path, { params })
             .then(res => {
                 e.target.name !== "load-more"
-                ?
-                setMoviesData(res.data.results)
-                :
-                setMoviesData([...moviesData, ...res.data.results ]); 
-               // confirm tuşu ile load more tuşu ortak şeyleri yaptığı için aynı fonksiyonu çalıştırıyor araya birkaç if koyarak hangisine basıldığını anlıyoruz ve ona göre farklı işlemler yaptırıyor 
+                    ?
+                    setMoviesData(res.data.results)
+                    :
+                    setMoviesData([...moviesData, ...res.data.results]);
+                // confirm tuşu ile load more tuşu ortak şeyleri yaptığı için aynı fonksiyonu çalıştırıyor araya birkaç if koyarak hangisine basıldığını anlıyoruz ve ona göre farklı işlemler yaptırıyor 
             })
 
     }
-    
+
     return (
         <div className='movie-filter'>
             <div className="filter-section">
@@ -96,12 +96,13 @@ const MovieFilter = () => {
 
             {
                 Object.keys(moviesData).length > 0 ?
-                <PopularMovies
-                    moviesData={moviesData}
-                    dataType={"Top Rated"}
-                    confirmHandler={confirmHandler}
-                />
-                : <div className='not-respond'>Films that you filtered weren't found</div>
+                    <PopularMovies
+                        moviesData={moviesData}
+                        dataType={"Top Rated"}
+                        confirmHandler={confirmHandler}
+                    />
+                    : 
+                    <div className='not-respond'>Films that you filtered weren't found</div>
             }
 
         </div>
