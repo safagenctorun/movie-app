@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./MainPage.scss"
 import { SERACH_URL, /*POPULAR_URL,*/ MOVIE_URL, API_KEY } from "../../config/Urls";
@@ -14,7 +14,7 @@ const MainPage = () => {
     const [searchItem, setSearchItem] = useState<any>("");
     const [searchItemsData, setSearchItemsData] = useState<any[]>([]);
     const [moviesData, setMoviesData] = useState<any[]>([]);
-    const [loadMoreNumber, setLoadMoreNumber] = useState<number>(1)
+    const [pageCount, setPageCount] = useState(1) // aynı fonk içinde olduğu için tıkladığında alsında bir önceki değeri basıyor
     // const [selectedMovieProperties, setSelectedMovieProperties] = useState<any[]>([])
 
     useEffect(() => {
@@ -23,27 +23,38 @@ const MainPage = () => {
             setSearchItemsData([])
         else {
             axios.get(SERACH_URL + "&query=" + searchItem)
-                .then((res) => setSearchItemsData(res.data.results))
-                
-                
+                .then((res) => {
+                    setSearchItemsData(res.data.results)
+                }) 
         }
 
     }, [searchItem])
 
     useEffect(() => {
-        axios.get(MOVIE_URL + "popular?" + API_KEY + "&page=" + loadMoreNumber).then((res) => { // page yazan yer bitmedi geri dönecem
-            setMoviesData(res.data.results);
-            console.log(res.data.results);
-            
-        
+        axios.get(MOVIE_URL + "popular?" + API_KEY +"&page=1").then((res) => { 
+            setMoviesData(res.data.results); 
         });
-    }, [loadMoreNumber]);
+    }, []);
+
+    const confirmHandler = (e:any) => {
+
+        let path = MOVIE_URL + "popular?" + API_KEY
+
+        if(e.target.name === "load-more" ){
+            setPageCount(pageCount + 1);
+            path += `&page=${pageCount + 1}`
+        }
+        axios.get(path).then((res) => { 
+            setMoviesData([...moviesData, ...res.data.results ]); 
+        });
+    }
+
 
     return (
         <div className="main-page">
 
             <SearchBar searchItemsData={searchItemsData} setSearchItem={setSearchItem}  />
-            <PopularMovies moviesData={moviesData} dataType={"Popular"} setLoadMoreNumber={setLoadMoreNumber} loadMoreNumber={loadMoreNumber} />
+            <PopularMovies moviesData={moviesData} dataType={"Popular"} confirmHandler={confirmHandler} />
         </div>
     )
 }

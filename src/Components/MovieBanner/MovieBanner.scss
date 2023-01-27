@@ -1,13 +1,13 @@
 .movie-banner {
-
-    position: relative; // navbar fixed giderse silinmesi gerek padding 64 ile birlikte
+    min-width: 1150px;
+    position: relative; 
     padding-top: var(--navbar-height);
 
     p,
     h1,
     h2,
     h3 {
-        color: white;
+        color: #fff;
     }
 
     .movie-background {

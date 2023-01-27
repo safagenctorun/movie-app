@@ -2,15 +2,13 @@ import React from 'react'
 import "./Filters.scss";
 import { Checkbox, Collapse, DatePicker, Slider, DatePickerProps, Space } from 'antd';
 
-const Filter = ({ genres, setSelectedGenres, selectedGenres, setVoteCountValue, setRuntimeValue, setIncludeAdult, setReleaseDate, releaseDate }: any) => {
+const Filter = ({ genres, setSelectedGenres, selectedGenres, setVoteCountValue, setRuntimeValue, setIncludeAdult, setStartReleaseDate, setEndReleaseDate }: any) => {
 
-    const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-        
-        setReleaseDate({ ...releaseDate, from: dateString })
-
-
-        console.log(releaseDate);
-
+    const startDateHandler: DatePickerProps['onChange'] = (date, dateString) => {
+        setStartReleaseDate(dateString )
+    };
+    const endDateHandler: DatePickerProps['onChange'] = (date, dateString) => {
+        setEndReleaseDate(dateString)
     };
 
     const genresHandler = (key: any) => {
@@ -38,8 +36,8 @@ const Filter = ({ genres, setSelectedGenres, selectedGenres, setVoteCountValue, 
                     <Collapse style={{ width: "245px", backgroundColor: "white" }}>
                         <Collapse.Panel header="Release Dates" key="2">
                             <Space direction="vertical">
-                                <DatePicker placeholder='from' style={{ display: "flex", justifyContent: "center" }} onChange={onChange} />
-                                <DatePicker placeholder='to' style={{ display: "flex", justifyContent: "center" }} onChange={onChange} />
+                                <DatePicker  placeholder='from' style={{ display: "flex", justifyContent: "center" }} onChange={startDateHandler} />
+                                <DatePicker  placeholder='to' style={{ display: "flex", justifyContent: "center" }} onChange={ endDateHandler} />
                             </Space>
                         </Collapse.Panel>
                     </Collapse>
@@ -81,7 +79,7 @@ const Filter = ({ genres, setSelectedGenres, selectedGenres, setVoteCountValue, 
                             />
                         </Collapse.Panel>
                     </Collapse>
-                    <Checkbox style={{ padding: "10px" }} defaultChecked onChange={e => setIncludeAdult(e.target.checked)}> Include Adult </Checkbox>
+                    <Checkbox style={{ padding: "10px" }} onChange={e => setIncludeAdult(e.target.checked)}> Include Adult </Checkbox>
                 </Collapse.Panel>
             </Collapse>
         </div>

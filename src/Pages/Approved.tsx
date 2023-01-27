@@ -21,16 +21,15 @@ const Approved = () => {
                         
                         
                     }
+                }).then(res =>{
+                    window.location.replace(`/`)
                 })
         }
 
     }, [requestToken])
     return (
-        <div>
-            <span>safa</span>
-            <p>safa</p>
-            <p>safa</p>
-            <p>safa</p>
+        <div >
+            
 
         </div>
     )

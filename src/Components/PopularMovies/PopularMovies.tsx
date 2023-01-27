@@ -1,12 +1,10 @@
 import React from 'react'
 import "./PopularMovies.scss"
 import { IMG_URL, IMG_SIZE_500 } from '../../config/Urls'
+import { Button } from 'antd'
 
 
-const PopularMovies = ({ moviesData, dataType, setLoadMoreNumber, loadMoreNumber }:any) => {
-    const increaseNumber = () => {
-        setLoadMoreNumber(loadMoreNumber++)
-    }
+const PopularMovies = ({ moviesData, dataType, confirmHandler }:any) => {
 
     return (
         <div className='popular-movies-with-text'>
@@ -29,7 +27,7 @@ const PopularMovies = ({ moviesData, dataType, setLoadMoreNumber, loadMoreNumber
                     </div>
                 ))}
             </div>
-            <button onClick={increaseNumber}>Load More</button>
+            <Button name='load-more' onClick={confirmHandler}>Load More</Button>
         </div>
     )
 }
