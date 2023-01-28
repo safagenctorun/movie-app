@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import axios from 'axios'
 import "./MovieDetail.scss"
 import MovieBanner from '../../Components/MovieBanner/MovieBanner'
@@ -28,35 +28,50 @@ const MovieDetail = () => {
 
     }, [selectedMovieId])
 
-    async function axiosProcesses() {
-        if (selectedMovieId !== "") {
+    const axiosProcesses = useCallback(async () => {
+        try {
+            if (selectedMovieId !== "") {
 
-            let movieDetailResponse = await axios.get(MOVIE_URL + selectedMovieId + "?" + API_KEY)
-            let movieCreditsResponse = await axios.get(MOVIE_URL + selectedMovieId + "/credits?" + API_KEY)
-            let movieReviewsResponse = await axios.get(MOVIE_URL + selectedMovieId + "/reviews?" + API_KEY)
-            let movieVideosResponse = await axios.get(MOVIE_URL + selectedMovieId + "/videos?" + API_KEY)
-            let movieImagesResponse = await axios.get(MOVIE_URL + selectedMovieId + "/images?" + API_KEY)
-            let movieRecommendationsResponse = await axios.get(MOVIE_URL + selectedMovieId + "/recommendations?" + API_KEY)
-            let acountDetailResponse = await axios.get(BASE_URL + "/account?session_id=" + localStorage.getItem("session_id") + "&" + API_KEY)
-
-            setMovieDetail(movieDetailResponse.data);
-            setMovieCredits(movieCreditsResponse.data)
-            setMovieReviews(movieReviewsResponse.data)
-            setMovieVideos(movieVideosResponse.data)
-            setMovieImages(movieImagesResponse.data)
-            setMovieRecommendations(movieRecommendationsResponse.data)
-            setAccountDetail(acountDetailResponse.data)
-
+                let movieDetailResponse = await axios.get(MOVIE_URL + selectedMovieId + "?" + API_KEY)
+                let movieCreditsResponse = await axios.get(MOVIE_URL + selectedMovieId + "/credits?" + API_KEY)
+                let movieReviewsResponse = await axios.get(MOVIE_URL + selectedMovieId + "/reviews?" + API_KEY)
+                let movieVideosResponse = await axios.get(MOVIE_URL + selectedMovieId + "/videos?" + API_KEY)
+                let movieImagesResponse = await axios.get(MOVIE_URL + selectedMovieId + "/images?" + API_KEY)
+                let movieRecommendationsResponse = await axios.get(MOVIE_URL + selectedMovieId + "/recommendations?" + API_KEY)
+                
+                // let path = BASE_URL + "/account?" + API_KEY
+                // if(localStorage.getItem("session_id"))
+                // path +=  `&session_id=${localStorage.getItem("session_id")}`
+               
+    
+                setMovieDetail(movieDetailResponse.data);
+                setMovieCredits(movieCreditsResponse.data)
+                setMovieReviews(movieReviewsResponse.data)
+                setMovieVideos(movieVideosResponse.data)
+                setMovieImages(movieImagesResponse.data)
+                setMovieRecommendations(movieRecommendationsResponse.data)
+                
+    
+            }
+        } catch (error: any) {
+            console.error(error.message)
         }
-    }
-
-    useEffect(() => {
-        axiosProcesses();
     }, [selectedMovieId])
 
     useEffect(() => {
+        axiosProcesses();
+    }, [axiosProcesses])
+
+    useEffect(() => {
+        if(localStorage.getItem("session_id"))
+        axios.get(BASE_URL + "/account?" + API_KEY +  `&session_id=${localStorage.getItem("session_id")}`).then(res=>setAccountDetail(res.data))
+
+        let path = MOVIE_URL + selectedMovieId + "/rating?" + API_KEY
+        if (localStorage.getItem("session_id"))
+            path += "&session_id=" + localStorage.getItem("session_id")
+
         if (movieRate !== "") {
-            axios.post(MOVIE_URL + selectedMovieId + "/rating?session_id=" + localStorage.getItem("session_id") + "&" + API_KEY, {
+            axios.post(path, {
                 value: movieRate
             }).then(res => {
                 if (res.status === 200 || res.status === 201)
@@ -72,10 +87,14 @@ const MovieDetail = () => {
 
     useEffect(() => {
 
+        let path = BASE_URL + `/account/${accountDetail.id}/rated/movies?` + API_KEY 
+        if(localStorage.getItem("session_id"))
+        path +=  `&session_id=${localStorage.getItem("session_id")}`
+
         Object.keys(accountDetail).length > 0 &&
 
             axios
-                .get(BASE_URL + `/account/${accountDetail.id}/rated/movies?session_id=` + localStorage.getItem("session_id") + "&" + API_KEY)
+                .get(path)
                 .then(res => {
                     res.data.results.map((mov: any) =>
                         mov.id.toString() === selectedMovieId &&

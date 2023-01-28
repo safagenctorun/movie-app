@@ -2,9 +2,16 @@ import React from 'react'
 import "./PopularMovies.scss"
 import { IMG_URL, IMG_SIZE_500 } from '../../config/Urls'
 import { Button } from 'antd'
+import { MoviesOutput } from '../../Models'
 
 
-const PopularMovies = ({ moviesData, dataType, confirmHandler }:any) => {
+interface Props {
+    moviesData: MoviesOutput[]
+    dataType: string
+    confirmHandler: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
+}
+
+const PopularMovies = ({ moviesData, dataType, confirmHandler }:Props) => {
 
     return (
         <div className='popular-movies-with-text'>
@@ -27,7 +34,7 @@ const PopularMovies = ({ moviesData, dataType, confirmHandler }:any) => {
                     </div>
                 ))}
             </div>
-            <Button name='load-more' onClick={confirmHandler}>Load More</Button>
+            <Button name='load-more' onClick={(e) => confirmHandler(e)}>Load More</Button>
         </div>
     )
 }
