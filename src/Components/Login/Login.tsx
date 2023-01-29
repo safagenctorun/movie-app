@@ -6,53 +6,54 @@ import { Button, Form, Input, message } from 'antd'
 
 const Login = () => {
 
-
+    const [requestToken, setrequestToken] = useState("")
     // useEffect(() => {
-        const requestTokenHandler = () => {
+    const requestTokenHandler = () => {
 
-            axios.get(REQUEST_TOKEN_URL).then(res => {
-                
-    
-                if(res.data.request_token !== ""){
-                    window.open(
-                        `https://www.themoviedb.org/authenticate/${res.data.request_token}?redirect_to=http://localhost:3000/approved`,
-    
-                      );
-                  }
-            })
-        }
+        axios.get(REQUEST_TOKEN_URL).then(res => {
+            setrequestToken(res.data.request_token)
+
+
+            if (res.data.request_token !== "") {
+                window.open(
+                    `https://www.themoviedb.org/authenticate/${res.data.request_token}?redirect_to=http://localhost:3000/approved`,
+
+                );
+            }
+        })
+    }
 
 
     // }, [])
 
-    
-    // const login = (values: any) => {
+
+    // const loginHandler = (values: any) => {
     //     axios.post(LOGIN_URL,
     //         {
     //             request_token: requestToken,
     //             username: values.userNameOrEmailAddress,
     //             password: values.password
     //         }
-    //     ).then(res=>{
-    //         if(res.status===200){
-    //             console.log(res);
-
-    //             //   localStorage.setItem("Authorization", res.data.result.accessToken)
-    //         //   window.location.replace("/")
+    //     ).then(res => {  
+    //         if (res.status === 200) {
+    //             window.open(
+    //                 `https://www.themoviedb.org/authenticate/${res.data.request_token}?redirect_to=http://localhost:3000/approved`,
+    //             );
     //         }
-    //       }).catch((res)=>{
-    //         if(res.status!==200)
-    //         alert("Giriş başarısız!")});
+    //     }).catch((res) => {
+    //         if (res.status !== 200)
+    //             alert("Giriş başarısız!")
+    //     });
 
     // }
 
     return (
         <div className='login'>
-            <button style={{width: "500px", height: "250px",backgroundColor: "red", color: "#fff", fontSize: "5em"}} onClick={requestTokenHandler}>Token al</button>
-            <div className='login-section'>
+            <button style={{ width: "500px", height: "250px", backgroundColor: "red", color: "#fff", fontSize: "5em" }} onClick={requestTokenHandler}>Token al</button>
+            {/* <div className='login-section'>
 
 
-                {/* <Form
+                <Form
                     className='formLogin'
                     name="basic"
                     layout="vertical"
@@ -65,7 +66,7 @@ const Login = () => {
                     initialValues={{
                         remember: true,
                     }}
-                    // onFinish={login}
+                    onFinish={loginHandler}
                     autoComplete="off"
                 >
                     <Form.Item
@@ -103,13 +104,13 @@ const Login = () => {
                             span: 16,
                         }}
                     >
-                        <Button className='formButtonLogin' type="primary" htmlType="submit">
+                        <Button className='formButtonLogin' type="primary" htmlType="submit" >
                             Giriş Yap
                         </Button>
                     </Form.Item>
-                </Form>*/}
+                </Form>
 
-            </div> 
+            </div> */}
         </div>
     )
 }

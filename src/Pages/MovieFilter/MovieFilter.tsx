@@ -6,18 +6,19 @@ import { API_KEY, GENRES_URL, MOVIE_URL, DISCOVER_URL } from '../../config/Urls'
 import Filter from '../../Components/Filters/Filters';
 import Sort from '../../Components/Sort/Sort';
 import { Button } from 'antd';
+import { Genre, MoviesOutput } from '../../Models';
 
 const MovieFilter = () => {
-    const [moviesData, setMoviesData] = useState<any[]>([]);
+    const [moviesData, setMoviesData] = useState<MoviesOutput[]>([]);
+    const [genres, setGenres] = useState<Genre[]> ([])
     const [sortData, setSortData] = useState("")
-    const [startReleaseDate, setStartReleaseDate] = useState([])
-    const [endReleaseDate, setEndReleaseDate] = useState([])
-    const [genres, setGenres] = useState([])
-    const [selectedGenres, setSelectedGenres] = useState([])
-    const [voteCountValue, setVoteCountValue] = useState("");
-    const [runtimeValue, setRuntimeValue] = useState([])
-    const [includeAdult, setIncludeAdult] = useState(false)
-    const [pageCount, setPageCount] = useState(2) // aynı fonk içinde olduğu için tıkladığında alsında bir önceki değeri basıyor
+    const [startReleaseDate, setStartReleaseDate] = useState <string> ("")
+    const [endReleaseDate, setEndReleaseDate] = useState<string>("")
+    const [selectedGenres, setSelectedGenres] = useState<number[]>([])
+    const [voteCountValue, setVoteCountValue] = useState<number| null>(null);
+    const [runtimeValue, setRuntimeValue] = useState <number[]> ([])
+    const [includeAdult, setIncludeAdult] = useState <boolean>(false)
+    const [pageCount, setPageCount] = useState<number> (2) // aynı fonk içinde olduğu için tıkladığında alsında bir önceki değeri basıyor
 
     useMemo(() => {
         axios.get(MOVIE_URL + "top_rated?" + API_KEY).then((res) => {
@@ -25,13 +26,12 @@ const MovieFilter = () => {
         });
         axios.get(GENRES_URL).then((res) => {
             setGenres(res.data.genres);
-
         });
 
     }, []);
 
 
-    const confirmHandler = (e: any) => {
+    const confirmHandler = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
 
         let path = (DISCOVER_URL + "?" + API_KEY
             + "&include_adult=" + includeAdult
@@ -52,7 +52,7 @@ const MovieFilter = () => {
         if (runtimeValue[1])
             path += `&with_runtime.lte=${runtimeValue[1]}`
 
-        if (e.target.name === "load-more") {
+        if ((e.target as any).name === "load-more") {
             setPageCount(pageCount + 1);
             path += `&page=${pageCount}`
         }
@@ -66,7 +66,7 @@ const MovieFilter = () => {
         axios.get
             (path, { params })
             .then(res => {
-                e.target.name !== "load-more"
+                (e.target as any).name !== "load-more"
                     ?
                     setMoviesData(res.data.results)
                     :

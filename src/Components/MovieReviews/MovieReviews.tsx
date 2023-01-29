@@ -4,14 +4,18 @@ import moment from "moment";
 import { Divider } from 'antd';
 import { StarOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import { MovieReviewsOutput } from '../../Models';
 
-const MovieReviews = ({ movieReviews, selectedMovieId }: any) => {
+interface Props {
+    movieReviews: MovieReviewsOutput
+    selectedMovieId: string
+}
+
+const MovieReviews = ({ movieReviews, selectedMovieId }: Props) => {
     const [randomReviews, setRandomReviews] = useState<number>()
 
     useEffect(() => {
-
         setRandomReviews(Math.floor(Math.random() * movieReviews.results.length))  //toplam yorumlar içinden 1 tanesini seçiyor
-
     }, [])
 
     return (

@@ -2,12 +2,17 @@ import React from 'react'
 import moment from "moment";
 import "./MoreReviews.scss"
 import { StarOutlined } from '@ant-design/icons';
+import { AuthorOutput, MovieReviewsOutput } from '../../Models';
 
-const MoreReviews = ({ movieReviews }: any) => {
+interface Props{
+    movieReviews: MovieReviewsOutput
+}
+
+const MoreReviews = ({ movieReviews }: Props) => {
     return (
         <div className='more-reviews'>
             <h1>Reviews</h1>
-            {movieReviews.results.map((review: any) => (
+            {movieReviews.results.map((review: AuthorOutput) => (
 
                 <div key={review.id} className="review">
 

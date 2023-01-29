@@ -2,9 +2,14 @@ import React, { useState, useContext } from 'react'
 import "./MovieVideos.scss"
 import { Context } from "../../../context/GlobalContext";
 import OverlayVideo from './OverlayVideo/OverlayVideo';
+import { MovieVideosOutput, VideosInfoOutput } from '../../../Models';
 
 
-const MovieVideos = ({ movieVideos }: any) => {
+interface Props {
+    movieVideos: MovieVideosOutput
+}
+
+const MovieVideos = ({ movieVideos }: Props) => {
 
     const [isOverlayOpen, setIsOverlayOpen] = useState(false)
     const [videoUrl, setvideoUrl] = useState("")
@@ -23,7 +28,7 @@ const MovieVideos = ({ movieVideos }: any) => {
             <div className="movie-content">
                 <div className="movie-content-img">
 
-                    {movieVideos.results.map((img: any) => (
+                    {movieVideos.results.map((img: VideosInfoOutput) => (
                         img.type === "Trailer" &&
 
                         <img
@@ -32,8 +37,6 @@ const MovieVideos = ({ movieVideos }: any) => {
                             src={`https://i.ytimg.com/vi/${img.key}/hqdefault.jpg`}
                             alt={img.name}
                         />
-
-
                     ))}
                 </div>
                 {isOverlayOpen === true &&
@@ -41,7 +44,6 @@ const MovieVideos = ({ movieVideos }: any) => {
                 <OverlayVideo
                     isOverlayOpen={isOverlayOpen}
                     setIsOverlayOpen={setIsOverlayOpen}
-                    movieVideos={movieVideos}
                     videoUrl={videoUrl}
                 />
                 }

@@ -1,8 +1,14 @@
 import React from 'react'
 import "./MoviePosters.scss"
 import { IMG_SIZE_500, IMG_URL } from '../../../config/Urls';
+import { ImagesTypeOutput, MovieImagesOutput } from '../../../Models';
 
-const MoviePosters = ({ movieImages }: any) => {
+
+interface Props {
+    movieImages: MovieImagesOutput
+}
+
+const MoviePosters = ({ movieImages }: Props) => {
     console.log(movieImages);
 
     return (
@@ -10,7 +16,7 @@ const MoviePosters = ({ movieImages }: any) => {
             <div className="movie-content">
                 <div className="movie-content-img">
 
-                    {movieImages.posters.map((img: any, index: number) => (
+                    {movieImages.posters.map((img: ImagesTypeOutput, index: number) => (
                         img.iso_639_1 === "en" &&
                         <a
                             href={IMG_URL + "/original/" + img.file_path}

@@ -4,12 +4,13 @@ import "./AllBackdropsOfTheMovie.scss"
 import { MOVIE_URL, API_KEY, CONFIGURATION_URL } from '../../config/Urls'
 import BackToDetail from '../../Components/BackToDetail/BackToDetail'
 import AllBackdrops from '../../Components/AllMedia/AllBackdrops/AllBackdrops'
+import { LanguageOutput, MovieDetailOutput, MovieImagesOutput } from '../../Models'
 
 const AllBackdropsOfTheMovie = () => {
     const [selectedMovieId, setSelectedMovieId] = useState<string>("")
-    const [movieDetail, setMovieDetail] = useState<any>([])
-    const [movieImages, setMovieImages] = useState<any>([])
-    const [language, setLanguage] = useState<any>([])
+    const [movieDetail, setMovieDetail] = useState<MovieDetailOutput| null>(null)
+    const [movieImages, setMovieImages] = useState<MovieImagesOutput| null>(null)
+    const [language, setLanguage] = useState<LanguageOutput[]>([])
 
 
     useEffect(() => {
@@ -36,7 +37,7 @@ const AllBackdropsOfTheMovie = () => {
     return (
         <div className='all-backdrops-back-to-detail'>
             {
-                Object.keys(movieDetail).length > 0 &&
+                movieDetail &&
                 <BackToDetail
                     movieDetail={movieDetail}
                     selectedMovieId={selectedMovieId}
@@ -44,7 +45,7 @@ const AllBackdropsOfTheMovie = () => {
             }
             <div className="all-backdrops">
                 {
-                    Object.keys(movieImages).length > 0 &&
+                    movieImages  &&
                     Object.keys(language).length > 0 &&
                     <div className='all-images'>
                         <AllBackdrops

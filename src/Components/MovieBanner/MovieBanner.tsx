@@ -5,9 +5,16 @@ import { DownOutlined, FacebookFilled, TwitterCircleFilled } from '@ant-design/i
 import type { MenuProps } from 'antd';
 import { Rate, Dropdown, Space } from 'antd';
 import moment from "moment";
+import { CreditsOutput, Genre, MovieCreditsOutput, MovieDetailOutput } from '../../Models';
 
-const MovieBanner = ({ movieDetail, movieCredits, setMovieRate, movieDefaultRate}: any) => {
+interface Props {
+    movieDetail: MovieDetailOutput;
+    movieCredits: MovieCreditsOutput | null;
+    setMovieRate: React.Dispatch<React.SetStateAction<number>>
+    movieDefaultRate: number;
+}
 
+const MovieBanner = ({ movieDetail, movieCredits, setMovieRate, movieDefaultRate}: Props) => {
 
     const shareOnFacebook = (name: string) => {
 
@@ -33,7 +40,7 @@ const MovieBanner = ({ movieDetail, movieCredits, setMovieRate, movieDefaultRate
     ];
 
 
-    const backgroundStyle = IMG_URL + IMG_SIZE_1920 + movieDetail.backdrop_path
+    const backgroundStyle = IMG_URL + IMG_SIZE_1920 + movieDetail?.backdrop_path
     return (
         <div className='movie-banner' >
             <div style={{ backgroundImage: `url(${backgroundStyle})` }} className="movie-background">
@@ -41,7 +48,7 @@ const MovieBanner = ({ movieDetail, movieCredits, setMovieRate, movieDefaultRate
                 <div className="background-blackout">
                     <div className="about-movie">
                         <div className="movie-poster">
-                            <img src={IMG_URL + IMG_SIZE_500 + movieDetail.poster_path} alt={movieDetail.title} />
+                            <img src={IMG_URL + IMG_SIZE_500 + movieDetail?.poster_path} alt={movieDetail.title} />
                         </div>
                         <div className="movie-info">
                             <div className="title">
@@ -51,7 +58,7 @@ const MovieBanner = ({ movieDetail, movieCredits, setMovieRate, movieDefaultRate
                             <div className="type">
 
                                 <p>  {moment(movieDetail.release_date).format("DD/MM/YYYY")}</p>
-                                {movieDetail.genres.map((el: any) => (
+                                {movieDetail.genres.map((el: Genre) => (
                                     <p key={el.id}> {el.name}</p>
                                 ))}
 
@@ -83,11 +90,8 @@ const MovieBanner = ({ movieDetail, movieCredits, setMovieRate, movieDefaultRate
                             </div>
                             <div className="credit">
 
-                                {movieCredits.crew.map((credit: any) => (
-
-                                    credit.job === "Director" &&
+                                {movieCredits?.crew?.filter((credit) => credit.job === "Director")?.map((credit: CreditsOutput) => (
                                     <div key={credit.id} className='crew-member' >
-
                                         <h4 >{credit.name} </h4>
                                         <p >{credit.job} </p>
                                     </div>

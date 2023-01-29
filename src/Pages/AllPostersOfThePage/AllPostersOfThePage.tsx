@@ -4,12 +4,13 @@ import "./AllPostersOfThePage.scss"
 import { MOVIE_URL, API_KEY, CONFIGURATION_URL } from '../../config/Urls'
 import BackToDetail from '../../Components/BackToDetail/BackToDetail'
 import AllPosters from '../../Components/AllMedia/AllPosters/AllPosters'
+import { LanguageOutput, MovieDetailOutput, MovieImagesOutput } from '../../Models'
 
 const AllPostersOfThePage = () => {
     const [selectedMovieId, setSelectedMovieId] = useState<string>("")
-    const [movieDetail, setMovieDetail] = useState<any>([])
-    const [movieImages, setMovieImages] = useState<any>([])
-    const [language, setLanguage] = useState<any>([])
+    const [movieDetail, setMovieDetail] = useState<MovieDetailOutput| null>(null)
+    const [movieImages, setMovieImages] = useState<MovieImagesOutput| null>(null)
+    const [language, setLanguage] = useState<LanguageOutput[]>([])
 
 
     useEffect(() => {
@@ -27,7 +28,6 @@ const AllPostersOfThePage = () => {
             setMovieDetail(movieDetailResponse.data);
             setMovieImages(movieImagesResponse.data)
             setLanguage(languagesResponse.data)
-            console.log(languagesResponse.data)
         }
     }
 
@@ -37,7 +37,7 @@ const AllPostersOfThePage = () => {
     return (
         <div className='all-posters-back-to-detail'>
             {
-                Object.keys(movieDetail).length > 0 &&
+                movieDetail &&
                 <BackToDetail
                     movieDetail={movieDetail}
                     selectedMovieId={selectedMovieId}
@@ -45,7 +45,7 @@ const AllPostersOfThePage = () => {
             }
             <div className="all-posters">
                 {
-                    Object.keys(movieImages).length > 0 &&
+                    movieImages &&
                     Object.keys(language).length > 0 &&
                     <div className='all-images'>
                         <AllPosters

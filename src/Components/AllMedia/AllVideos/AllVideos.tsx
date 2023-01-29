@@ -3,12 +3,17 @@ import "./AllVideos.scss"
 import { Context } from "../../../context/GlobalContext";
 import OverlayVideo from '../../MovieMedia/MovieVideos/OverlayVideo/OverlayVideo';
 import moment from "moment";
+import { MovieVideosOutput } from '../../../Models';
 
-const AllVideos = ({ movieVideos }: any) => {
+interface Props {
+    movieVideos:MovieVideosOutput;
+}
 
-    const [selectedType, setSelectedType] = useState("Trailer")
-    const [isOverlayOpen, setIsOverlayOpen] = useState(false)
-    const [videoUrl, setvideoUrl] = useState("")
+const AllVideos = ({ movieVideos }: Props) => {
+
+    const [selectedType, setSelectedType] = useState<string>("Trailer")
+    const [isOverlayOpen, setIsOverlayOpen] = useState <boolean>(false)
+    const [videoUrl, setvideoUrl] = useState<string>("")
     const { setisVideoOpen } = useContext(Context)
 
     const activateOverlay = (url: string) => {
@@ -18,15 +23,6 @@ const AllVideos = ({ movieVideos }: any) => {
 
 
     }
-    console.log(movieVideos);
-    
-    // let typeArray:any =[]
-    // movieVideos.results.forEach((el: any) => {          
-    //     typeArray.push(el.type)
-    // })
-    
-    // let typeArrayWithoutDuplicates  = Array.from(new Set(typeArray)); //Duplicates kaldırıyor
-
     
     return (
         <div className='videos'>
@@ -70,7 +66,6 @@ const AllVideos = ({ movieVideos }: any) => {
                 <OverlayVideo
                     isOverlayOpen={isOverlayOpen}
                     setIsOverlayOpen={setIsOverlayOpen}
-                    movieVideos={movieVideos}
                     videoUrl={videoUrl}
                 />
             }

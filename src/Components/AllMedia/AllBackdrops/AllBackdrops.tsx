@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
 import "./AllBackdrops.scss"
 import { IMG_SIZE_500, IMG_URL } from '../../../config/Urls';
+import { ImagesTypeOutput, LanguageOutput, MovieImagesOutput } from '../../../Models';
 
+interface Props{
+    movieImages: MovieImagesOutput;
+    language: LanguageOutput[];
+}
 
-
-const AllBackdrops = ({ movieImages, language }: any) => {
+const AllBackdrops = ({ movieImages, language }: Props) => {
     const [selectedLanguage, setSelectedLanguage] = useState("No Language")
 
     let languageDict :any= {};
-    language.forEach((lang: any) => {
+    language.forEach((lang: LanguageOutput) => {
 
         languageDict[lang.iso_639_1] =  lang.english_name
         
@@ -16,7 +20,7 @@ const AllBackdrops = ({ movieImages, language }: any) => {
     languageDict["null"] = "No Language"  // resimlerin dili olmadığında null geldiği için en sona ekliyoruz 
 
 
-    let languageArray: any = []
+    let languageArray: Array<string > = []
     movieImages.backdrops.forEach((el: any) => {
 
         el.iso_639_1 !== null ?
@@ -30,7 +34,7 @@ const AllBackdrops = ({ movieImages, language }: any) => {
     return (
         <div className='backdrops'>
             <div className="backdrop-choices">
-                {languageArrayWithoutDuplicates.map((lang: any, index: number) => (
+                {languageArrayWithoutDuplicates.map((lang: string, index: number) => (
                     <p key={index} style={{ borderBottom: selectedLanguage === languageDict[lang] ? "2px solid #000" : "" }} onClick={e => setSelectedLanguage(e.currentTarget.innerText)}>{languageDict[lang]} </p>
                 ))}
 
@@ -38,7 +42,7 @@ const AllBackdrops = ({ movieImages, language }: any) => {
 
 
             <div className="backdrops-images">
-                {movieImages.backdrops.map((img: any, index: number) => (
+                {movieImages.backdrops.map((img: ImagesTypeOutput, index: number) => (
 
                     languageDict[img.iso_639_1] === selectedLanguage &&
 
@@ -48,7 +52,7 @@ const AllBackdrops = ({ movieImages, language }: any) => {
                             target="_blank"
                             rel="noreferrer">
                             <img
-                                key={img.key} className='image'
+                                key={index} className='image'
                                 src={IMG_URL + IMG_SIZE_500 + img.file_path}
                                 alt=""
                             />

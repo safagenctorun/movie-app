@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./MainPage.scss"
-import { SERACH_URL, /*POPULAR_URL,*/ MOVIE_URL, API_KEY } from "../../config/Urls";
+import { SERACH_URL, MOVIE_URL, API_KEY } from "../../config/Urls";
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import PopularMovies from "../../Components/PopularMovies/PopularMovies";
 import { MoviesOutput } from "../../Models";
@@ -9,10 +9,10 @@ import { MoviesOutput } from "../../Models";
 
 const MainPage = () => {
     const [searchItem, setSearchItem] = useState<string>("");
-    const [searchItemsData, setSearchItemsData] = useState<any[]>([]);
+    const [searchItemsData, setSearchItemsData] = useState<MoviesOutput[]>([]);
     const [moviesData, setMoviesData] = useState<MoviesOutput[]>([]);
-    const [pageCount, setPageCount] = useState(1) // aynı fonk içinde olduğu için tıkladığında alsında bir önceki değeri basıyor
-    // const [selectedMovieProperties, setSelectedMovieProperties] = useState<any[]>([])
+    const [pageCount, setPageCount] = useState(1) 
+    
 
     useEffect(() => {
         
@@ -30,6 +30,7 @@ const MainPage = () => {
     useEffect(() => {
         axios.get(MOVIE_URL + "popular?" + API_KEY +"&page=1").then((res) => { 
             setMoviesData(res.data.results); 
+            // console.log(res.data.results); 
         });
     }, []);
 

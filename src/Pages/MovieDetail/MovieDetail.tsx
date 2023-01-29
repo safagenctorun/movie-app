@@ -8,18 +8,19 @@ import MovieReviews from '../../Components/MovieReviews/MovieReviews'
 import MovieMedia from '../../Components/MovieMedia/MovieMedia'
 import MovieRecommendations from '../../Components/MovieRecommendations/MovieRecommendations'
 import { message } from 'antd'
+import { AccountDetailOutput, MovieCreditsOutput, MovieDetailOutput, MovieImagesOutput, MovieRecommendationsOutput, MovieReviewsOutput, MovieVideosOutput } from '../../Models'
 
 const MovieDetail = () => {
 
     const [selectedMovieId, setSelectedMovieId] = useState<string>("")
-    const [movieDetail, setMovieDetail] = useState<any>([])
-    const [movieCredits, setMovieCredits] = useState<any>([])
-    const [movieReviews, setMovieReviews] = useState<any>([])
-    const [movieVideos, setMovieVideos] = useState<any>([])
-    const [movieImages, setMovieImages] = useState<any>([])
-    const [movieRecommendations, setMovieRecommendations] = useState<any>([])
-    const [movieRate, setMovieRate] = useState<string>("")
-    const [accountDetail, setAccountDetail] = useState<any>([])
+    const [movieDetail, setMovieDetail] = useState<MovieDetailOutput | null>(null)
+    const [movieCredits, setMovieCredits] = useState<MovieCreditsOutput | null>(null)
+    const [movieReviews, setMovieReviews] = useState<MovieReviewsOutput | null>(null)
+    const [movieVideos, setMovieVideos] = useState<MovieVideosOutput | null>(null)
+    const [movieImages, setMovieImages] = useState<MovieImagesOutput| null>(null)
+    const [movieRecommendations, setMovieRecommendations] = useState<MovieRecommendationsOutput| null>(null)
+    const [movieRate, setMovieRate] = useState<number>(0)
+    const [accountDetail, setAccountDetail] = useState<AccountDetailOutput | null>(null)  
     const [movieDefaultRate, setmovieDefaultRate] = useState<number>(0)
 
     useEffect(() => {
@@ -38,20 +39,15 @@ const MovieDetail = () => {
                 let movieVideosResponse = await axios.get(MOVIE_URL + selectedMovieId + "/videos?" + API_KEY)
                 let movieImagesResponse = await axios.get(MOVIE_URL + selectedMovieId + "/images?" + API_KEY)
                 let movieRecommendationsResponse = await axios.get(MOVIE_URL + selectedMovieId + "/recommendations?" + API_KEY)
-                
-                // let path = BASE_URL + "/account?" + API_KEY
-                // if(localStorage.getItem("session_id"))
-                // path +=  `&session_id=${localStorage.getItem("session_id")}`
-               
-    
+
                 setMovieDetail(movieDetailResponse.data);
                 setMovieCredits(movieCreditsResponse.data)
                 setMovieReviews(movieReviewsResponse.data)
                 setMovieVideos(movieVideosResponse.data)
+                console.log(movieVideosResponse.data)
                 setMovieImages(movieImagesResponse.data)
                 setMovieRecommendations(movieRecommendationsResponse.data)
-                
-    
+
             }
         } catch (error: any) {
             console.error(error.message)
@@ -63,14 +59,18 @@ const MovieDetail = () => {
     }, [axiosProcesses])
 
     useEffect(() => {
-        if(localStorage.getItem("session_id"))
-        axios.get(BASE_URL + "/account?" + API_KEY +  `&session_id=${localStorage.getItem("session_id")}`).then(res=>setAccountDetail(res.data))
+        if (localStorage.getItem("session_id"))
+            axios.get(BASE_URL + "/account?" + API_KEY + `&session_id=${localStorage.getItem("session_id")}`)
+                .then(res => {
+                    console.log(res.data)
+                    setAccountDetail(res.data)
+                })
 
         let path = MOVIE_URL + selectedMovieId + "/rating?" + API_KEY
         if (localStorage.getItem("session_id"))
             path += "&session_id=" + localStorage.getItem("session_id")
 
-        if (movieRate !== "") {
+        if (movieRate) {
             axios.post(path, {
                 value: movieRate
             }).then(res => {
@@ -80,18 +80,16 @@ const MovieDetail = () => {
                 if (res.status !== 200 || res.status !== 201)
                     message.error("Rating wasn't completed successfully")
             })
-
         }
     }, [movieRate, selectedMovieId])
 
-
     useEffect(() => {
 
-        let path = BASE_URL + `/account/${accountDetail.id}/rated/movies?` + API_KEY 
-        if(localStorage.getItem("session_id"))
-        path +=  `&session_id=${localStorage.getItem("session_id")}`
+        let path = BASE_URL + `/account/${accountDetail?.id}/rated/movies?` + API_KEY
+        if (localStorage.getItem("session_id"))
+            path += `&session_id=${localStorage.getItem("session_id")}`
 
-        Object.keys(accountDetail).length > 0 &&
+        accountDetail && Object.keys(accountDetail).length > 0 &&
 
             axios
                 .get(path)
@@ -108,7 +106,7 @@ const MovieDetail = () => {
         <div className='movie-detail'>
 
             {
-                Object.keys(movieDetail).length > 0 &&
+                movieDetail && 
                 <MovieBanner
                     movieDetail={movieDetail}
                     movieCredits={movieCredits}
@@ -119,22 +117,22 @@ const MovieDetail = () => {
             <div className="movie-detail-except-banner">
 
                 {
-                    Object.keys(movieDetail).length > 0 &&
+                    movieDetail && 
                     <TopBilledCast
                         movieCredits={movieCredits}
                     />
                 }
 
                 {
-                    Object.keys(movieReviews).length > 0 &&
+                    movieReviews && 
                     <MovieReviews
                         movieReviews={movieReviews}
                         selectedMovieId={selectedMovieId}
                     />
                 }
                 {
-                    Object.keys(movieVideos).length > 0 &&
-                    Object.keys(movieImages).length > 0 &&
+                    movieVideos &&
+                    movieImages &&
                     <MovieMedia
                         movieVideos={movieVideos}
                         movieImages={movieImages}
@@ -142,7 +140,7 @@ const MovieDetail = () => {
                     />
                 }
                 {
-                    Object.keys(movieRecommendations).length > 0 &&
+                    movieRecommendations && 
                     <MovieRecommendations
                         movieRecommendations={movieRecommendations}
                     />

@@ -7,7 +7,7 @@ const Nav = () => {
     const { isVideoOpen } = useContext(Context)
 
     const loginHandler = () => {
-        window.location.replace("/login/*")
+        window.location.replace("/login")
     }
     const logoutHandler = () => {
         localStorage.removeItem("session_id")

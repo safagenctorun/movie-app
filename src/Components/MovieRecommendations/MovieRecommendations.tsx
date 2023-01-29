@@ -1,8 +1,13 @@
 import React from 'react'
 import "./MovieRecommendations.scss"
 import { IMG_URL } from '../../config/Urls'
+import { MovieRecommendationsOutput } from '../../Models';
 
-const MovieRecommendations = ({ movieRecommendations }: any) => {
+interface Props{
+    movieRecommendations: MovieRecommendationsOutput;
+}
+
+const MovieRecommendations = ({ movieRecommendations }: Props) => {
     return (
         <div className='movie-recommendations'>
             <h1>Recommendations </h1>
