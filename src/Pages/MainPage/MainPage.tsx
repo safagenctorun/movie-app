@@ -4,16 +4,13 @@ import "./MainPage.scss"
 import { SERACH_URL, /*POPULAR_URL,*/ MOVIE_URL, API_KEY } from "../../config/Urls";
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import PopularMovies from "../../Components/PopularMovies/PopularMovies";
-
-// export  interface PopularMoviesOutput {
-//     adult: boolean;
-// }
+import { MoviesOutput } from "../../Models";
 
 
 const MainPage = () => {
-    const [searchItem, setSearchItem] = useState<any>("");
+    const [searchItem, setSearchItem] = useState<string>("");
     const [searchItemsData, setSearchItemsData] = useState<any[]>([]);
-    const [moviesData, setMoviesData] = useState<any[]>([]);
+    const [moviesData, setMoviesData] = useState<MoviesOutput[]>([]);
     const [pageCount, setPageCount] = useState(1) // aynı fonk içinde olduğu için tıkladığında alsında bir önceki değeri basıyor
     // const [selectedMovieProperties, setSelectedMovieProperties] = useState<any[]>([])
 
@@ -36,11 +33,11 @@ const MainPage = () => {
         });
     }, []);
 
-    const confirmHandler = (e:any) => {
+    const confirmHandler = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
 
         let path = MOVIE_URL + "popular?" + API_KEY
 
-        if(e.target.name === "load-more" ){
+        if((e.target as any).name === "load-more" ){
             setPageCount(pageCount + 1);
             path += `&page=${pageCount + 1}`
         }

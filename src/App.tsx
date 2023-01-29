@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.scss";
 import { Route, Routes } from "react-router-dom";
 import MainPage from "./Pages/MainPage/MainPage";
@@ -24,7 +24,7 @@ const App = () => {
                 <Navbar />
             }
             <Routes>
-                <Route path={`/login/*`} element={<LoginPage />} />
+                <Route path={`/login`} element={<LoginPage />} />
                 <Route path={``} element={<MainPage />} />
                 <Route path={'/moviedetail/:id'} element={<MovieDetail />} />
                 <Route path={'/moviedetail/:id/reviews'} element={<AllReviewsOfTheMovie />} />
@@ -34,6 +34,8 @@ const App = () => {
                 <Route path={'/moviefilter'} element={<MovieFilter />} />
 
                 <Route path={'/approved'} element={<Approved />} />
+
+                {/* <Route path={'*'} element={<div>Not Found</div>} /> */}
 
             </Routes>
 
