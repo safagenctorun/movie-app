@@ -1,0 +1,14 @@
+.account-detail{
+    position: relative;
+    padding-top: 80px;
+    margin-left: 7rem;
+    margin-right: 7rem;
+
+
+}
+@media screen and (max-width: 1000px){
+    .account-detail{
+        margin: 0;
+    
+    }
+}
