@@ -9,7 +9,6 @@ interface Props {
 }
 
 const MoviePosters = ({ movieImages }: Props) => {
-    console.log(movieImages);
 
     return (
         <div className='movie-posters'>

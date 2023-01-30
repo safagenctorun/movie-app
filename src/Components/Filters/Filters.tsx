@@ -39,7 +39,6 @@ const Filter = ({ genres, setSelectedGenres, selectedGenres, setVoteCountValue, 
 
     const runtimeHandler = (value: number | [number, number]) => {
         setRuntimeValue(value)
-        console.log(value)
     };
 
     return (

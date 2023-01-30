@@ -12,7 +12,6 @@ const MainPage = () => {
     const [searchItemsData, setSearchItemsData] = useState<MoviesOutput[]>([]);
     const [moviesData, setMoviesData] = useState<MoviesOutput[]>([]);
     const [pageCount, setPageCount] = useState(1) 
-    
 
     useEffect(() => {
         
@@ -22,6 +21,7 @@ const MainPage = () => {
             axios.get(SERACH_URL + "&query=" + searchItem)
                 .then((res) => {
                     setSearchItemsData(res.data.results)
+                    console.log(res.data.results)
                 }) 
         }
 
@@ -30,7 +30,6 @@ const MainPage = () => {
     useEffect(() => {
         axios.get(MOVIE_URL + "popular?" + API_KEY +"&page=1").then((res) => { 
             setMoviesData(res.data.results); 
-            // console.log(res.data.results); 
         });
     }, []);
 
@@ -51,7 +50,7 @@ const MainPage = () => {
     return (
         <div className="main-page">
 
-            <SearchBar searchItemsData={searchItemsData} setSearchItem={setSearchItem}  />
+            <SearchBar searchItemsData={searchItemsData} setSearchItem={setSearchItem}  searchItem={searchItem} />
             <PopularMovies moviesData={moviesData} dataType={"Popular"} confirmHandler={confirmHandler} />
         </div>
     )
