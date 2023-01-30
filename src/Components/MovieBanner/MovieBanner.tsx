@@ -1,7 +1,7 @@
 import React from 'react'
 import "./MovieBanner.scss"
 import { IMG_URL, IMG_SIZE_500, IMG_SIZE_1920 } from '../../config/Urls'
-import { DownOutlined, FacebookFilled, HeartOutlined, TwitterCircleFilled } from '@ant-design/icons';
+import { DownOutlined, FacebookFilled, HeartFilled, HeartOutlined, TwitterCircleFilled } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Rate, Dropdown, Space } from 'antd';
 import moment from "moment";
@@ -82,7 +82,11 @@ const MovieBanner = ({ movieDetail, movieCredits, setMovieRate, movieDefaultRate
                                     <TwitterCircleFilled id='twitter' onClick={e => shareOnFacebook("twitter")} />
                                 </div>
                                 <div className="add-favorite">
-                                    <HeartOutlined onClick={markAsFavorite} style={{color: isFavorite === true ? "red" : "black"}} />
+                                    {isFavorite === true ?
+                                    <HeartFilled  onClick={markAsFavorite} style={{color:"red" }} />
+                                    :
+                                    <HeartOutlined  onClick={markAsFavorite} style={{color:"white"}} />
+                                    }
                                 </div>
                             </div>
 

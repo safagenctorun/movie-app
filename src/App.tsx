@@ -11,6 +11,8 @@ import AllVideosOfTheMovie from "./Pages/AllVideosOfTheMovie/AllVideosOfTheMovie
 import AllBackdropsOfTheMovie from "./Pages/AllBackdropsOfTheMovie/AllBackdropsOfTheMovie";
 import AllPostersOfThePage from "./Pages/AllPostersOfThePage/AllPostersOfThePage";
 import MovieFilter from "./Pages/MovieFilter/MovieFilter";
+import AccountDetail from "./Pages/AccountDetail/AccountDetail";
+
 
 
 
@@ -33,6 +35,7 @@ const App = () => {
                 <Route path={'/moviedetail/:id/posters'} element={<AllPostersOfThePage />} />
                 <Route path={'/moviefilter'} element={<MovieFilter />} />
                 <Route path={'/moviefilter/:id'} element={<MovieFilter />} />  {/*  34 - 35 pek sağlıklı olmadı  */}
+                <Route path={'/accountdetail'} element={< AccountDetail/>} />  
 
                 <Route path={'/approved'} element={<Approved />} />
 

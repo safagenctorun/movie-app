@@ -12,14 +12,30 @@
 
     a {
         color: white;
+
     }
 
     .main-page {
         margin-left: 3rem;
+        a{
+            font-size: 1.5em;
+        }
     }
-
+    .movies{
+        a{
+            font-size: 1.5em;
+        }
+    }
     .log-in-out {
+        display: flex;
         margin-right: 3rem;
-
+        
+        button{
+            display: flex;
+            align-items: center;
+            margin-right: 1rem;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
     }
 }

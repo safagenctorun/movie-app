@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react'
 import { LOGIN_URL, REQUEST_TOKEN_URL, SESSION_URL } from '../../config/Urls'
 import axios from 'axios'
 import { Button, Form, Input, message } from 'antd'
-
+import "./Login.scss"
 
 const Login = () => {
 
@@ -49,7 +49,7 @@ const Login = () => {
 
     return (
         <div className='login'>
-            <button style={{ width: "500px", height: "250px", backgroundColor: "red", color: "#fff", fontSize: "5em" }} onClick={requestTokenHandler}>Token al</button>
+            <Button  onClick={requestTokenHandler}>LOGIN</Button>
             {/* <div className='login-section'>
 
 
