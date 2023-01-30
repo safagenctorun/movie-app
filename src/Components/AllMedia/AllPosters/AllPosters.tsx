@@ -1,19 +1,24 @@
 import React, { useState } from 'react'
 import "./AllPosters.scss"
 import { IMG_SIZE_500, IMG_URL } from '../../../config/Urls';
+import { ImagesTypeOutput, LanguageOutput, MovieImagesOutput } from '../../../Models';
 
-const AllPosters = ({ movieImages, language }: any) => {
+interface Props{
+    movieImages: MovieImagesOutput;
+    language: LanguageOutput[];
+}
+
+const AllPosters = ({ movieImages, language }: Props) => {
     const [selectedLanguage, setSelectedLanguage] = useState("No Language")
 
 
     let languageDict :any= {};
-    language.forEach((lang:any) => {
+    language.forEach((lang:LanguageOutput) => {        
         languageDict[lang.iso_639_1] =  lang.english_name
     })
     languageDict["null"] = "No Language"  // resimlerin dili olmadığında null geldiği için en sona ekliyoruz 
 
-
-    let languageArray: any = []
+    let languageArray: Array<string > = []
     movieImages.backdrops.forEach((el: any) => {
 
         el.iso_639_1 !== null ?
@@ -27,7 +32,7 @@ const AllPosters = ({ movieImages, language }: any) => {
     return (
         <div className='posters'>
             <div className="posters-choices">
-                {languageArrayWithoutDuplicates.map((lang: any, index: number) => (
+                {languageArrayWithoutDuplicates.map((lang: string, index: number) => (
                     <p key={index} style={{ borderBottom: selectedLanguage === languageDict[lang] ? "2px solid #000" : "" }} onClick={e => setSelectedLanguage(e.currentTarget.innerText)}>{languageDict[lang]} </p>
                 ))}
 
@@ -35,7 +40,7 @@ const AllPosters = ({ movieImages, language }: any) => {
 
 
             <div className="posters-images">
-                {movieImages.posters.map((img: any, index: number) => (
+                {movieImages.posters.map((img: ImagesTypeOutput, index: number) => (
 
                     languageDict[img.iso_639_1] === selectedLanguage &&
 
@@ -45,7 +50,8 @@ const AllPosters = ({ movieImages, language }: any) => {
                             target="_blank"
                             rel="noreferrer">
                             <img
-                                key={img.key} className='image'
+                                key={index} 
+                                className='image'
                                 src={IMG_URL + IMG_SIZE_500 + img.file_path}
                                 alt=""
                             />

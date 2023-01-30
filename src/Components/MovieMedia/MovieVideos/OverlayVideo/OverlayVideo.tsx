@@ -2,7 +2,13 @@ import React, { useContext } from 'react'
 import "./OverlayVideo.scss"
 import { Context } from "../../../../context/GlobalContext";
 
-const OverlayVideo = ({ isOverlayOpen, setIsOverlayOpen, movieVideos, videoUrl }: any) => {
+interface Props{
+    isOverlayOpen: boolean
+    setIsOverlayOpen: React.Dispatch<React.SetStateAction<boolean>>
+    videoUrl: string
+}
+
+const OverlayVideo = ({ isOverlayOpen, setIsOverlayOpen, videoUrl }: Props) => {
 
     const { setisVideoOpen } = useContext(Context)
 

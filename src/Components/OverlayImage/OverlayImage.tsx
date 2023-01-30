@@ -21,3 +21,6 @@ const OverlayImage = ({ isOverlayOpen, setIsOverlayOpen, imageUrl }: any) => {
 }
 
 export default OverlayImage
+
+
+// companenti yazdıktan sonra farklı bir yolla yapma kararı aldım belki ilerde kullanırım 

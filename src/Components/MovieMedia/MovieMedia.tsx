@@ -4,12 +4,19 @@ import { Link } from 'react-router-dom'
 import MovieVideos from './MovieVideos/MovieVideos'
 import MovieBackdrops from './MovieBackdrops/MovieBackdrops'
 import MoviePosters from './MoviePosters/MoviePosters'
+import { MovieImagesOutput, MovieVideosOutput } from '../../Models'
 
-const MovieMedia = ({ movieVideos, movieImages, selectedMovieId }: any) => {
+interface Props {
+    movieVideos: MovieVideosOutput
+    movieImages: MovieImagesOutput
+    selectedMovieId: string
+}
+
+const MovieMedia = ({ movieVideos, movieImages, selectedMovieId }: Props) => {
     const [selectedType, setSelectedType] = useState("videos")
 
-    const typeSelectHandler = (e: any) => {
-        setSelectedType(e.target.className);
+    const typeSelectHandler = (e: React.MouseEvent<HTMLHeadingElement, MouseEvent>) => {
+        setSelectedType((e.target as any).className);
 
     }
     return (
@@ -20,7 +27,7 @@ const MovieMedia = ({ movieVideos, movieImages, selectedMovieId }: any) => {
 
                     <h3 onClick={typeSelectHandler} style={{ borderBottom: selectedType === "videos" ? "2px solid #000" : "" }} className="videos"> Videos {movieVideos.results.length}</h3>
                     <h3 onClick={typeSelectHandler} style={{ borderBottom: selectedType === "backdrops" ? "2px solid #000" : "" }} className="backdrops"> Backdrops {movieImages.backdrops.length}</h3>
-                    <h3 onClick={typeSelectHandler} style={{ borderBottom: selectedType === "posters" ? "2px solid #000" : "" }} className="posters"> Posters {movieImages.posters.length}</h3>
+                    <h3 onClick={e=>typeSelectHandler(e)} style={{ borderBottom: selectedType === "posters" ? "2px solid #000" : "" }} className="posters"> Posters {movieImages.posters.length}</h3>
                 </div>
 
                 <Link

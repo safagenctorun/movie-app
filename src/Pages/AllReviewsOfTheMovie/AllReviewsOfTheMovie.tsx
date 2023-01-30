@@ -5,11 +5,12 @@ import MoreReviews from '../../Components/MoreReviews/MoreReviews'
 import MakeReviews from '../../Components/MakeReviews/MakeReviews'
 import { MOVIE_URL, API_KEY } from '../../config/Urls'
 import BackToDetail from '../../Components/BackToDetail/BackToDetail'
+import { MovieDetailOutput, MovieReviewsOutput } from '../../Models'
 
 const AllReviewsOfTheMovie = () => {
     const [selectedMovieId, setSelectedMovieId] = useState<string>("")
-    const [movieDetail, setMovieDetail] = useState<any>([])
-    const [movieReviews, setMovieReviews] = useState<any>([])
+    const [movieDetail, setMovieDetail] = useState<MovieDetailOutput| null>(null)
+    const [movieReviews, setMovieReviews] = useState<MovieReviewsOutput| null>(null)
 
 
     useEffect(() => {
@@ -35,7 +36,7 @@ const AllReviewsOfTheMovie = () => {
     return (
         <div className='all-reviews-back-to-detail'>
             {
-                Object.keys(movieDetail).length > 0 &&
+                movieDetail &&
                 <BackToDetail
                     movieDetail={movieDetail}
                     selectedMovieId={selectedMovieId}
@@ -45,7 +46,7 @@ const AllReviewsOfTheMovie = () => {
 
                 <MakeReviews />
                 {
-                    Object.keys(movieReviews).length > 0 &&
+                    movieReviews &&
                     <MoreReviews
                         movieReviews={movieReviews}
                     />

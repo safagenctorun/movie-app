@@ -1,31 +1,45 @@
 import React from 'react'
 import "./Filters.scss";
 import { Checkbox, Collapse, DatePicker, Slider, DatePickerProps, Space } from 'antd';
+import { Genre } from '../../Models';
+
+interface Props{
+    genres: Genre[]
+    setSelectedGenres: React.Dispatch<React.SetStateAction<number[]>>
+    selectedGenres: number[]
+    setVoteCountValue: React.Dispatch<React.SetStateAction<number | null>>
+    setRuntimeValue: React.Dispatch<React.SetStateAction<number[]>>
+    setIncludeAdult: boolean
+    setStartReleaseDate :  React.Dispatch<React.SetStateAction<string>>
+    setEndReleaseDate : React.Dispatch<React.SetStateAction<string>>
+}
 
 const Filter = ({ genres, setSelectedGenres, selectedGenres, setVoteCountValue, setRuntimeValue, setIncludeAdult, setStartReleaseDate, setEndReleaseDate }: any) => {
 
-    const startDateHandler: DatePickerProps['onChange'] = (date, dateString) => {
+    const startDateHandler: DatePickerProps['onChange'] = (date, dateString:string) => {
         setStartReleaseDate(dateString )
     };
-    const endDateHandler: DatePickerProps['onChange'] = (date, dateString) => {
+    const endDateHandler: DatePickerProps['onChange'] = (date, dateString:string) => {
         setEndReleaseDate(dateString)
     };
 
-    const genresHandler = (key: any) => {
+    const genresHandler = (key: number) => {
+             
         if (!selectedGenres.includes(key))
             setSelectedGenres([...selectedGenres, key])
         else
-            setSelectedGenres(selectedGenres.filter((fil: any) => fil !== key));
+            setSelectedGenres(selectedGenres.filter((fil: number) => fil !== key));
+          
     }
 
     const voteCountHandler = (newValue: number) => {
         setVoteCountValue(newValue);
-        console.log(newValue);
 
     };
 
     const runtimeHandler = (value: number | [number, number]) => {
         setRuntimeValue(value)
+        console.log(value)
     };
 
     return (
@@ -46,12 +60,11 @@ const Filter = ({ genres, setSelectedGenres, selectedGenres, setVoteCountValue, 
                         <Collapse.Panel header="Genres" key="3">
 
                             <div className="genres">
-                                {genres.map((genre: any) => (
+                                {genres.map((genre: Genre) => (
 
                                     <span style={{ backgroundColor: selectedGenres.includes(genre.id) && "#1b79b8", color: selectedGenres.includes(genre.id) && "#fff" }} onClick={e => genresHandler(genre.id)} key={genre.id}>
                                         {genre.name}
-                                    </span>
-
+                                    </span>                                   
                                 ))}
                             </div>
 

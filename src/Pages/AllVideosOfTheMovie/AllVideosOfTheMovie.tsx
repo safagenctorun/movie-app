@@ -4,11 +4,12 @@ import { MOVIE_URL, API_KEY } from '../../config/Urls'
 import "./AllVideosOfTheMovie.scss"
 import BackToDetail from '../../Components/BackToDetail/BackToDetail'
 import AllVideos from '../../Components/AllMedia/AllVideos/AllVideos'
+import { MovieDetailOutput, MovieVideosOutput } from '../../Models'
 
 const AllVideosOfTheMovie = () => {
     const [selectedMovieId, setSelectedMovieId] = useState<string>("")
-    const [movieDetail, setMovieDetail] = useState<any>([])
-    const [movieVideos, setMovieVideos] = useState<any>([])
+    const [movieDetail, setMovieDetail] = useState<MovieDetailOutput| null>(null)
+    const [movieVideos, setMovieVideos] = useState<MovieVideosOutput| null>(null)
 
     useEffect(() => {
 
@@ -22,6 +23,7 @@ const AllVideosOfTheMovie = () => {
             let movieVideosResponse = await axios.get(MOVIE_URL + selectedMovieId + "/videos?" + API_KEY)
             setMovieDetail(movieDetailResponse.data);
             setMovieVideos(movieVideosResponse.data)
+            console.log(movieVideosResponse.data)
         }
     }
 
@@ -32,14 +34,14 @@ const AllVideosOfTheMovie = () => {
     return (
         <div className='all-videos-back-to-detail'>
             {
-                Object.keys(movieDetail).length > 0 &&
+                movieDetail &&
                 <BackToDetail
                     movieDetail={movieDetail}
                     selectedMovieId={selectedMovieId}
                 />
             }
             {
-                Object.keys(movieVideos).length > 0 &&
+                movieVideos &&
                 <div className='all-videos'>
                     <AllVideos movieVideos={movieVideos} />
                 </div>

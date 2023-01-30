@@ -2,10 +2,14 @@ import React from 'react'
 import "./BackToDetail.scss"
 import { IMG_SIZE_500, IMG_URL } from '../../config/Urls'
 import { Link } from 'react-router-dom';
+import { MovieDetailOutput } from '../../Models';
 
+interface Props {
+    movieDetail:MovieDetailOutput;
+    selectedMovieId: string
+}
 
-
-const BackToDetail = ({ movieDetail, selectedMovieId, }: any) => {
+const BackToDetail = ({ movieDetail, selectedMovieId, }: Props) => {
 
     return (
 
