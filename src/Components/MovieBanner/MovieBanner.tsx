@@ -1,7 +1,7 @@
 import React from 'react'
 import "./MovieBanner.scss"
 import { IMG_URL, IMG_SIZE_500, IMG_SIZE_1920 } from '../../config/Urls'
-import { DownOutlined, FacebookFilled, TwitterCircleFilled } from '@ant-design/icons';
+import { DownOutlined, FacebookFilled, HeartOutlined, TwitterCircleFilled } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Rate, Dropdown, Space } from 'antd';
 import moment from "moment";
@@ -12,9 +12,11 @@ interface Props {
     movieCredits: MovieCreditsOutput | null;
     setMovieRate: React.Dispatch<React.SetStateAction<number>>
     movieDefaultRate: number;
+    markAsFavorite: () => void
+    isFavorite: boolean
 }
 
-const MovieBanner = ({ movieDetail, movieCredits, setMovieRate, movieDefaultRate}: Props) => {
+const MovieBanner = ({ movieDetail, movieCredits, setMovieRate, movieDefaultRate, markAsFavorite, isFavorite}: Props) => {
 
     const shareOnFacebook = (name: string) => {
 
@@ -78,6 +80,9 @@ const MovieBanner = ({ movieDetail, movieCredits, setMovieRate, movieDefaultRate
                                 <div className="share">
                                     < FacebookFilled id='facebook' onClick={e => shareOnFacebook("facebook")} />
                                     <TwitterCircleFilled id='twitter' onClick={e => shareOnFacebook("twitter")} />
+                                </div>
+                                <div className="add-favorite">
+                                    <HeartOutlined onClick={markAsFavorite} style={{color: isFavorite === true ? "red" : "black"}} />
                                 </div>
                             </div>
 

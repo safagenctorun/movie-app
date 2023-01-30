@@ -23,7 +23,6 @@ const AllVideosOfTheMovie = () => {
             let movieVideosResponse = await axios.get(MOVIE_URL + selectedMovieId + "/videos?" + API_KEY)
             setMovieDetail(movieDetailResponse.data);
             setMovieVideos(movieVideosResponse.data)
-            console.log(movieVideosResponse.data)
         }
     }
 

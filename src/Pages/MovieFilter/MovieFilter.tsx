@@ -2,28 +2,40 @@ import React, { useState, useMemo } from 'react'
 import axios from "axios";
 import "./MovieFilter.scss";
 import PopularMovies from '../../Components/PopularMovies/PopularMovies';
-import { API_KEY, GENRES_URL, MOVIE_URL, DISCOVER_URL } from '../../config/Urls';
+import { API_KEY, GENRES_URL, MOVIE_URL, DISCOVER_URL, SERACH_URL } from '../../config/Urls';
 import Filter from '../../Components/Filters/Filters';
 import Sort from '../../Components/Sort/Sort';
 import { Button } from 'antd';
 import { Genre, MoviesOutput } from '../../Models';
 
+
 const MovieFilter = () => {
     const [moviesData, setMoviesData] = useState<MoviesOutput[]>([]);
-    const [genres, setGenres] = useState<Genre[]> ([])
+    const [genres, setGenres] = useState<Genre[]>([])
     const [sortData, setSortData] = useState("")
-    const [startReleaseDate, setStartReleaseDate] = useState <string> ("")
+    const [startReleaseDate, setStartReleaseDate] = useState<string>("")
     const [endReleaseDate, setEndReleaseDate] = useState<string>("")
     const [selectedGenres, setSelectedGenres] = useState<number[]>([])
-    const [voteCountValue, setVoteCountValue] = useState<number| null>(null);
-    const [runtimeValue, setRuntimeValue] = useState <number[]> ([])
-    const [includeAdult, setIncludeAdult] = useState <boolean>(false)
-    const [pageCount, setPageCount] = useState<number> (2) // aynı fonk içinde olduğu için tıkladığında alsında bir önceki değeri basıyor
+    const [voteCountValue, setVoteCountValue] = useState<number | null>(null);
+    const [runtimeValue, setRuntimeValue] = useState<number[]>([])
+    const [includeAdult, setIncludeAdult] = useState<boolean>(false)
+    const [pageCount, setPageCount] = useState<number>(2) // aynı fonk içinde olduğu için tıkladığında alsında bir önceki değeri basıyor
 
+    
+    
     useMemo(() => {
-        axios.get(MOVIE_URL + "top_rated?" + API_KEY).then((res) => {
-            setMoviesData(res.data.results);
-        });
+        window.location.pathname.split("/")[2] !== undefined ?
+            axios.get(SERACH_URL + "&query=" + window.location.pathname.split("/")[2])
+                .then((res) => {
+                    res.data.results.sort((a:MoviesOutput,b:MoviesOutput) => b.popularity - a.popularity);
+
+                    setMoviesData(res.data.results)
+                    console.log(res.data.results)
+                })
+            :
+            axios.get(MOVIE_URL + "top_rated?" + API_KEY).then((res) => {
+                setMoviesData(res.data.results);
+            });
         axios.get(GENRES_URL).then((res) => {
             setGenres(res.data.genres);
         });
@@ -101,7 +113,7 @@ const MovieFilter = () => {
                         dataType={"Top Rated"}
                         confirmHandler={confirmHandler}
                     />
-                    : 
+                    :
                     <div className='not-respond'>Films that you filtered weren't found</div>
             }
 

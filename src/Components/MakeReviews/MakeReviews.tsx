@@ -11,8 +11,6 @@ const MakeReviews = () => {
     }
     const submitButtonHandler = () => {
         console.log(inputValue); //buraya yukaradan post api
-        
-        
     }
     const cancelIt = () => {
         setInputValue("")

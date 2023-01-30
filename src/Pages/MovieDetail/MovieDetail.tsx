@@ -17,11 +17,12 @@ const MovieDetail = () => {
     const [movieCredits, setMovieCredits] = useState<MovieCreditsOutput | null>(null)
     const [movieReviews, setMovieReviews] = useState<MovieReviewsOutput | null>(null)
     const [movieVideos, setMovieVideos] = useState<MovieVideosOutput | null>(null)
-    const [movieImages, setMovieImages] = useState<MovieImagesOutput| null>(null)
-    const [movieRecommendations, setMovieRecommendations] = useState<MovieRecommendationsOutput| null>(null)
+    const [movieImages, setMovieImages] = useState<MovieImagesOutput | null>(null)
+    const [movieRecommendations, setMovieRecommendations] = useState<MovieRecommendationsOutput | null>(null)
     const [movieRate, setMovieRate] = useState<number>(0)
-    const [accountDetail, setAccountDetail] = useState<AccountDetailOutput | null>(null)  
+    const [accountDetail, setAccountDetail] = useState<AccountDetailOutput | null>(null)
     const [movieDefaultRate, setmovieDefaultRate] = useState<number>(0)
+    const [isFavorite, setisFavorite] = useState<boolean>(false)
 
     useEffect(() => {
 
@@ -44,7 +45,6 @@ const MovieDetail = () => {
                 setMovieCredits(movieCreditsResponse.data)
                 setMovieReviews(movieReviewsResponse.data)
                 setMovieVideos(movieVideosResponse.data)
-                console.log(movieVideosResponse.data)
                 setMovieImages(movieImagesResponse.data)
                 setMovieRecommendations(movieRecommendationsResponse.data)
 
@@ -62,7 +62,6 @@ const MovieDetail = () => {
         if (localStorage.getItem("session_id"))
             axios.get(BASE_URL + "/account?" + API_KEY + `&session_id=${localStorage.getItem("session_id")}`)
                 .then(res => {
-                    console.log(res.data)
                     setAccountDetail(res.data)
                 })
 
@@ -84,13 +83,11 @@ const MovieDetail = () => {
     }, [movieRate, selectedMovieId])
 
     useEffect(() => {
-
         let path = BASE_URL + `/account/${accountDetail?.id}/rated/movies?` + API_KEY
         if (localStorage.getItem("session_id"))
             path += `&session_id=${localStorage.getItem("session_id")}`
 
-        accountDetail && Object.keys(accountDetail).length > 0 &&
-
+        accountDetail &&
             axios
                 .get(path)
                 .then(res => {
@@ -101,30 +98,71 @@ const MovieDetail = () => {
                 })
     }, [accountDetail, selectedMovieId])
 
+    useEffect(() => {
+
+        let path = BASE_URL + `/account/${accountDetail?.id}/favorite/movies?` + API_KEY
+        if (localStorage.getItem("session_id"))
+            path += `&session_id=${localStorage.getItem("session_id")}`
+
+        accountDetail &&
+            axios
+                .get(path)
+                .then(res => {
+                    res.data.results.map((mov: any) =>
+                        mov.id.toString() === selectedMovieId &&
+                        setisFavorite(true))
+                })
+    }, [accountDetail])
+
+
+    const markAsFavorite = () => {
+
+        let path = BASE_URL + `/account/${accountDetail?.id}/favorite?` + API_KEY
+        if (localStorage.getItem("session_id")) {
+            path += `&session_id=${localStorage.getItem("session_id")}`
+            setisFavorite(!isFavorite)
+        }
+
+        axios.post(path, {
+            "media_type": "movie",
+            "media_id": selectedMovieId,
+            "favorite": !isFavorite
+        }).then(res => {
+            if (res.status === 200 || res.status === 201)
+                message.success(res.data.status_message)
+
+        }).catch(res => {
+            if (res.status !== 200 || res.status !== 201)
+                message.error("Something went wrong")
+        })
+    }
+
 
     return (
         <div className='movie-detail'>
 
             {
-                movieDetail && 
+                movieDetail &&
                 <MovieBanner
                     movieDetail={movieDetail}
                     movieCredits={movieCredits}
                     setMovieRate={setMovieRate}
                     movieDefaultRate={movieDefaultRate}
+                    markAsFavorite={markAsFavorite}
+                    isFavorite={isFavorite}
                 />
             }
             <div className="movie-detail-except-banner">
 
                 {
-                    movieDetail && 
+                    movieDetail &&
                     <TopBilledCast
                         movieCredits={movieCredits}
                     />
                 }
 
                 {
-                    movieReviews && 
+                    movieReviews &&
                     <MovieReviews
                         movieReviews={movieReviews}
                         selectedMovieId={selectedMovieId}
@@ -140,7 +178,7 @@ const MovieDetail = () => {
                     />
                 }
                 {
-                    movieRecommendations && 
+                    movieRecommendations &&
                     <MovieRecommendations
                         movieRecommendations={movieRecommendations}
                     />

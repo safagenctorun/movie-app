@@ -32,6 +32,7 @@ const App = () => {
                 <Route path={'/moviedetail/:id/backdrops'} element={<AllBackdropsOfTheMovie />} />
                 <Route path={'/moviedetail/:id/posters'} element={<AllPostersOfThePage />} />
                 <Route path={'/moviefilter'} element={<MovieFilter />} />
+                <Route path={'/moviefilter/:id'} element={<MovieFilter />} />  {/*  34 - 35 pek sağlıklı olmadı  */}
 
                 <Route path={'/approved'} element={<Approved />} />
 
