@@ -169,24 +169,3 @@ export interface LanguageOutput {
     name?: string
 }
 
-
-// let movies = [
-//     {
-//         adult: false,
-//         production_companies: [
-
-//             {
-
-//                 id: 15,
-//                 logo_path: "/kDedjRZwO8uyFhuHamomOhN6fzG.png",
-//                 name: "Atomic Monster"
-//             },
-//             {
-//                 id: 16,
-//                 logo_path: "/uXEJwb8y67vFLaJb4wvHbSH6PjT.jpg",
-//                 name: "M3GAN Collection"
-//             }
-//         ]
-//     }
-
-// ]

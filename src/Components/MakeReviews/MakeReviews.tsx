@@ -33,9 +33,7 @@ const MakeReviews = () => {
                         <Button className='submit' onClick={submitButtonHandler}> Submit</Button>
                     </div>
                 </div>
-
             }
-
         </div>
     )
 }

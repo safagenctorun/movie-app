@@ -12,7 +12,6 @@ const AllReviewsOfTheMovie = () => {
     const [movieDetail, setMovieDetail] = useState<MovieDetailOutput| null>(null)
     const [movieReviews, setMovieReviews] = useState<MovieReviewsOutput| null>(null)
 
-
     useEffect(() => {
 
         setSelectedMovieId(window.location.pathname.split("/")[2])
@@ -52,7 +51,6 @@ const AllReviewsOfTheMovie = () => {
                     />
                 }
             </div>
-
         </div>
     )
 }

@@ -14,9 +14,6 @@ import MovieFilter from "./Pages/MovieFilter/MovieFilter";
 import AccountDetail from "./Pages/AccountDetail/AccountDetail";
 
 
-
-
-
 const App = () => {
 
     return (
@@ -34,7 +31,7 @@ const App = () => {
                 <Route path={'/moviedetail/:id/backdrops'} element={<AllBackdropsOfTheMovie />} />
                 <Route path={'/moviedetail/:id/posters'} element={<AllPostersOfThePage />} />
                 <Route path={'/moviefilter'} element={<MovieFilter />} />
-                <Route path={'/moviefilter/:id'} element={<MovieFilter />} />  {/*  34 - 35 pek sağlıklı olmadı  */}
+                <Route path={'/moviefilter/:id'} element={<MovieFilter />} />  {/*  34 - 35 pek sağlıklı olmadı. 2 ayrı şekilde de aynı sayfaya gitmesi gerekiyor aklıam böyle yapmak geldi   */}
                 <Route path={'/accountdetail'} element={< AccountDetail/>} />  
 
                 <Route path={'/approved'} element={<Approved />} />

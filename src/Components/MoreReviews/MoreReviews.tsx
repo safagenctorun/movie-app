@@ -41,10 +41,7 @@ const MoreReviews = ({ movieReviews }: Props) => {
                         <p> {review.content}</p>
                     </div>
                 </div>
-            )
-
-            )}
-
+            ))}
         </div>
     )
 }

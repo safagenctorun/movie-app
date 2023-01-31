@@ -23,7 +23,6 @@ const BackToDetail = ({ movieDetail, selectedMovieId, }: Props) => {
 
             </div>
         </div>
-
     )
 }
 

@@ -20,7 +20,6 @@ const AccountRatedMovies = ({ ratedMovies }: Props) => {
                             <h3>{movie.title}</h3>
                             <span style={{ color: movie.rating > 8 ? "lightgreen" : movie.rating > 5 ? "orange" : "red" }}>{movie.rating}/10</span>
                         </div>
-
                     </div>
                 ))}
             </div>

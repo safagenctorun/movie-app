@@ -14,7 +14,6 @@ const MoviePosters = ({ movieImages }: Props) => {
         <div className='movie-posters'>
             <div className="movie-content">
                 <div className="movie-content-img">
-
                     {movieImages.posters.map((img: ImagesTypeOutput, index: number) => (
                         img.iso_639_1 === "en" &&
                         <a
@@ -30,13 +29,9 @@ const MoviePosters = ({ movieImages }: Props) => {
                                 alt=""
                             />
                         </a>
-
-
                     ))}
                 </div>
-
             </div>
-
         </div>
     )
 }

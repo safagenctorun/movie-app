@@ -24,8 +24,6 @@ const Sort = ({ setSortData }: any) => {
                         ]}
                     />
                 </Collapse.Panel>
-
-
             </Collapse>
         </div>
     )
