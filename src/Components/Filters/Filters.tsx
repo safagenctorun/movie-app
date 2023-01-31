@@ -6,15 +6,15 @@ import { Genre } from '../../Models';
 interface Props{
     genres: Genre[]
     setSelectedGenres: React.Dispatch<React.SetStateAction<number[]>>
-    selectedGenres: number[]
+    selectedGenres: any
     setVoteCountValue: React.Dispatch<React.SetStateAction<number | null>>
-    setRuntimeValue: React.Dispatch<React.SetStateAction<number[]>>
-    setIncludeAdult: boolean
+    setRuntimeValue: any 
+    setIncludeAdult: React.Dispatch<React.SetStateAction<number[]>>
     setStartReleaseDate :  React.Dispatch<React.SetStateAction<string>>
     setEndReleaseDate : React.Dispatch<React.SetStateAction<string>>
 }
 
-const Filter = ({ genres, setSelectedGenres, selectedGenres, setVoteCountValue, setRuntimeValue, setIncludeAdult, setStartReleaseDate, setEndReleaseDate }: any) => {
+const Filter = ({ genres, setSelectedGenres, selectedGenres, setVoteCountValue, setRuntimeValue, setIncludeAdult, setStartReleaseDate, setEndReleaseDate }: Props) => {
 
     const startDateHandler: DatePickerProps['onChange'] = (date, dateString:string) => {
         setStartReleaseDate(dateString )
@@ -29,12 +29,10 @@ const Filter = ({ genres, setSelectedGenres, selectedGenres, setVoteCountValue, 
             setSelectedGenres([...selectedGenres, key])
         else
             setSelectedGenres(selectedGenres.filter((fil: number) => fil !== key));
-          
     }
 
     const voteCountHandler = (newValue: number) => {
         setVoteCountValue(newValue);
-
     };
 
     const runtimeHandler = (value: number | [number, number]) => {
@@ -91,7 +89,7 @@ const Filter = ({ genres, setSelectedGenres, selectedGenres, setVoteCountValue, 
                             />
                         </Collapse.Panel>
                     </Collapse>
-                    <Checkbox style={{ padding: "10px" }} onChange={e => setIncludeAdult(e.target.checked)}> Include Adult </Checkbox>
+                    <Checkbox style={{ padding: "10px" }} onChange={e => setIncludeAdult((e.target as any ).checked)}> Include Adult </Checkbox>
                 </Collapse.Panel>
             </Collapse>
         </div>

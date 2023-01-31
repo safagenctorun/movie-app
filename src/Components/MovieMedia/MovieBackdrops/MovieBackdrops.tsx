@@ -16,7 +16,6 @@ const MovieBackdrops = ({ movieImages }: Props) => {
                 <div className="movie-content-img">
 
                     {movieImages.backdrops.map((img: ImagesTypeOutput, index: number) => (
-
                         index < 9 &&
                         <a
                             href={IMG_URL + "/original/" + img.file_path}
@@ -31,9 +30,7 @@ const MovieBackdrops = ({ movieImages }: Props) => {
                         </a>
                     ))}
                 </div>
-
             </div>
-
         </div>
     )
 }

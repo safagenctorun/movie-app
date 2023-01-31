@@ -19,8 +19,6 @@ const MovieVideos = ({ movieVideos }: Props) => {
         setIsOverlayOpen(true)
         setisVideoOpen(true)
         setvideoUrl(url);
-
-
     }
 
     return (

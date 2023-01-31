@@ -12,7 +12,6 @@ const AllPostersOfThePage = () => {
     const [movieImages, setMovieImages] = useState<MovieImagesOutput| null>(null)
     const [language, setLanguage] = useState<LanguageOutput[]>([])
 
-
     useEffect(() => {
 
         setSelectedMovieId(window.location.pathname.split("/")[2])

@@ -38,7 +38,6 @@ const AccountDetail = () => {
     }, [accountDetail])
 
 
-
     return (
         <div className='account-detail'>
             <AccountFavoriteMovies favoriteMovies = {favoriteMovies}/>

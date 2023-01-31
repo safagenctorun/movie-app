@@ -18,10 +18,9 @@ const MovieFilter = () => {
     const [selectedGenres, setSelectedGenres] = useState<number[]>([])
     const [voteCountValue, setVoteCountValue] = useState<number | null>(null);
     const [runtimeValue, setRuntimeValue] = useState<number[]>([])
-    const [includeAdult, setIncludeAdult] = useState<boolean>(false)
+    const [includeAdult, setIncludeAdult] = useState<any>(false)
     const [pageCount, setPageCount] = useState<number>(2) // aynı fonk içinde olduğu için tıkladığında alsında bir önceki değeri basıyor
 
-    
     
     useMemo(() => {
         window.location.pathname.split("/")[2] !== undefined ?
@@ -42,7 +41,6 @@ const MovieFilter = () => {
 
     }, []);
 
-
     const confirmHandler = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
 
         let path = (DISCOVER_URL + "?" + API_KEY
@@ -55,7 +53,7 @@ const MovieFilter = () => {
         if (endReleaseDate)
             path += `&release_date.lte=${endReleaseDate}`
 
-        if (endReleaseDate)
+        if (voteCountValue)
             path += `&vote_count.gte=${voteCountValue}`
 
         if (runtimeValue[0])
@@ -85,7 +83,6 @@ const MovieFilter = () => {
                     setMoviesData([...moviesData, ...res.data.results]);
                 // confirm tuşu ile load more tuşu ortak şeyleri yaptığı için aynı fonksiyonu çalıştırıyor araya birkaç if koyarak hangisine basıldığını anlıyoruz ve ona göre farklı işlemler yaptırıyor 
             })
-
     }
 
     return (
