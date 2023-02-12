@@ -9,10 +9,13 @@ import MovieMedia from '../../Components/MovieMedia/MovieMedia'
 import MovieRecommendations from '../../Components/MovieRecommendations/MovieRecommendations'
 import { message } from 'antd'
 import { AccountDetailOutput, MovieCreditsOutput, MovieDetailOutput, MovieImagesOutput, MovieRecommendationsOutput, MovieReviewsOutput, MovieVideosOutput } from '../../Models'
+import { useParams } from 'react-router-dom'
+
+
 
 const MovieDetail = () => {
 
-    const [selectedMovieId, setSelectedMovieId] = useState<string>("")
+    const [selectedMovieId, setSelectedMovieId] = useState<string | undefined >("")
     const [movieDetail, setMovieDetail] = useState<MovieDetailOutput | null>(null)
     const [movieCredits, setMovieCredits] = useState<MovieCreditsOutput | null>(null)
     const [movieReviews, setMovieReviews] = useState<MovieReviewsOutput | null>(null)
@@ -24,10 +27,11 @@ const MovieDetail = () => {
     const [movieDefaultRate, setmovieDefaultRate] = useState<number>(0)
     const [isFavorite, setisFavorite] = useState<boolean>(false)
 
+    let params = useParams()
     useEffect(() => {
 
-        setSelectedMovieId(window.location.pathname.split("/")[2])
-
+        setSelectedMovieId(params.movieid)
+        
     }, [selectedMovieId])
 
     const axiosProcesses = useCallback(async () => {
@@ -162,6 +166,7 @@ const MovieDetail = () => {
                 }
 
                 {
+                    selectedMovieId&&
                     movieReviews &&
                     <MovieReviews
                         movieReviews={movieReviews}
@@ -169,6 +174,7 @@ const MovieDetail = () => {
                     />
                 }
                 {
+                    selectedMovieId&&
                     movieVideos &&
                     movieImages &&
                     <MovieMedia

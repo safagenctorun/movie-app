@@ -7,6 +7,7 @@ import Filter from '../../Components/Filters/Filters';
 import Sort from '../../Components/Sort/Sort';
 import { Button } from 'antd';
 import { Genre, MoviesOutput } from '../../Models';
+import { useParams } from 'react-router-dom';
 
 
 const MovieFilter = () => {
@@ -21,15 +22,15 @@ const MovieFilter = () => {
     const [includeAdult, setIncludeAdult] = useState<any>(false)
     const [pageCount, setPageCount] = useState<number>(2) // aynı fonk içinde olduğu için tıkladığında alsında bir önceki değeri basıyor
 
-    
+    let params = useParams()
+
     useMemo(() => {
-        window.location.pathname.split("/")[2] !== undefined ?
+        params.moviename !== undefined ?
             axios.get(SERACH_URL + "&query=" + window.location.pathname.split("/")[2])
                 .then((res) => {
+                    
                     res.data.results.sort((a:MoviesOutput,b:MoviesOutput) => b.popularity - a.popularity);
-
                     setMoviesData(res.data.results)
-                    console.log(res.data.results)
                 })
             :
             axios.get(MOVIE_URL + "top_rated?" + API_KEY).then((res) => {

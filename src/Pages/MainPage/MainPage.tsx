@@ -21,7 +21,6 @@ const MainPage = () => {
             axios.get(SERACH_URL + "&query=" + searchItem)
                 .then((res) => {
                     setSearchItemsData(res.data.results)
-                    console.log(res.data.results)
                 }) 
         }
 

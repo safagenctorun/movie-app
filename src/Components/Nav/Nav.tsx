@@ -24,7 +24,7 @@ const Nav = () => {
     }, [])
 
     const changePageToAccountDetail = () => {
-        window.location.replace("/accountdetail")
+        window.location.replace("/accountdetail")   
     }
 
     return (

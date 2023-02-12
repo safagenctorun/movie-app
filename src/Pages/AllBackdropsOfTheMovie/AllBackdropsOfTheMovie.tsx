@@ -5,16 +5,19 @@ import { MOVIE_URL, API_KEY, CONFIGURATION_URL } from '../../config/Urls'
 import BackToDetail from '../../Components/BackToDetail/BackToDetail'
 import AllBackdrops from '../../Components/AllMedia/AllBackdrops/AllBackdrops'
 import { LanguageOutput, MovieDetailOutput, MovieImagesOutput } from '../../Models'
+import { useNavigation, useParams } from 'react-router-dom'
+
 
 const AllBackdropsOfTheMovie = () => {
-    const [selectedMovieId, setSelectedMovieId] = useState<string>("")
+    const [selectedMovieId, setSelectedMovieId] = useState<string | undefined >("")
     const [movieDetail, setMovieDetail] = useState<MovieDetailOutput| null>(null)
     const [movieImages, setMovieImages] = useState<MovieImagesOutput| null>(null)
     const [language, setLanguage] = useState<LanguageOutput[]>([])
 
+    let params = useParams()
     useEffect(() => {
 
-        setSelectedMovieId(window.location.pathname.split("/")[2])
+        setSelectedMovieId(params.movieid)
 
     }, [selectedMovieId])
 
@@ -36,6 +39,7 @@ const AllBackdropsOfTheMovie = () => {
     return (
         <div className='all-backdrops-back-to-detail'>
             {
+                selectedMovieId&&
                 movieDetail &&
                 <BackToDetail
                     movieDetail={movieDetail}

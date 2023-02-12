@@ -24,14 +24,26 @@ const App = () => {
             }
             <Routes>
                 <Route path={`/login`} element={<LoginPage />} />
-                <Route path={``} element={<MainPage />} />
-                <Route path={'/moviedetail/:id'} element={<MovieDetail />} />
-                <Route path={'/moviedetail/:id/reviews'} element={<AllReviewsOfTheMovie />} />
-                <Route path={'/moviedetail/:id/videos'} element={<AllVideosOfTheMovie />} />
-                <Route path={'/moviedetail/:id/backdrops'} element={<AllBackdropsOfTheMovie />} />
-                <Route path={'/moviedetail/:id/posters'} element={<AllPostersOfThePage />} />
-                <Route path={'/moviefilter'} element={<MovieFilter />} />
-                <Route path={'/moviefilter/:id'} element={<MovieFilter />} />  {/*  34 - 35 pek sağlıklı olmadı. 2 ayrı şekilde de aynı sayfaya gitmesi gerekiyor aklıam böyle yapmak geldi   */}
+                <Route path={`/`} element={<MainPage />} />
+                <Route path={'/moviedetail/:movieid'} element={<MovieDetail />} />
+                <Route path={'/moviedetail/:movieid/reviews'} element={<AllReviewsOfTheMovie />} />
+                <Route path={'/moviedetail/:movieid/videos'} element={<AllVideosOfTheMovie />} />
+                <Route path={'/moviedetail/:movieid/backdrops'} element={<AllBackdropsOfTheMovie />} />
+                <Route path={'/moviedetail/:movieid/posters'} element={<AllPostersOfThePage />} />
+{/* 
+                <Route path={'/moviedetail/:movieid'} element={<MovieDetail />}> 
+                    <Route index={true} element={<MovieDetail />} />
+                    <Route path={'reviews'} element={<AllReviewsOfTheMovie />} />
+                    <Route path={'videos'} element={<AllVideosOfTheMovie />} />
+                    <Route path={'backdrops'} element={<AllBackdropsOfTheMovie />} />
+                    <Route path={'posters'} element={<AllPostersOfThePage />} />
+                
+                </Route> */}
+
+                <Route path={'/moviefilter'} element={<MovieFilter />}>
+                    <Route path={':moviename'} /> 
+                </Route>
+
                 <Route path={'/accountdetail'} element={< AccountDetail/>} />  
 
                 <Route path={'/approved'} element={<Approved />} />
