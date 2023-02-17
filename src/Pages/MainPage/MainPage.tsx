@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./MainPage.scss"
 import { SERACH_URL, MOVIE_URL, API_KEY } from "../../config/Urls";
@@ -13,16 +13,26 @@ const MainPage = () => {
     const [moviesData, setMoviesData] = useState<MoviesOutput[]>([]);
     const [pageCount, setPageCount] = useState(1) 
 
+    const timeoutId = useRef<NodeJS.Timeout | null>(null);
+    
+    
+
     useEffect(() => {
         
-        if (searchItem === "")
-            setSearchItemsData([])
-        else {
-            axios.get(SERACH_URL + "&query=" + searchItem)
-                .then((res) => {
-                    setSearchItemsData(res.data.results)
-                }) 
-        }
+        clearTimeout(timeoutId.current!);
+        timeoutId.current = setTimeout(()=>{
+            console.log(timeoutId.current);
+            
+            if (searchItem === "")
+                setSearchItemsData([])
+            else {
+                axios.get(SERACH_URL + "&query=" + searchItem)
+                    .then((res) => {
+                        setSearchItemsData(res.data.results)
+                        
+                    }) 
+            }
+        }, 500)
 
     }, [searchItem])
 
