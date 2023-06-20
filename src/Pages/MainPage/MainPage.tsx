@@ -11,25 +11,31 @@ const MainPage = () => {
     const [searchItem, setSearchItem] = useState<string>("");
     const [searchItemsData, setSearchItemsData] = useState<MoviesOutput[]>([]);
     const [moviesData, setMoviesData] = useState<MoviesOutput[]>([]);
-    const [pageCount, setPageCount] = useState(1) 
+    const [pageCount, setPageCount] = useState(1)
 
     useEffect(() => {
-        
-        if (searchItem === "")
-            setSearchItemsData([])
-        else {
-            axios.get(SERACH_URL + "&query=" + searchItem)
-                .then((res) => {
-                    setSearchItemsData(res.data.results)
-                    console.log(res.data.results)
-                }) 
-        }
+
+        const timeoutId = setTimeout(() => {
+            if (searchItem === "")
+                setSearchItemsData([])
+            else {
+                axios.get(SERACH_URL + "&query=" + searchItem)
+                    .then((res) => {
+                        setSearchItemsData(res.data.results)
+                        console.log(res.data.results)
+                    })
+            }
+        }, 1000);
+        return () => {
+            clearTimeout(timeoutId);
+        };
+
 
     }, [searchItem])
 
     useEffect(() => {
-        axios.get(MOVIE_URL + "popular?" + API_KEY +"&page=1").then((res) => { 
-            setMoviesData(res.data.results); 
+        axios.get(MOVIE_URL + "popular?" + API_KEY + "&page=1").then((res) => {
+            setMoviesData(res.data.results);
         });
     }, []);
 
@@ -37,12 +43,12 @@ const MainPage = () => {
 
         let path = MOVIE_URL + "popular?" + API_KEY
 
-        if((e.target as any).name === "load-more" ){
+        if ((e.target as any).name === "load-more") {
             setPageCount(pageCount + 1);
             path += `&page=${pageCount + 1}`
         }
-        axios.get(path).then((res) => { 
-            setMoviesData([...moviesData, ...res.data.results ]); 
+        axios.get(path).then((res) => {
+            setMoviesData([...moviesData, ...res.data.results]);
         });
     }
 
@@ -50,7 +56,7 @@ const MainPage = () => {
     return (
         <div className="main-page">
 
-            <SearchBar searchItemsData={searchItemsData} setSearchItem={setSearchItem}  searchItem={searchItem} />
+            <SearchBar searchItemsData={searchItemsData} setSearchItem={setSearchItem} searchItem={searchItem} />
             <PopularMovies moviesData={moviesData} dataType={"Popular"} confirmHandler={confirmHandler} />
         </div>
     )
