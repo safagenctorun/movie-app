@@ -2,17 +2,19 @@ import React, { useContext, useEffect, useState } from 'react'
 import "./Nav.scss"
 import { Button} from 'antd'
 import { Context } from "../../context/GlobalContext";
+import { Link, useNavigate } from 'react-router-dom';
 
 const Nav = () => {
+    const navigate= useNavigate()
     const [isLogin, setisLogin] = useState(false)
     const { isVideoOpen } = useContext(Context)
 
     const loginHandler = () => {
-        window.location.replace("/login")
+        navigate("/login")
     }
     const logoutHandler = () => {
         localStorage.removeItem("session_id")
-        window.location.replace("/")
+        navigate("/")
 
     }
 
@@ -31,12 +33,10 @@ const Nav = () => {
         <nav >
             <div className='nav' style={{ display: isVideoOpen === false ? "flex" : "none" }} >
 
-                <div className="main-page">
-                    <a href="http://localhost:3000/"><h2>Mainpage</h2></a>
-                </div>
+                <Link className='link' to="/"><h2>Mainpage</h2></Link>
 
                 <div className="movies">
-                    <a href='http://localhost:3000/moviefilter'>Movies</a>
+                    <Link className='link' to='/moviefilter'>Movies</Link>
                 </div>
                 <div className="log-in-out">
                     <Button style={{ display: isLogin === false ? "flex" : "none", backgroundColor: "green" }} type="primary" onClick={loginHandler}>Login</Button>

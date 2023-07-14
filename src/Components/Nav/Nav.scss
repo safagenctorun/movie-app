@@ -10,19 +10,21 @@
     z-index: 10;
     box-shadow: 0.1px 1px 5px rgba(0, 0, 0, 1);
 
-    a {
+    .link {
+        position: relative;
+        left: 50px;
         color: white;
 
     }
 
     .main-page {
         margin-left: 3rem;
-        a{
+        .link{
             font-size: 1.5em;
         }
     }
     .movies{
-        a{
+        .link{
             font-size: 1.5em;
         }
     }
