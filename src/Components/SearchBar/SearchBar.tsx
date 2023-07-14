@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import "./SearchBar.scss"
 import { AutoComplete, Button } from 'antd';
 import { MoviesOutput, SearchItemsOutput } from "../../Models";
+import { useNavigate } from "react-router-dom";
 
 interface Props{
     searchItem: string
@@ -13,11 +14,11 @@ interface Props{
 const SearchBar = ({ setSearchItem, searchItemsData, searchItem }: Props) => {
 
     const [isSearchItemEmpty, setIsSearchItemEmpty] = useState <boolean>(true)
-
+    const navigate = useNavigate();
 
     const changePage = (value: string, properties: SearchItemsOutput) => {
 
-        window.location.replace(`/moviedetail/${properties.key}`)
+        navigate(`/moviedetail/${properties.key}`)
     }
 
     const optionsGenerator = () => {
@@ -41,7 +42,7 @@ const SearchBar = ({ setSearchItem, searchItemsData, searchItem }: Props) => {
     }
 
     const changePageToFilterPage = () => {
-        window.location.replace(`/moviefilter/${searchItem}`)
+        navigate(`/moviefilter/${searchItem}`)
     }
 
     return (

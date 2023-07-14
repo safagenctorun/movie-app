@@ -25,7 +25,7 @@ const MainPage = () => {
                         console.log(res.data.results)
                     })
             }
-        }, 1000);
+        }, 500);
         return () => {
             clearTimeout(timeoutId);
         };

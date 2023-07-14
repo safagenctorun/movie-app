@@ -3,6 +3,7 @@ import "./PopularMovies.scss"
 import { IMG_URL, IMG_SIZE_500 } from '../../config/Urls'
 import { Button } from 'antd'
 import { MoviesOutput } from '../../Models'
+import { Link } from 'react-router-dom'
 
 
 interface Props {
@@ -21,7 +22,7 @@ const PopularMovies = ({ moviesData, dataType, confirmHandler }:Props) => {
 
                 {moviesData.map((movie: any) => (
                     <div key={movie.id} className="movie">
-                        <a href={`/moviedetail/${movie.id}`}><img src={IMG_URL + IMG_SIZE_500 + movie.poster_path} alt={movie.title} /></a>
+                        <Link to={`/moviedetail/${movie.id}`}><img src={IMG_URL + IMG_SIZE_500 + movie.poster_path} alt={movie.title} /></Link>
 
                         <div className="movie-info">
                             <h3>{movie.title}</h3>
