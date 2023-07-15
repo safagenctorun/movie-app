@@ -77,7 +77,7 @@ const MovieDetail = () => {
                     message.success("Rating was completed successfully")
             }).catch(res => {
                 if(!localStorage.getItem("session_id"))
-                    message.error("You cannot vote without logging in.")
+                    message.error("You can't vote without logging in")
                 else if (res.status !== 200 || res.status !== 201)
                     message.error("Rating wasn't completed successfully")
             })
