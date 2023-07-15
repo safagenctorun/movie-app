@@ -76,7 +76,9 @@ const MovieDetail = () => {
                 if (res.status === 200 || res.status === 201)
                     message.success("Rating was completed successfully")
             }).catch(res => {
-                if (res.status !== 200 || res.status !== 201)
+                if(!localStorage.getItem("session_id"))
+                    message.error("You cannot vote without logging in.")
+                else if (res.status !== 200 || res.status !== 201)
                     message.error("Rating wasn't completed successfully")
             })
         }
@@ -132,7 +134,9 @@ const MovieDetail = () => {
                 message.success(res.data.status_message)
 
         }).catch(res => {
-            if (res.status !== 200 || res.status !== 201)
+            if(!localStorage.getItem("session_id"))
+            message.error("You can't add to favorite list without logging in")
+            else if (res.status !== 200 || res.status !== 201)
                 message.error("Something went wrong")
         })
     }
