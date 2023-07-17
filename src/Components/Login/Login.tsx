@@ -7,6 +7,10 @@ import "./Login.scss"
 const Login = () => {
 
     const [requestToken, setrequestToken] = useState("")
+
+    const protocol = window.location.protocol
+    const host = window.location.host
+
     // useEffect(() => {
     const requestTokenHandler = () => {
 
@@ -16,7 +20,7 @@ const Login = () => {
 
             if (res.data.request_token !== "") {
                 window.open(
-                    `https://www.themoviedb.org/authenticate/${res.data.request_token}?redirect_to=https://safa-movie-db.netlify.app/approved`,
+                    `https://www.themoviedb.org/authenticate/${res.data.request_token}?redirect_to=${protocol}//${host}/approved`,
 
                 );
             }
