@@ -3,13 +3,10 @@ import { LOGIN_URL, REQUEST_TOKEN_URL, SESSION_URL } from '../../config/Urls'
 import axios from 'axios'
 import { Button, Form, Input, message } from 'antd'
 import "./Login.scss"
-import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
     const [requestToken, setrequestToken] = useState("")
-
-    let navigate= useNavigate();
     // useEffect(() => {
     const requestTokenHandler = () => {
 
@@ -18,10 +15,10 @@ const Login = () => {
 
 
             if (res.data.request_token !== "") {
+                window.open(
+                    `https://www.themoviedb.org/authenticate/${res.data.request_token}?redirect_to=https://safa-movie-db.netlify.app/approved`,
 
-                let url = `https://www.themoviedb.org/authenticate/${res.data.request_token}?redirect_to=https://safa-movie-db.netlify.app/approved`
-                navigate(url)
-
+                );
             }
         })
     }
