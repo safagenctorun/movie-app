@@ -33,25 +33,18 @@ const MainPage = () => {
 
     }, [searchItem])
 
-    useEffect(() => {
-        axios.get(MOVIE_URL + "popular?" + API_KEY + "&page=1").then((res) => {
-            setMoviesData(res.data.results);
-        });
-    }, []);
-
+    
     const confirmHandler = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-
-        let path = MOVIE_URL + "popular?" + API_KEY
-
-        if ((e.target as any).name === "load-more") {
-            setPageCount(pageCount + 1);
-            path += `&page=${pageCount + 1}`
-        }
-        axios.get(path).then((res) => {
-            setMoviesData([...moviesData, ...res.data.results]);
-        });
+        setPageCount((prevState) => prevState + 1)
     }
-
+    
+    useEffect(() => {
+        axios.get( MOVIE_URL + "popular?" + API_KEY,{
+            params: {page: pageCount}
+        }).then((res) => {
+            setMoviesData((prevState) =>  [...prevState, ...res.data.results]);
+        });
+    }, [pageCount]);
 
     return (
         <div className="main-page">
