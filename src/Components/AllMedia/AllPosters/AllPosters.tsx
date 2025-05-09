@@ -1,70 +1,86 @@
-import React, { useState } from 'react'
-import "./AllPosters.scss"
-import { IMG_SIZE_500, IMG_URL } from '../../../config/Urls';
-import { ImagesTypeOutput, LanguageOutput, MovieImagesOutput } from '../../../Models';
+import React, { useState } from "react";
+import "./AllPosters.scss";
+import { IMG_SIZE_500, IMG_URL } from "../../../config/Urls";
+import {
+  ImagesTypeOutput,
+  LanguageOutput,
+  MovieImagesOutput,
+} from "../../../Models";
 
-interface Props{
-    movieImages: MovieImagesOutput;
-    language: LanguageOutput[];
+interface Props {
+  movieImages: MovieImagesOutput;
+  language: LanguageOutput[];
 }
 
 const AllPosters = ({ movieImages, language }: Props) => {
-    const [selectedLanguage, setSelectedLanguage] = useState("No Language")
+  const [selectedLanguage, setSelectedLanguage] = useState("No Language");
 
+  let languageDict: any = {};
+  language.forEach((lang: LanguageOutput) => {
+    languageDict[lang.iso_639_1] = lang.english_name;
+  });
+  languageDict["null"] = "No Language"; // resimlerin dili olmadığında null geldiği için en sona ekliyoruz
 
-    let languageDict :any= {};
-    language.forEach((lang:LanguageOutput) => {        
-        languageDict[lang.iso_639_1] =  lang.english_name
-    })
-    languageDict["null"] = "No Language"  // resimlerin dili olmadığında null geldiği için en sona ekliyoruz 
+  let languageArray: Array<string> = [];
+  movieImages.backdrops.forEach((el: any) => {
+    el.iso_639_1 !== null
+      ? languageArray.push(el.iso_639_1)
+      : languageArray.push("null");
+  });
 
-    let languageArray: Array<string > = []
-    movieImages.backdrops.forEach((el: any) => {
+  let languageArrayWithoutDuplicates = Array.from(new Set(languageArray)); //Duplicates kaldırıyor
 
-        el.iso_639_1 !== null ?
-            languageArray.push(el.iso_639_1)
-            :
-            languageArray.push("null")
-    })
+  return (
+    <div className="posters">
+      <div className="posters-choices">
+        {languageArrayWithoutDuplicates.map((lang: string, index: number) => (
+          <p
+            key={index}
+            style={{
+              borderBottom:
+                selectedLanguage === languageDict[lang] ? "2px solid #000" : "",
+            }}
+            onClick={(e) => setSelectedLanguage(e.currentTarget.innerText)}
+          >
+            {languageDict[lang]}{" "}
+          </p>
+        ))}
+      </div>
 
-    let languageArrayWithoutDuplicates = Array.from(new Set(languageArray)); //Duplicates kaldırıyor
+      <div className="posters-images">
+        {movieImages.posters.map(
+          (img: ImagesTypeOutput, index: number) =>
+            languageDict[img.iso_639_1] === selectedLanguage && (
+              <div className="posters-image" key={index}>
+                <a
+                  href={IMG_URL + "/original/" + img.file_path}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    key={index}
+                    className="image"
+                    src={IMG_URL + IMG_SIZE_500 + img.file_path}
+                    alt=""
+                  />
+                </a>
 
-    return (
-        <div className='posters'>
-            <div className="posters-choices">
-                {languageArrayWithoutDuplicates.map((lang: string, index: number) => (
-                    <p key={index} style={{ borderBottom: selectedLanguage === languageDict[lang] ? "2px solid #000" : "" }} onClick={e => setSelectedLanguage(e.currentTarget.innerText)}>{languageDict[lang]} </p>
-                ))}
+                <div className="img-size">
+                  <a
+                    href={IMG_URL + "/original/" + img.file_path}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {" "}
+                    {img.width}x{img.height}
+                  </a>
+                </div>
+              </div>
+            ),
+        )}
+      </div>
+    </div>
+  );
+};
 
-            </div>
-
-
-            <div className="posters-images">
-                {movieImages.posters.map((img: ImagesTypeOutput, index: number) => (
-
-                    languageDict[img.iso_639_1] === selectedLanguage &&
-
-                    <div className="posters-image" key={index}>
-                        <a
-                            href={IMG_URL + "/original/" + img.file_path}
-                            target="_blank"
-                            rel="noreferrer">
-                            <img
-                                key={index} 
-                                className='image'
-                                src={IMG_URL + IMG_SIZE_500 + img.file_path}
-                                alt=""
-                            />
-                        </a>
-
-                        <div className='img-size'>
-                            <a href={IMG_URL + "/original/" + img.file_path} target="_blank" rel="noreferrer"> {img.width}x{img.height}</a>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    )
-}
-
-export default AllPosters
+export default AllPosters;

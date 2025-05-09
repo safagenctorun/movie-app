@@ -1,29 +1,31 @@
-import React from 'react'
-import "./BackToDetail.scss"
-import { IMG_SIZE_500, IMG_URL } from '../../config/Urls'
-import { Link } from 'react-router-dom';
-import { MovieDetailOutput } from '../../Models';
+import React from "react";
+import "./BackToDetail.scss";
+import { IMG_SIZE_500, IMG_URL } from "../../config/Urls";
+import { Link } from "react-router-dom";
+import { MovieDetailOutput } from "../../Models";
 
 interface Props {
-    movieDetail:MovieDetailOutput;
-    selectedMovieId: string
+  movieDetail: MovieDetailOutput;
+  selectedMovieId: string;
 }
 
-const BackToDetail = ({ movieDetail, selectedMovieId, }: Props) => {
+const BackToDetail = ({ movieDetail, selectedMovieId }: Props) => {
+  return (
+    <div className="back-to-detail">
+      <img
+        src={IMG_URL + IMG_SIZE_500 + movieDetail.poster_path}
+        alt={movieDetail.title}
+      />
+      <div className="text">
+        <h1>
+          {movieDetail.title} {`(${movieDetail.release_date.split("-")[0]})`}
+        </h1>
+        <Link className="link" to={`/moviedetail/${selectedMovieId}`}>
+          ← Back to detail
+        </Link>
+      </div>
+    </div>
+  );
+};
 
-    return (
-
-        <div className="back-to-detail">
-
-            <img src={IMG_URL + IMG_SIZE_500 + movieDetail.poster_path} alt={movieDetail.title} />
-            <div className="text">
-
-                <h1>{movieDetail.title} {`(${movieDetail.release_date.split("-")[0]})`}</h1>
-                <Link className='link' to={`/moviedetail/${selectedMovieId}`}>← Back to detail</Link>
-
-            </div>
-        </div>
-    )
-}
-
-export default BackToDetail
+export default BackToDetail;

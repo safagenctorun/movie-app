@@ -1,17 +1,17 @@
 .movie-backdrops {
-    .movie-content {
-        display: flex;
-        justify-content: center;
-        .movie-content-img {
-            display: flex;
-            overflow-x: auto;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-            .image {
-                margin-right: 0.5rem;
-                height: 300px;
-                width: auto;
-            }
-        }
+  .movie-content {
+    display: flex;
+    justify-content: center;
+    .movie-content-img {
+      display: flex;
+      overflow-x: auto;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      .image {
+        margin-right: 0.5rem;
+        height: 300px;
+        width: auto;
+      }
     }
+  }
 }

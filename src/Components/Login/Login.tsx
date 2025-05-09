@@ -1,59 +1,54 @@
-import React, { useEffect, useState, useMemo } from 'react'
-import { LOGIN_URL, REQUEST_TOKEN_URL, SESSION_URL } from '../../config/Urls'
-import axios from 'axios'
-import { Button, Form, Input, message } from 'antd'
-import "./Login.scss"
+import React, { useEffect, useState, useMemo } from "react";
+import { LOGIN_URL, REQUEST_TOKEN_URL, SESSION_URL } from "../../config/Urls";
+import axios from "axios";
+import { Button, Form, Input, message } from "antd";
+import "./Login.scss";
 
 const Login = () => {
+  const [requestToken, setrequestToken] = useState("");
 
-    const [requestToken, setrequestToken] = useState("")
+  const protocol = window.location.protocol;
+  const host = window.location.host;
 
-    const protocol = window.location.protocol
-    const host = window.location.host
+  // useEffect(() => {
+  const requestTokenHandler = () => {
+    axios.get(REQUEST_TOKEN_URL).then((res) => {
+      setrequestToken(res.data.request_token);
 
-    // useEffect(() => {
-    const requestTokenHandler = () => {
+      if (res.data.request_token !== "") {
+        window.open(
+          `https://www.themoviedb.org/authenticate/${res.data.request_token}?redirect_to=${protocol}//${host}/approved`,
+        );
+      }
+    });
+  };
 
-        axios.get(REQUEST_TOKEN_URL).then(res => {
-            setrequestToken(res.data.request_token)
+  // }, [])
 
+  // const loginHandler = (values: any) => {
+  //     axios.post(LOGIN_URL,
+  //         {
+  //             request_token: requestToken,
+  //             username: values.userNameOrEmailAddress,
+  //             password: values.password
+  //         }
+  //     ).then(res => {
+  //         if (res.status === 200) {
+  //             window.open(
+  //                 `https://www.themoviedb.org/authenticate/${res.data.request_token}?redirect_to=http://localhost:3000/approved`,
+  //             );
+  //         }
+  //     }).catch((res) => {
+  //         if (res.status !== 200)
+  //             alert("Giriş başarısız!")
+  //     });
 
-            if (res.data.request_token !== "") {
-                window.open(
-                    `https://www.themoviedb.org/authenticate/${res.data.request_token}?redirect_to=${protocol}//${host}/approved`,
+  // }
 
-                );
-            }
-        })
-    }
-
-    // }, [])
-
-
-    // const loginHandler = (values: any) => {
-    //     axios.post(LOGIN_URL,
-    //         {
-    //             request_token: requestToken,
-    //             username: values.userNameOrEmailAddress,
-    //             password: values.password
-    //         }
-    //     ).then(res => {  
-    //         if (res.status === 200) {
-    //             window.open(
-    //                 `https://www.themoviedb.org/authenticate/${res.data.request_token}?redirect_to=http://localhost:3000/approved`,
-    //             );
-    //         }
-    //     }).catch((res) => {
-    //         if (res.status !== 200)
-    //             alert("Giriş başarısız!")
-    //     });
-
-    // }
-
-    return (
-        <div className='login'>
-            <Button  onClick={requestTokenHandler}>LOGIN</Button>
-            {/* <div className='login-section'>
+  return (
+    <div className="login">
+      <Button onClick={requestTokenHandler}>LOGIN</Button>
+      {/* <div className='login-section'>
 
 
                 <Form
@@ -114,8 +109,8 @@ const Login = () => {
                 </Form>
 
             </div> */}
-        </div>
-    )
-}
+    </div>
+  );
+};
 
-export default Login
+export default Login;
