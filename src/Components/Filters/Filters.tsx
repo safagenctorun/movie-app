@@ -1,7 +1,7 @@
-import React from "react";
-import "./Filters.scss";
-import { Collapse, DatePicker, Slider, DatePickerProps, Space } from "antd";
-import { Genre } from "../../Models";
+import React from 'react';
+import './Filters.scss';
+import { Collapse, DatePicker, Slider, DatePickerProps, Space } from 'antd';
+import { Genre } from '../../Models';
 
 interface Props {
   genres: Genre[];
@@ -23,22 +23,15 @@ const Filter = ({
   /*setIncludeAdult */ setStartReleaseDate,
   setEndReleaseDate,
 }: Props) => {
-  const startDateHandler: DatePickerProps["onChange"] = (
-    date,
-    dateString: string,
-  ) => {
+  const startDateHandler: DatePickerProps['onChange'] = (date, dateString: string) => {
     setStartReleaseDate(dateString);
   };
-  const endDateHandler: DatePickerProps["onChange"] = (
-    date,
-    dateString: string,
-  ) => {
+  const endDateHandler: DatePickerProps['onChange'] = (date, dateString: string) => {
     setEndReleaseDate(dateString);
   };
 
   const genresHandler = (key: number) => {
-    if (!selectedGenres.includes(key))
-      setSelectedGenres([...selectedGenres, key]);
+    if (!selectedGenres.includes(key)) setSelectedGenres([...selectedGenres, key]);
     else setSelectedGenres(selectedGenres.filter((fil: number) => fil !== key));
   };
 
@@ -52,34 +45,33 @@ const Filter = ({
 
   return (
     <div>
-      <Collapse style={{ width: "250px", backgroundColor: "white" }}>
+      <Collapse style={{ width: '250px', backgroundColor: 'white' }}>
         <Collapse.Panel header="Filters" key="1">
-          <Collapse style={{ width: "245px", backgroundColor: "white" }}>
+          <Collapse style={{ width: '245px', backgroundColor: 'white' }}>
             <Collapse.Panel header="Release Dates" key="2">
               <Space direction="vertical">
                 <DatePicker
                   placeholder="from"
-                  style={{ display: "flex", justifyContent: "center" }}
+                  style={{ display: 'flex', justifyContent: 'center' }}
                   onChange={startDateHandler}
                 />
                 <DatePicker
                   placeholder="to"
-                  style={{ display: "flex", justifyContent: "center" }}
+                  style={{ display: 'flex', justifyContent: 'center' }}
                   onChange={endDateHandler}
                 />
               </Space>
             </Collapse.Panel>
           </Collapse>
 
-          <Collapse style={{ width: "245px", backgroundColor: "white" }}>
+          <Collapse style={{ width: '245px', backgroundColor: 'white' }}>
             <Collapse.Panel header="Genres" key="3">
               <div className="genres">
                 {genres.map((genre: Genre) => (
                   <span
                     style={{
-                      backgroundColor:
-                        selectedGenres.includes(genre.id) && "#1b79b8",
-                      color: selectedGenres.includes(genre.id) && "#fff",
+                      backgroundColor: selectedGenres.includes(genre.id) && '#1b79b8',
+                      color: selectedGenres.includes(genre.id) && '#fff',
                     }}
                     onClick={(e) => genresHandler(genre.id)}
                     key={genre.id}
@@ -90,7 +82,7 @@ const Filter = ({
               </div>
             </Collapse.Panel>
           </Collapse>
-          <Collapse style={{ width: "245px", backgroundColor: "white" }}>
+          <Collapse style={{ width: '245px', backgroundColor: 'white' }}>
             <Collapse.Panel header="Minimum User Votes" key="4">
               <Slider
                 min={0}
@@ -107,7 +99,7 @@ const Filter = ({
               />
             </Collapse.Panel>
           </Collapse>
-          <Collapse style={{ width: "245px", backgroundColor: "white" }}>
+          <Collapse style={{ width: '245px', backgroundColor: 'white' }}>
             <Collapse.Panel header="Runtime" key="5">
               <Slider
                 range

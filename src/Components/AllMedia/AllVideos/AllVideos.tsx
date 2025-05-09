@@ -1,18 +1,18 @@
-import React, { useState, useContext } from "react";
-import "./AllVideos.scss";
-import { Context } from "../../../context/GlobalContext";
-import OverlayVideo from "../../MovieMedia/MovieVideos/OverlayVideo/OverlayVideo";
-import moment from "moment";
-import { MovieVideosOutput } from "../../../Models";
+import React, { useState, useContext } from 'react';
+import './AllVideos.scss';
+import { Context } from '../../../context/GlobalContext';
+import OverlayVideo from '../../MovieMedia/MovieVideos/OverlayVideo/OverlayVideo';
+import moment from 'moment';
+import { MovieVideosOutput } from '../../../Models';
 
 interface Props {
   movieVideos: MovieVideosOutput;
 }
 
 const AllVideos = ({ movieVideos }: Props) => {
-  const [selectedType, setSelectedType] = useState<string>("Trailer");
+  const [selectedType, setSelectedType] = useState<string>('Trailer');
   const [isOverlayOpen, setIsOverlayOpen] = useState<boolean>(false);
-  const [videoUrl, setvideoUrl] = useState<string>("");
+  const [videoUrl, setvideoUrl] = useState<string>('');
   const { setisVideoOpen } = useContext(Context);
 
   const activateOverlay = (url: string) => {
@@ -20,9 +20,7 @@ const AllVideos = ({ movieVideos }: Props) => {
     setisVideoOpen(true);
     setvideoUrl(url);
   };
-  const uniqueTypes = Array.from(
-    new Set(movieVideos.results.map((img: any) => img.type))
-  ).sort();
+  const uniqueTypes = Array.from(new Set(movieVideos.results.map((img: any) => img.type))).sort();
 
   return (
     <div className="videos">
@@ -31,7 +29,7 @@ const AllVideos = ({ movieVideos }: Props) => {
           <p
             key={img}
             style={{
-              borderBottom: selectedType === img ? "2px solid #000" : "",
+              borderBottom: selectedType === img ? '2px solid #000' : '',
             }}
             onClick={(e) => setSelectedType(e.currentTarget.innerText)}
           >
@@ -55,7 +53,7 @@ const AllVideos = ({ movieVideos }: Props) => {
                 <h4>{img.name}</h4>
                 <div className="type-date">
                   <p className="type">{img.type}</p>
-                  <p>{moment(img.published_at).format("DD MMM YYYY")}</p>
+                  <p>{moment(img.published_at).format('DD MMM YYYY')}</p>
                 </div>
               </div>
             )

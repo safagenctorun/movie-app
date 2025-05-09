@@ -1,7 +1,7 @@
-import React from "react";
-import "./MovieRecommendations.scss";
-import { IMG_URL } from "../../config/Urls";
-import { MovieRecommendationsOutput } from "../../Models";
+import React from 'react';
+import './MovieRecommendations.scss';
+import { IMG_URL } from '../../config/Urls';
+import { MovieRecommendationsOutput } from '../../Models';
 
 interface Props {
   movieRecommendations: MovieRecommendationsOutput;
@@ -16,10 +16,7 @@ const MovieRecommendations = ({ movieRecommendations }: Props) => {
           {movieRecommendations.results.map((movie: any, index: number) => (
             <div key={movie.id} className="recommendation">
               <a href={`/moviedetail/${movie.id}`}>
-                <img
-                  src={`${IMG_URL}/t/p/w500${movie.backdrop_path}`}
-                  alt={movie.title}
-                />
+                <img src={`${IMG_URL}/t/p/w500${movie.backdrop_path}`} alt={movie.title} />
               </a>
               <div className="movie-detail">
                 <p className="movie-name"> {movie.title} </p>
@@ -27,14 +24,14 @@ const MovieRecommendations = ({ movieRecommendations }: Props) => {
                   style={{
                     color:
                       movie.vote_average > 8
-                        ? "lightgreen"
+                        ? 'lightgreen'
                         : movie.vote_average > 5
-                          ? "orange"
-                          : "red",
+                          ? 'orange'
+                          : 'red',
                   }}
                   className="movie-vote-average"
                 >
-                  {" "}
+                  {' '}
                   {`${Math.floor(movie.vote_average * 10)}%`}
                 </p>
               </div>
@@ -42,10 +39,7 @@ const MovieRecommendations = ({ movieRecommendations }: Props) => {
           ))}
         </div>
       ) : (
-        <div className="recommendations">
-          {" "}
-          We don't have any recommendations
-        </div>
+        <div className="recommendations"> We don't have any recommendations</div>
       )}
     </div>
   );

@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
-import "./Nav.scss";
-import { Button } from "antd";
-import { Context } from "../../context/GlobalContext";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from 'react';
+import './Nav.scss';
+import { Button } from 'antd';
+import { Context } from '../../context/GlobalContext';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Nav = () => {
   const navigate = useNavigate();
@@ -10,28 +10,25 @@ const Nav = () => {
   const { isVideoOpen } = useContext(Context);
 
   const loginHandler = () => {
-    navigate("/login");
+    navigate('/login');
   };
   const logoutHandler = () => {
-    localStorage.removeItem("session_id");
-    navigate("/");
+    localStorage.removeItem('session_id');
+    navigate('/');
   };
 
   useEffect(() => {
-    if (localStorage.getItem("session_id")) setisLogin(true);
+    if (localStorage.getItem('session_id')) setisLogin(true);
     else setisLogin(false);
   }, []);
 
   const changePageToAccountDetail = () => {
-    navigate("/accountdetail");
+    navigate('/accountdetail');
   };
 
   return (
     <nav>
-      <div
-        className="nav"
-        style={{ display: isVideoOpen === false ? "flex" : "none" }}
-      >
+      <div className="nav" style={{ display: isVideoOpen === false ? 'flex' : 'none' }}>
         <Link className="link" to="/">
           <h2>Mainpage</h2>
         </Link>
@@ -44,8 +41,8 @@ const Nav = () => {
         <div className="log-in-out">
           <Button
             style={{
-              display: isLogin === false ? "flex" : "none",
-              backgroundColor: "green",
+              display: isLogin === false ? 'flex' : 'none',
+              backgroundColor: 'green',
             }}
             type="primary"
             onClick={loginHandler}
@@ -54,8 +51,8 @@ const Nav = () => {
           </Button>
           <Button
             style={{
-              display: isLogin === true ? "flex" : "none",
-              backgroundColor: "blue",
+              display: isLogin === true ? 'flex' : 'none',
+              backgroundColor: 'blue',
             }}
             type="primary"
             danger
@@ -64,7 +61,7 @@ const Nav = () => {
             Account Detail
           </Button>
           <Button
-            style={{ display: isLogin === true ? "flex" : "none" }}
+            style={{ display: isLogin === true ? 'flex' : 'none' }}
             type="primary"
             danger
             onClick={logoutHandler}

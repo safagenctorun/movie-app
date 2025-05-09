@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react";
-import "./MovieVideos.scss";
-import { Context } from "../../../context/GlobalContext";
-import OverlayVideo from "./OverlayVideo/OverlayVideo";
-import { MovieVideosOutput, VideosInfoOutput } from "../../../Models";
+import React, { useState, useContext } from 'react';
+import './MovieVideos.scss';
+import { Context } from '../../../context/GlobalContext';
+import OverlayVideo from './OverlayVideo/OverlayVideo';
+import { MovieVideosOutput, VideosInfoOutput } from '../../../Models';
 
 interface Props {
   movieVideos: MovieVideosOutput;
@@ -10,7 +10,7 @@ interface Props {
 
 const MovieVideos = ({ movieVideos }: Props) => {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
-  const [videoUrl, setvideoUrl] = useState("");
+  const [videoUrl, setvideoUrl] = useState('');
   const { setisVideoOpen } = useContext(Context);
 
   const activateOverlay = (url: string) => {
@@ -25,7 +25,7 @@ const MovieVideos = ({ movieVideos }: Props) => {
         <div className="movie-content-img">
           {movieVideos.results.map(
             (img: VideosInfoOutput) =>
-              img.type === "Trailer" && (
+              img.type === 'Trailer' && (
                 <img
                   onClick={(e) => activateOverlay(img.key)}
                   key={img.key}
@@ -33,7 +33,7 @@ const MovieVideos = ({ movieVideos }: Props) => {
                   src={`https://i.ytimg.com/vi/${img.key}/hqdefault.jpg`}
                   alt={img.name}
                 />
-              ),
+              )
           )}
         </div>
         {isOverlayOpen === true && (

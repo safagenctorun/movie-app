@@ -1,9 +1,9 @@
-import React from "react";
-import "./PopularMovies.scss";
-import { IMG_URL, IMG_SIZE_500 } from "../../config/Urls";
-import { Button } from "antd";
-import { MoviesOutput } from "../../Models";
-import { Link } from "react-router-dom";
+import React from 'react';
+import './PopularMovies.scss';
+import { IMG_URL, IMG_SIZE_500 } from '../../config/Urls';
+import { Button } from 'antd';
+import { MoviesOutput } from '../../Models';
+import { Link } from 'react-router-dom';
 
 interface Props {
   moviesData: MoviesOutput[];
@@ -14,17 +14,12 @@ interface Props {
 const PopularMovies = ({ moviesData, dataType, confirmHandler }: Props) => {
   return (
     <div className="popular-movies-with-text">
-      <h1 style={{ display: dataType === "Popular" ? "flex" : "none" }}>
-        {dataType} Movies
-      </h1>
+      <h1 style={{ display: dataType === 'Popular' ? 'flex' : 'none' }}>{dataType} Movies</h1>
       <div className="popular-movies">
         {moviesData.map((movie: any) => (
           <div key={movie.id} className="movie">
             <Link to={`/moviedetail/${movie.id}`}>
-              <img
-                src={IMG_URL + IMG_SIZE_500 + movie.poster_path}
-                alt={movie.title}
-              />
+              <img src={IMG_URL + IMG_SIZE_500 + movie.poster_path} alt={movie.title} />
             </Link>
 
             <div className="movie-info">
@@ -33,13 +28,13 @@ const PopularMovies = ({ moviesData, dataType, confirmHandler }: Props) => {
                 style={{
                   color:
                     movie.vote_average > 8
-                      ? "lightgreen"
+                      ? 'lightgreen'
                       : movie.vote_average > 5
-                      ? "orange"
-                      : "red",
+                        ? 'orange'
+                        : 'red',
                 }}
               >
-                {movie.vote_average?.toFixed(1)}{" "}
+                {movie.vote_average?.toFixed(1)}{' '}
               </span>
             </div>
             <div className="overview">

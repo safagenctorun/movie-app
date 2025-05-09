@@ -1,25 +1,19 @@
-import React, { useState, useMemo } from "react";
-import axios from "axios";
-import "./MovieFilter.scss";
-import PopularMovies from "../../Components/PopularMovies/PopularMovies";
-import {
-  API_KEY,
-  GENRES_URL,
-  MOVIE_URL,
-  DISCOVER_URL,
-  SERACH_URL,
-} from "../../config/Urls";
-import Filter from "../../Components/Filters/Filters";
-import Sort from "../../Components/Sort/Sort";
-import { Button } from "antd";
-import { Genre, MoviesOutput } from "../../Models";
+import React, { useState, useMemo } from 'react';
+import axios from 'axios';
+import './MovieFilter.scss';
+import PopularMovies from '../../Components/PopularMovies/PopularMovies';
+import { API_KEY, GENRES_URL, MOVIE_URL, DISCOVER_URL, SERACH_URL } from '../../config/Urls';
+import Filter from '../../Components/Filters/Filters';
+import Sort from '../../Components/Sort/Sort';
+import { Button } from 'antd';
+import { Genre, MoviesOutput } from '../../Models';
 
 const MovieFilter = () => {
   const [moviesData, setMoviesData] = useState<MoviesOutput[]>([]);
   const [genres, setGenres] = useState<Genre[]>([]);
-  const [sortData, setSortData] = useState("");
-  const [startReleaseDate, setStartReleaseDate] = useState<string>("");
-  const [endReleaseDate, setEndReleaseDate] = useState<string>("");
+  const [sortData, setSortData] = useState('');
+  const [startReleaseDate, setStartReleaseDate] = useState<string>('');
+  const [endReleaseDate, setEndReleaseDate] = useState<string>('');
   const [selectedGenres, setSelectedGenres] = useState<number[]>([]);
   const [voteCountValue, setVoteCountValue] = useState<number | null>(null);
   const [runtimeValue, setRuntimeValue] = useState<number[]>([]);
@@ -27,18 +21,14 @@ const MovieFilter = () => {
   const [pageCount, setPageCount] = useState<number>(2); // aynı fonk içinde olduğu için tıkladığında alsında bir önceki değeri basıyor
 
   useMemo(() => {
-    window.location.pathname.split("/")[2] !== undefined
-      ? axios
-          .get(SERACH_URL + "&query=" + window.location.pathname.split("/")[2])
-          .then((res) => {
-            res.data.results.sort(
-              (a: MoviesOutput, b: MoviesOutput) => b.popularity - a.popularity,
-            );
+    window.location.pathname.split('/')[2] !== undefined
+      ? axios.get(SERACH_URL + '&query=' + window.location.pathname.split('/')[2]).then((res) => {
+          res.data.results.sort((a: MoviesOutput, b: MoviesOutput) => b.popularity - a.popularity);
 
-            setMoviesData(res.data.results);
-            console.log(res.data.results);
-          })
-      : axios.get(MOVIE_URL + "top_rated?" + API_KEY).then((res) => {
+          setMoviesData(res.data.results);
+          console.log(res.data.results);
+        })
+      : axios.get(MOVIE_URL + 'top_rated?' + API_KEY).then((res) => {
           setMoviesData(res.data.results);
         });
     axios.get(GENRES_URL).then((res) => {
@@ -47,7 +37,7 @@ const MovieFilter = () => {
   }, []);
 
   const confirmHandler = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    let path = DISCOVER_URL + "?" + API_KEY + "&include_adult=" + false;
+    let path = DISCOVER_URL + '?' + API_KEY + '&include_adult=' + false;
 
     if (startReleaseDate) path += `&release_date.gte=${startReleaseDate}`;
 
@@ -59,7 +49,7 @@ const MovieFilter = () => {
 
     if (runtimeValue[1]) path += `&with_runtime.lte=${runtimeValue[1]}`;
 
-    if ((e.target as any).name === "load-more") {
+    if ((e.target as any).name === 'load-more') {
       setPageCount(pageCount + 1);
       path += `&page=${pageCount}`;
     }
@@ -70,12 +60,12 @@ const MovieFilter = () => {
       params = {
         ...params,
         sort_by: sortData,
-        with_genres: selectedGenres.join(",").trim(),
+        with_genres: selectedGenres.join(',').trim(),
       };
     }
 
     axios.get(path, { params }).then((res) => {
-      (e.target as any).name !== "load-more"
+      (e.target as any).name !== 'load-more'
         ? setMoviesData(res.data.results)
         : setMoviesData([...moviesData, ...res.data.results]);
       // confirm tuşu ile load more tuşu ortak şeyleri yaptığı için aynı fonksiyonu çalıştırıyor araya birkaç if koyarak hangisine basıldığını anlıyoruz ve ona göre farklı işlemler yaptırıyor
@@ -103,7 +93,7 @@ const MovieFilter = () => {
       {Object.keys(moviesData).length > 0 ? (
         <PopularMovies
           moviesData={moviesData}
-          dataType={"Top Rated"}
+          dataType={'Top Rated'}
           confirmHandler={confirmHandler}
         />
       ) : (

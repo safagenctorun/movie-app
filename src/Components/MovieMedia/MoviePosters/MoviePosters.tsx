@@ -1,7 +1,7 @@
-import React from "react";
-import "./MoviePosters.scss";
-import { IMG_SIZE_500, IMG_URL } from "../../../config/Urls";
-import { ImagesTypeOutput, MovieImagesOutput } from "../../../Models";
+import React from 'react';
+import './MoviePosters.scss';
+import { IMG_SIZE_500, IMG_URL } from '../../../config/Urls';
+import { ImagesTypeOutput, MovieImagesOutput } from '../../../Models';
 
 interface Props {
   movieImages: MovieImagesOutput;
@@ -14,12 +14,8 @@ const MoviePosters = ({ movieImages }: Props) => {
         <div className="movie-content-img">
           {movieImages.posters.map(
             (img: ImagesTypeOutput, index: number) =>
-              img.iso_639_1 === "en" && (
-                <a
-                  href={IMG_URL + "/original/" + img.file_path}
-                  target="_blank"
-                  rel="noreferrer"
-                >
+              img.iso_639_1 === 'en' && (
+                <a href={IMG_URL + '/original/' + img.file_path} target="_blank" rel="noreferrer">
                   <img
                     key={index}
                     className="image"
@@ -27,7 +23,7 @@ const MoviePosters = ({ movieImages }: Props) => {
                     alt=""
                   />
                 </a>
-              ),
+              )
           )}
         </div>
       </div>

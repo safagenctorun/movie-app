@@ -1,22 +1,17 @@
-import React from "react";
-import "./MovieBanner.scss";
-import { IMG_URL, IMG_SIZE_500, IMG_SIZE_1920 } from "../../config/Urls";
+import React from 'react';
+import './MovieBanner.scss';
+import { IMG_URL, IMG_SIZE_500, IMG_SIZE_1920 } from '../../config/Urls';
 import {
   DownOutlined,
   FacebookFilled,
   HeartFilled,
   HeartOutlined,
   TwitterCircleFilled,
-} from "@ant-design/icons";
-import type { MenuProps } from "antd";
-import { Rate, Dropdown, Space } from "antd";
-import moment from "moment";
-import {
-  CreditsOutput,
-  Genre,
-  MovieCreditsOutput,
-  MovieDetailOutput,
-} from "../../Models";
+} from '@ant-design/icons';
+import type { MenuProps } from 'antd';
+import { Rate, Dropdown, Space } from 'antd';
+import moment from 'moment';
+import { CreditsOutput, Genre, MovieCreditsOutput, MovieDetailOutput } from '../../Models';
 
 interface Props {
   movieDetail: MovieDetailOutput;
@@ -36,11 +31,10 @@ const MovieBanner = ({
   isFavorite,
 }: Props) => {
   const shareOnFacebook = (name: string) => {
-    const facebookUrl = "https://www.facebook.com/sharer/sharer.php?u=";
+    const facebookUrl = 'https://www.facebook.com/sharer/sharer.php?u=';
     const twitterUrl = `https://twitter.com/intent/tweet?text=`;
-    const navUrl =
-      name === "facebook" ? facebookUrl : twitterUrl + window.location.href;
-    window.open(navUrl, "_blank");
+    const navUrl = name === 'facebook' ? facebookUrl : twitterUrl + window.location.href;
+    window.open(navUrl, '_blank');
   };
 
   const rateHandler = (rate: number) => {
@@ -48,26 +42,17 @@ const MovieBanner = ({
     else setMovieRate(rate * 2);
   };
 
-  const items: MenuProps["items"] = [
+  const items: MenuProps['items'] = [
     {
-      label: (
-        <Rate
-          allowHalf
-          onChange={rateHandler}
-          defaultValue={movieDefaultRate}
-        />
-      ),
-      key: "1",
+      label: <Rate allowHalf onChange={rateHandler} defaultValue={movieDefaultRate} />,
+      key: '1',
     },
   ];
 
   const backgroundStyle = IMG_URL + IMG_SIZE_1920 + movieDetail?.backdrop_path;
   return (
     <div className="movie-banner">
-      <div
-        style={{ backgroundImage: `url(${backgroundStyle})` }}
-        className="movie-background"
-      >
+      <div style={{ backgroundImage: `url(${backgroundStyle})` }} className="movie-background">
         <div className="background-blackout">
           <div className="about-movie">
             <div className="movie-poster">
@@ -79,13 +64,12 @@ const MovieBanner = ({
             <div className="movie-info">
               <div className="title">
                 <h1>
-                  {movieDetail.title}{" "}
-                  {`(${movieDetail.release_date.split("-")[0]})`}{" "}
+                  {movieDetail.title} {`(${movieDetail.release_date.split('-')[0]})`}{' '}
                 </h1>
               </div>
 
               <div className="type">
-                <p> {moment(movieDetail.release_date).format("DD/MM/YYYY")}</p>
+                <p> {moment(movieDetail.release_date).format('DD/MM/YYYY')}</p>
                 {movieDetail.genres.map((el: Genre) => (
                   <p key={el.id}> {el.name}</p>
                 ))}
@@ -97,21 +81,21 @@ const MovieBanner = ({
                   style={{
                     color:
                       movieDetail.vote_average > 8
-                        ? "lightgreen"
+                        ? 'lightgreen'
                         : movieDetail.vote_average > 5
-                        ? "orange"
-                        : "red",
+                          ? 'orange'
+                          : 'red',
                   }}
                 >
-                  {" "}
+                  {' '}
                   {Math.round(movieDetail.vote_average * 10)}
                 </span>
-                <Dropdown menu={{ items }} trigger={["click"]}>
+                <Dropdown menu={{ items }} trigger={['click']}>
                   <Space
                     style={{
-                      marginLeft: "5px",
-                      color: "white",
-                      fontWeight: "bold",
+                      marginLeft: '5px',
+                      color: 'white',
+                      fontWeight: 'bold',
                     }}
                   >
                     Rate It
@@ -119,26 +103,14 @@ const MovieBanner = ({
                   </Space>
                 </Dropdown>
                 <div className="share">
-                  <FacebookFilled
-                    id="facebook"
-                    onClick={(e) => shareOnFacebook("facebook")}
-                  />
-                  <TwitterCircleFilled
-                    id="twitter"
-                    onClick={(e) => shareOnFacebook("twitter")}
-                  />
+                  <FacebookFilled id="facebook" onClick={(e) => shareOnFacebook('facebook')} />
+                  <TwitterCircleFilled id="twitter" onClick={(e) => shareOnFacebook('twitter')} />
                 </div>
                 <div className="add-favorite">
                   {isFavorite === true ? (
-                    <HeartFilled
-                      onClick={markAsFavorite}
-                      style={{ color: "red" }}
-                    />
+                    <HeartFilled onClick={markAsFavorite} style={{ color: 'red' }} />
                   ) : (
-                    <HeartOutlined
-                      onClick={markAsFavorite}
-                      style={{ color: "white" }}
-                    />
+                    <HeartOutlined onClick={markAsFavorite} style={{ color: 'white' }} />
                   )}
                 </div>
               </div>
@@ -152,7 +124,7 @@ const MovieBanner = ({
               </div>
               <div className="credit">
                 {movieCredits?.crew
-                  ?.filter((credit) => credit.job === "Director")
+                  ?.filter((credit) => credit.job === 'Director')
                   ?.map((credit: CreditsOutput) => (
                     <div key={credit.id} className="crew-member">
                       <h4>{credit.name} </h4>

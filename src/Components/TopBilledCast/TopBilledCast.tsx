@@ -1,7 +1,7 @@
-import React from "react";
-import "./TopBilledCast.scss";
-import { IMG_URL } from "../../config/Urls";
-import { Cast_CrewOutput, MovieCreditsOutput } from "../../Models";
+import React from 'react';
+import './TopBilledCast.scss';
+import { IMG_URL } from '../../config/Urls';
+import { Cast_CrewOutput, MovieCreditsOutput } from '../../Models';
 
 interface Props {
   movieCredits: MovieCreditsOutput | null;
@@ -23,7 +23,7 @@ const TopBilledCast = ({ movieCredits }: Props) => {
                 <p className="original-name"> {actor.original_name} </p>
                 <p className="movie-name"> {actor.character}</p>
               </div>
-            ),
+            )
         )}
       </div>
     </div>

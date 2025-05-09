@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "./MainPage.scss";
-import { SERACH_URL, MOVIE_URL, API_KEY } from "../../config/Urls";
-import SearchBar from "../../Components/SearchBar/SearchBar";
-import PopularMovies from "../../Components/PopularMovies/PopularMovies";
-import { MoviesOutput } from "../../Models";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './MainPage.scss';
+import { SERACH_URL, MOVIE_URL, API_KEY } from '../../config/Urls';
+import SearchBar from '../../Components/SearchBar/SearchBar';
+import PopularMovies from '../../Components/PopularMovies/PopularMovies';
+import { MoviesOutput } from '../../Models';
 
 const MainPage = () => {
-  const [searchItem, setSearchItem] = useState<string>("");
+  const [searchItem, setSearchItem] = useState<string>('');
   const [searchItemsData, setSearchItemsData] = useState<MoviesOutput[]>([]);
   const [moviesData, setMoviesData] = useState<MoviesOutput[]>([]);
   const [pageCount, setPageCount] = useState(1);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      if (searchItem === "") setSearchItemsData([]);
+      if (searchItem === '') setSearchItemsData([]);
       else {
-        axios.get(SERACH_URL + "&query=" + searchItem).then((res) => {
+        axios.get(SERACH_URL + '&query=' + searchItem).then((res) => {
           setSearchItemsData(res.data.results);
           console.log(res.data.results);
         });
@@ -33,7 +33,7 @@ const MainPage = () => {
 
   useEffect(() => {
     axios
-      .get(MOVIE_URL + "popular?" + API_KEY, {
+      .get(MOVIE_URL + 'popular?' + API_KEY, {
         params: { page: pageCount },
       })
       .then((res) => {
@@ -48,11 +48,7 @@ const MainPage = () => {
         setSearchItem={setSearchItem}
         searchItem={searchItem}
       />
-      <PopularMovies
-        moviesData={moviesData}
-        dataType={"Popular"}
-        confirmHandler={confirmHandler}
-      />
+      <PopularMovies moviesData={moviesData} dataType={'Popular'} confirmHandler={confirmHandler} />
     </div>
   );
 };

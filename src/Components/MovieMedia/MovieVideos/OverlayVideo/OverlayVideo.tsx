@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import "./OverlayVideo.scss";
-import { Context } from "../../../../context/GlobalContext";
+import React, { useContext } from 'react';
+import './OverlayVideo.scss';
+import { Context } from '../../../../context/GlobalContext';
 
 interface Props {
   isOverlayOpen: boolean;
@@ -17,7 +17,7 @@ const OverlayVideo = ({ isOverlayOpen, setIsOverlayOpen, videoUrl }: Props) => {
   };
   return (
     <div
-      style={{ display: isOverlayOpen === true ? "flex" : "none" }}
+      style={{ display: isOverlayOpen === true ? 'flex' : 'none' }}
       onClick={deActivateOverlay}
       className="overlay-video"
     >

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import "./SearchBar.scss";
-import { AutoComplete, Button } from "antd";
-import { MoviesOutput, SearchItemsOutput } from "../../Models";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import './SearchBar.scss';
+import { AutoComplete, Button } from 'antd';
+import { MoviesOutput, SearchItemsOutput } from '../../Models';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   searchItem: string;
@@ -27,9 +27,7 @@ const SearchBar = ({ setSearchItem, searchItemsData, searchItem }: Props) => {
         popularity: item.popularity,
       });
     });
-    options.sort(
-      (a: MoviesOutput, b: MoviesOutput) => b.popularity - a.popularity,
-    );
+    options.sort((a: MoviesOutput, b: MoviesOutput) => b.popularity - a.popularity);
 
     return options;
   };
@@ -56,10 +54,10 @@ const SearchBar = ({ setSearchItem, searchItemsData, searchItem }: Props) => {
 
       <Button
         onClick={changePageToFilterPage}
-        style={{ display: isSearchItemEmpty === true ? "none" : "block" }}
+        style={{ display: isSearchItemEmpty === true ? 'none' : 'block' }}
       >
-        {" "}
-        Search{" "}
+        {' '}
+        Search{' '}
       </Button>
     </div>
   );

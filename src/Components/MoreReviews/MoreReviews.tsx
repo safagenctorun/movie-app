@@ -1,8 +1,8 @@
-import React from "react";
-import moment from "moment";
-import "./MoreReviews.scss";
-import { StarOutlined } from "@ant-design/icons";
-import { AuthorOutput, MovieReviewsOutput } from "../../Models";
+import React from 'react';
+import moment from 'moment';
+import './MoreReviews.scss';
+import { StarOutlined } from '@ant-design/icons';
+import { AuthorOutput, MovieReviewsOutput } from '../../Models';
 
 interface Props {
   movieReviews: MovieReviewsOutput;
@@ -24,7 +24,7 @@ const MoreReviews = ({ movieReviews }: Props) => {
                 <h4>a reviews by {review.author}</h4>
                 <div className="span">
                   <span>
-                    {" "}
+                    {' '}
                     <StarOutlined /> {review.author_details.rating}
                   </span>
                 </div>
@@ -33,7 +33,7 @@ const MoreReviews = ({ movieReviews }: Props) => {
                 <p>Written by</p>
                 <p className="by">{review.author}</p>
                 <p>on</p>
-                <p>{moment(review.created_at).format("DD/MM/YYYY")}</p>
+                <p>{moment(review.created_at).format('DD/MM/YYYY')}</p>
               </div>
             </div>
           </div>

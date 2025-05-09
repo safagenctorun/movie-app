@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useMemo } from "react";
-import { LOGIN_URL, REQUEST_TOKEN_URL, SESSION_URL } from "../../config/Urls";
-import axios from "axios";
-import { Button, Form, Input, message } from "antd";
-import "./Login.scss";
+import React, { useEffect, useState, useMemo } from 'react';
+import { LOGIN_URL, REQUEST_TOKEN_URL, SESSION_URL } from '../../config/Urls';
+import axios from 'axios';
+import { Button, Form, Input, message } from 'antd';
+import './Login.scss';
 
 const Login = () => {
-  const [requestToken, setrequestToken] = useState("");
+  const [requestToken, setrequestToken] = useState('');
 
   const protocol = window.location.protocol;
   const host = window.location.host;
@@ -15,9 +15,9 @@ const Login = () => {
     axios.get(REQUEST_TOKEN_URL).then((res) => {
       setrequestToken(res.data.request_token);
 
-      if (res.data.request_token !== "") {
+      if (res.data.request_token !== '') {
         window.open(
-          `https://www.themoviedb.org/authenticate/${res.data.request_token}?redirect_to=${protocol}//${host}/approved`,
+          `https://www.themoviedb.org/authenticate/${res.data.request_token}?redirect_to=${protocol}//${host}/approved`
         );
       }
     });

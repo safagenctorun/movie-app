@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import "./MovieReviews.scss";
-import moment from "moment";
-import { Divider } from "antd";
-import { StarOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
-import { MovieReviewsOutput } from "../../Models";
+import React, { useEffect, useState } from 'react';
+import './MovieReviews.scss';
+import moment from 'moment';
+import { Divider } from 'antd';
+import { StarOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
+import { MovieReviewsOutput } from '../../Models';
 
 interface Props {
   movieReviews: MovieReviewsOutput;
@@ -21,8 +21,7 @@ const MovieReviews = ({ movieReviews, selectedMovieId }: Props) => {
   return (
     <div className="movie-reviews">
       <h1>Reviews</h1>
-      {randomReviews !== undefined &&
-      Object.keys(movieReviews.results).length > 0 ? ( //eğer hiç yorum yoksa devreye giriyor
+      {randomReviews !== undefined && Object.keys(movieReviews.results).length > 0 ? ( //eğer hiç yorum yoksa devreye giriyor
         <div className="review">
           <div className="user-infos">
             <img
@@ -32,28 +31,19 @@ const MovieReviews = ({ movieReviews, selectedMovieId }: Props) => {
 
             <div className="text">
               <div className="upper-text">
-                <h4>
-                  a reviews by {movieReviews.results[randomReviews].author}
-                </h4>
+                <h4>a reviews by {movieReviews.results[randomReviews].author}</h4>
                 <div className="span">
                   <span>
-                    {" "}
-                    <StarOutlined />{" "}
-                    {movieReviews.results[randomReviews].author_details.rating}
+                    {' '}
+                    <StarOutlined /> {movieReviews.results[randomReviews].author_details.rating}
                   </span>
                 </div>
               </div>
               <div className="written-by">
                 <p>Written by</p>
-                <p className="by">
-                  {movieReviews.results[randomReviews].author}
-                </p>
+                <p className="by">{movieReviews.results[randomReviews].author}</p>
                 <p>on</p>
-                <p>
-                  {moment(
-                    movieReviews.results[randomReviews].created_at,
-                  ).format("DD/MM/YYYY")}
-                </p>
+                <p>{moment(movieReviews.results[randomReviews].created_at).format('DD/MM/YYYY')}</p>
               </div>
             </div>
           </div>
@@ -61,10 +51,7 @@ const MovieReviews = ({ movieReviews, selectedMovieId }: Props) => {
             <p> {movieReviews.results[randomReviews].content}</p>
           </div>
           <Divider />
-          <Link
-            className="page-changer"
-            to={`/moviedetail/${selectedMovieId}/reviews`}
-          >
+          <Link className="page-changer" to={`/moviedetail/${selectedMovieId}/reviews`}>
             Read All Reviews
           </Link>
         </div>
