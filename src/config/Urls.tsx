@@ -13,7 +13,7 @@ const SESSION_URL = BASE_URL + AUTHENTICATION + "session/new?" + API_KEY;
 const LOGIN_URL =
   BASE_URL + AUTHENTICATION + "token/validate_with_login?" + API_KEY;
 const CERTIFICATIONS_URL = BASE_URL + "/certification/movie/list?" + API_KEY;
-const CONFIGURATION_URL = BASE_URL + "/configuration/";
+const CONFIGURATION_URL = BASE_URL + "/configuration";
 const DISCOVER_URL = BASE_URL + "/discover/movie";
 const GENRES_URL = BASE_URL + "/genre/movie/list?" + API_KEY;
 

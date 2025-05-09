@@ -39,7 +39,7 @@ const PopularMovies = ({ moviesData, dataType, confirmHandler }: Props) => {
                       : "red",
                 }}
               >
-                {movie.vote_average.toFixed(1)}{" "}
+                {movie.vote_average?.toFixed(1)}{" "}
               </span>
             </div>
             <div className="overview">

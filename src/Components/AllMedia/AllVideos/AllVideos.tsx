@@ -20,59 +20,24 @@ const AllVideos = ({ movieVideos }: Props) => {
     setisVideoOpen(true);
     setvideoUrl(url);
   };
+  const uniqueTypes = Array.from(
+    new Set(movieVideos.results.map((img: any) => img.type))
+  ).sort();
 
   return (
     <div className="videos">
       <div className="video-choices">
-        <p
-          style={{
-            borderBottom: selectedType === "Trailer" ? "2px solid #000" : "",
-          }}
-          onClick={(e) => setSelectedType(e.currentTarget.innerText)}
-        >
-          Trailer
-        </p>
-        <p
-          style={{
-            borderBottom: selectedType === "Teaser" ? "2px solid #000" : "",
-          }}
-          onClick={(e) => setSelectedType(e.currentTarget.innerText)}
-        >
-          Teaser
-        </p>
-        <p
-          style={{
-            borderBottom: selectedType === "Featurette" ? "2px solid #000" : "",
-          }}
-          onClick={(e) => setSelectedType(e.currentTarget.innerText)}
-        >
-          Featurette
-        </p>
-        <p
-          style={{
-            borderBottom:
-              selectedType === "Behind the Scenes" ? "2px solid #000" : "",
-          }}
-          onClick={(e) => setSelectedType(e.currentTarget.innerText)}
-        >
-          Behind the Scenes
-        </p>
-        <p
-          style={{
-            borderBottom: selectedType === "Clips" ? "2px solid #000" : "",
-          }}
-          onClick={(e) => setSelectedType(e.currentTarget.innerText)}
-        >
-          Clips
-        </p>
-        <p
-          style={{
-            borderBottom: selectedType === "Bloppers" ? "2px solid #000" : "",
-          }}
-          onClick={(e) => setSelectedType(e.currentTarget.innerText)}
-        >
-          Bloppers
-        </p>
+        {uniqueTypes.map((img: string) => (
+          <p
+            key={img}
+            style={{
+              borderBottom: selectedType === img ? "2px solid #000" : "",
+            }}
+            onClick={(e) => setSelectedType(e.currentTarget.innerText)}
+          >
+            {img}
+          </p>
+        ))}
       </div>
 
       <div className="video-images">
@@ -93,7 +58,7 @@ const AllVideos = ({ movieVideos }: Props) => {
                   <p>{moment(img.published_at).format("DD MMM YYYY")}</p>
                 </div>
               </div>
-            ),
+            )
         )}
       </div>
       {isOverlayOpen === true && (

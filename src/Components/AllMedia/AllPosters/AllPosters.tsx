@@ -76,7 +76,7 @@ const AllPosters = ({ movieImages, language }: Props) => {
                   </a>
                 </div>
               </div>
-            ),
+            )
         )}
       </div>
     </div>
