@@ -99,8 +99,8 @@ const MovieBanner = ({
                       movieDetail.vote_average > 8
                         ? "lightgreen"
                         : movieDetail.vote_average > 5
-                          ? "orange"
-                          : "red",
+                        ? "orange"
+                        : "red",
                   }}
                 >
                   {" "}
