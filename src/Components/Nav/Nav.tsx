@@ -3,23 +3,37 @@ import './Nav.scss';
 import { Button } from 'antd';
 import { Context } from '../../context/GlobalContext';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { REQUEST_TOKEN_URL } from '../../config/Urls';
 
 const Nav = () => {
   const navigate = useNavigate();
   const [isLogin, setisLogin] = useState(false);
   const { isVideoOpen } = useContext(Context);
 
-  const loginHandler = () => {
-    navigate('/login');
+  const protocol = window.location.protocol;
+  const host = window.location.host;
+
+  const requestTokenHandler = () => {
+    axios.get(REQUEST_TOKEN_URL).then((res) => {
+      if (res.data.request_token !== '') {
+        window.open(
+          `https://www.themoviedb.org/authenticate/${res.data.request_token}?redirect_to=${protocol}//${host}/approved`
+        );
+      }
+    });
   };
   const logoutHandler = () => {
     localStorage.removeItem('session_id');
+    setisLogin(false);
     navigate('/');
   };
 
   useEffect(() => {
-    if (localStorage.getItem('session_id')) setisLogin(true);
-    else setisLogin(false);
+    setTimeout(() => {
+      if (localStorage.getItem('session_id')) setisLogin(true);
+      else setisLogin(false);
+    }, 300);
   }, []);
 
   const changePageToAccountDetail = () => {
@@ -45,7 +59,7 @@ const Nav = () => {
               backgroundColor: 'green',
             }}
             type="primary"
-            onClick={loginHandler}
+            onClick={requestTokenHandler}
           >
             Login
           </Button>
