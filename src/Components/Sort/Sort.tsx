@@ -23,20 +23,20 @@ const Sort = ({ setSortData }: any) => {
             }}
             onChange={(value) => setSortData(value)}
             options={[
-              { value: "popularity.desc", label: "Popularity Descending" },
-              { value: "popularity.asc", label: "Popularity Ascending" },
-              { value: "vote_average.desc", label: "Rating Descending" },
-              { value: "vote_average.asc", label: "Rating Ascending" },
+              { value: "popularity.desc", label: "Most Popular" },
+              { value: "popularity.asc", label: "Least Popular" },
+              { value: "vote_average.desc", label: "Highest Rated" },
+              { value: "vote_average.asc", label: "Lowest Rated" },
               {
                 value: "primary_release_date.desc",
-                label: "Release Date Descending",
+                label: "Newest Releases",
               },
               {
                 value: "primary_release_date.asc",
-                label: "Release Date Ascending",
+                label: "Oldest Releases",
               },
-              { value: "title.asc", label: "Title (A-Z)" },
-              { value: "title.desc", label: "Title (Z-A)" },
+              { value: "title.asc", label: "Title (A to Z)" },
+              { value: "title.desc", label: "Title (Z to A)" },
             ]}
           />
         </Collapse.Panel>
