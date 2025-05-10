@@ -3,6 +3,7 @@ import moment from 'moment';
 import './MoreReviews.scss';
 import { StarOutlined } from '@ant-design/icons';
 import { AuthorOutput, MovieReviewsOutput } from '../../Models';
+import ReactMarkdown from 'react-markdown';
 
 interface Props {
   movieReviews: MovieReviewsOutput;
@@ -38,7 +39,7 @@ const MoreReviews = ({ movieReviews }: Props) => {
             </div>
           </div>
           <div className="content">
-            <p> {review.content}</p>
+            <ReactMarkdown>{review.content}</ReactMarkdown>
           </div>
         </div>
       ))}

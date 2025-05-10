@@ -5,6 +5,7 @@ import { Divider } from 'antd';
 import { StarOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { MovieReviewsOutput } from '../../Models';
+import ReactMarkdown from 'react-markdown';
 
 interface Props {
   movieReviews: MovieReviewsOutput;
@@ -48,7 +49,7 @@ const MovieReviews = ({ movieReviews, selectedMovieId }: Props) => {
             </div>
           </div>
           <div className="content">
-            <p> {movieReviews.results[randomReviews].content}</p>
+            <ReactMarkdown>{movieReviews.results[randomReviews].content}</ReactMarkdown>
           </div>
           <Divider />
           <Link className="page-changer" to={`/moviedetail/${selectedMovieId}/reviews`}>
