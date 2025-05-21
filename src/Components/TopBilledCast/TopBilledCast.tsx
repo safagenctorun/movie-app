@@ -10,7 +10,7 @@ interface Props {
 const TopBilledCast = ({ movieCredits }: Props) => {
   return (
     <div className="top-billed-cast">
-      <h1>Top Billed Cast </h1>
+      <h1>Oyuncular </h1>
       <div className="actors">
         {movieCredits?.cast.map(
           (actor: Cast_CrewOutput, index: number) =>

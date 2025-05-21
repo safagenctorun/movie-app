@@ -21,7 +21,7 @@ const MovieMedia = ({ movieVideos, movieImages, selectedMovieId }: Props) => {
   return (
     <div className="movie-media">
       <div className="titles">
-        <h1>Media </h1>
+        <h1>Medya </h1>
         <div className="center-of-titles">
           <h3
             onClick={typeSelectHandler}

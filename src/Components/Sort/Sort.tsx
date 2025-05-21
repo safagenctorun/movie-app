@@ -13,9 +13,9 @@ const Sort = ({ setSortData }: any) => {
           marginTop: '15px',
         }}
       >
-        <Collapse.Panel header="Sort" key="1">
+        <Collapse.Panel header="Sırala" key="1">
           <Select
-            placeholder="Sort"
+            placeholder="Sırala"
             style={{
               display: 'flex',
               justifyContent: 'center',
@@ -23,20 +23,20 @@ const Sort = ({ setSortData }: any) => {
             }}
             onChange={(value) => setSortData(value)}
             options={[
-              { value: 'popularity.desc', label: 'Most Popular' },
-              { value: 'popularity.asc', label: 'Least Popular' },
-              { value: 'vote_average.desc', label: 'Highest Rated' },
-              { value: 'vote_average.asc', label: 'Lowest Rated' },
+              { value: 'popularity.desc', label: 'En Popüler' },
+              { value: 'popularity.asc', label: 'En Az Popüler' },
+              { value: 'vote_average.desc', label: 'En Yüksek Puanlı' },
+              { value: 'vote_average.asc', label: 'En Düşük Puanlı' },
               {
                 value: 'primary_release_date.desc',
-                label: 'Newest Releases',
+                label: 'En Yeni Çıkışlar',
               },
               {
                 value: 'primary_release_date.asc',
-                label: 'Oldest Releases',
+                label: 'En Eski Çıkışlar',
               },
-              { value: 'title.asc', label: 'Title (A to Z)' },
-              { value: 'title.desc', label: 'Title (Z to A)' },
+              { value: 'title.asc', label: "Başlık (A'dan Z'ye)" },
+              { value: 'title.desc', label: "Başlık (Z'den A'ya)" },
             ]}
           />
         </Collapse.Panel>

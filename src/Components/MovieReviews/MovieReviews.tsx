@@ -32,7 +32,7 @@ const MovieReviews = ({ movieReviews, selectedMovieId }: Props) => {
 
             <div className="text">
               <div className="upper-text">
-                <h4>a reviews by {movieReviews.results[randomReviews].author}</h4>
+                <h4>Yorum {movieReviews.results[randomReviews].author} tarafından yapıldı</h4>
                 <div className="span">
                   <span>
                     {' '}
@@ -41,7 +41,7 @@ const MovieReviews = ({ movieReviews, selectedMovieId }: Props) => {
                 </div>
               </div>
               <div className="written-by">
-                <p>Written by</p>
+                <p>Yazar</p>
                 <p className="by">{movieReviews.results[randomReviews].author}</p>
                 <p>on</p>
                 <p>{moment(movieReviews.results[randomReviews].created_at).format('DD/MM/YYYY')}</p>
@@ -53,11 +53,11 @@ const MovieReviews = ({ movieReviews, selectedMovieId }: Props) => {
           </div>
           <Divider />
           <Link className="page-changer" to={`/moviedetail/${selectedMovieId}/reviews`}>
-            Read All Reviews
+            Tüm yorumları gör
           </Link>
         </div>
       ) : (
-        <div className="review">We don't have any reviews</div>
+        <div className="review">Hiç yorum yok</div>
       )}
     </div>
   );

@@ -76,15 +76,15 @@ const MovieBanner = ({
                 <p> 2h 5m</p> {/* apiden bu bilgiyi alamıyorum */}
               </div>
               <div className="rating">
-                <p>User Score</p>
+                <p>Kullanıcı puanı</p>
                 <span
                   style={{
                     color:
                       movieDetail.vote_average > 8
                         ? 'lightgreen'
                         : movieDetail.vote_average > 5
-                          ? 'orange'
-                          : 'red',
+                        ? 'orange'
+                        : 'red',
                   }}
                 >
                   {' '}
@@ -98,7 +98,7 @@ const MovieBanner = ({
                       fontWeight: 'bold',
                     }}
                   >
-                    Rate It
+                    Puanla
                     <DownOutlined />
                   </Space>
                 </Dropdown>
@@ -119,7 +119,7 @@ const MovieBanner = ({
                 <p>{movieDetail.tagline}</p>
               </div>
               <div className="overview">
-                <h3>Overview</h3>
+                <h3>Genel Bakış</h3>
                 <p>{movieDetail.overview}</p>
               </div>
               <div className="credit">

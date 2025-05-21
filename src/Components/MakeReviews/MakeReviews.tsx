@@ -20,7 +20,7 @@ const MakeReviews = () => {
     <div className="make-reviews">
       {isClicked === false && (
         <Button className="write-reviews" onClick={makeReviewsHandler}>
-          Write Reviews
+          Değerlendirme Yap
         </Button>
       )}
       {isClicked === true && (
@@ -31,11 +31,11 @@ const MakeReviews = () => {
           <div className="buttons">
             <Button className="cancel" onClick={cancelIt}>
               {' '}
-              Cancel
+              İptal
             </Button>
             <Button className="submit" onClick={submitButtonHandler}>
               {' '}
-              Submit
+              Onayla
             </Button>
           </div>
         </div>

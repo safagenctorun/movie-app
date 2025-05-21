@@ -14,7 +14,7 @@ interface Props {
 const PopularMovies = ({ moviesData, dataType, confirmHandler }: Props) => {
   return (
     <div className="popular-movies-with-text">
-      <h1 style={{ display: dataType === 'Popular' ? 'flex' : 'none' }}>{dataType} Movies</h1>
+      <h1 style={{ display: dataType === 'Popular' ? 'flex' : 'none' }}>Popüler Filmler</h1>
       <div className="popular-movies">
         {moviesData.map((movie: any) => (
           <div key={movie.id} className="movie">
@@ -30,22 +30,22 @@ const PopularMovies = ({ moviesData, dataType, confirmHandler }: Props) => {
                     movie.vote_average > 8
                       ? 'lightgreen'
                       : movie.vote_average > 5
-                        ? 'orange'
-                        : 'red',
+                      ? 'orange'
+                      : 'red',
                 }}
               >
                 {movie.vote_average?.toFixed(1)}{' '}
               </span>
             </div>
             <div className="overview">
-              <h3>Overview</h3>
+              <h3>Genel bakış</h3>
               <p>{movie.overview}</p>
             </div>
           </div>
         ))}
       </div>
       <Button name="load-more" onClick={(e) => confirmHandler(e)}>
-        Load More
+        Daha Fazlasını Yükle
       </Button>
     </div>
   );

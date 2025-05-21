@@ -10,7 +10,7 @@ interface Props {
 const MovieRecommendations = ({ movieRecommendations }: Props) => {
   return (
     <div className="movie-recommendations">
-      <h1>Recommendations </h1>
+      <h1>Öneriler </h1>
       {Object.keys(movieRecommendations.results).length > 0 ? ( //eğer hiç yorum yoksa devreye giriyor
         <div className="recommendations">
           {movieRecommendations.results.map((movie: any, index: number) => (
@@ -26,8 +26,8 @@ const MovieRecommendations = ({ movieRecommendations }: Props) => {
                       movie.vote_average > 8
                         ? 'lightgreen'
                         : movie.vote_average > 5
-                          ? 'orange'
-                          : 'red',
+                        ? 'orange'
+                        : 'red',
                   }}
                   className="movie-vote-average"
                 >

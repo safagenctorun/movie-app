@@ -46,9 +46,9 @@ const Filter = ({
   return (
     <div>
       <Collapse style={{ width: '250px', backgroundColor: 'white' }}>
-        <Collapse.Panel header="Filters" key="1">
+        <Collapse.Panel header="Filtrele" key="1">
           <Collapse style={{ width: '245px', backgroundColor: 'white' }}>
-            <Collapse.Panel header="Release Dates" key="2">
+            <Collapse.Panel header="Yayınlama Tarihi" key="2">
               <Space direction="vertical">
                 <DatePicker
                   placeholder="from"
@@ -65,7 +65,7 @@ const Filter = ({
           </Collapse>
 
           <Collapse style={{ width: '245px', backgroundColor: 'white' }}>
-            <Collapse.Panel header="Genres" key="3">
+            <Collapse.Panel header="Türler" key="3">
               <div className="genres">
                 {genres.map((genre: Genre) => (
                   <span
@@ -83,7 +83,7 @@ const Filter = ({
             </Collapse.Panel>
           </Collapse>
           <Collapse style={{ width: '245px', backgroundColor: 'white' }}>
-            <Collapse.Panel header="Minimum User Votes" key="4">
+            <Collapse.Panel header="Minimum Kullanıcı Oyu" key="4">
               <Slider
                 min={0}
                 max={500}
@@ -100,7 +100,7 @@ const Filter = ({
             </Collapse.Panel>
           </Collapse>
           <Collapse style={{ width: '245px', backgroundColor: 'white' }}>
-            <Collapse.Panel header="Runtime" key="5">
+            <Collapse.Panel header="Süre" key="5">
               <Slider
                 range
                 min={0}

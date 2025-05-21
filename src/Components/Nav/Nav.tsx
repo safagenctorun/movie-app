@@ -44,12 +44,12 @@ const Nav = () => {
     <nav>
       <div className="nav" style={{ display: isVideoOpen === false ? 'flex' : 'none' }}>
         <Link className="link" to="/">
-          <h2>Mainpage</h2>
+          <h2>CineCenter</h2>
         </Link>
 
         <div className="movies">
           <Link className="link" to="/moviefilter">
-            Movies
+            Filmler
           </Link>
         </div>
         <div className="log-in-out">
@@ -61,7 +61,7 @@ const Nav = () => {
             type="primary"
             onClick={requestTokenHandler}
           >
-            Login
+            Giriş Yap
           </Button>
           <Button
             style={{
@@ -72,7 +72,7 @@ const Nav = () => {
             danger
             onClick={changePageToAccountDetail}
           >
-            Account Detail
+            Hesap Detayları
           </Button>
           <Button
             style={{ display: isLogin === true ? 'flex' : 'none' }}
@@ -80,7 +80,7 @@ const Nav = () => {
             danger
             onClick={logoutHandler}
           >
-            Logout
+            Çıkış Yap
           </Button>
         </div>
       </div>

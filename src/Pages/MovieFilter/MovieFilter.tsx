@@ -87,7 +87,7 @@ const MovieFilter = () => {
           setStartReleaseDate={setStartReleaseDate}
           setEndReleaseDate={setEndReleaseDate}
         />
-        <Button onClick={confirmHandler}> Confirm </Button>
+        <Button onClick={confirmHandler}> Onayla </Button>
       </div>
 
       {Object.keys(moviesData).length > 0 ? (
@@ -97,7 +97,7 @@ const MovieFilter = () => {
           confirmHandler={confirmHandler}
         />
       ) : (
-        <div className="not-respond">Films that you filtered weren't found</div>
+        <div className="not-respond">Filtrelediğiniz filmler bulunamadı</div>
       )}
     </div>
   );
