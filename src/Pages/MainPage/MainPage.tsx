@@ -34,7 +34,7 @@ const MainPage = () => {
   useEffect(() => {
     axios
       .get(MOVIE_URL + 'popular?' + API_KEY, {
-        params: { page: pageCount },
+        params: { page: pageCount, include_adult: false },
       })
       .then((res) => {
         setMoviesData((prevState) => [...prevState, ...res.data.results]);
