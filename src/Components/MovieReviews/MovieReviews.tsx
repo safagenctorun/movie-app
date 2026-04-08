@@ -17,7 +17,8 @@ const MovieReviews = ({ movieReviews, selectedMovieId }: Props) => {
 
   useEffect(() => {
     setRandomReviews(Math.floor(Math.random() * movieReviews.results.length)); //toplam yorumlar içinden 1 tanesini seçiyor
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [movieReviews.results.length]);
 
   return (
     <div className="movie-reviews">

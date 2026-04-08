@@ -29,6 +29,7 @@ const AllReviewsOfTheMovie = () => {
 
   useEffect(() => {
     axiosProcesses();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedMovieId]);
 
   return (
