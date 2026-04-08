@@ -127,6 +127,7 @@ const MovieDetail = () => {
           (mov: any) => mov.id.toString() === selectedMovieId && setisFavorite(true)
         );
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accountDetail]);
 
   const markAsFavorite = () => {

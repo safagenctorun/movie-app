@@ -23,6 +23,7 @@ const Approved = () => {
           navigate(`/`);
         });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [requestToken]);
   return <div></div>;
 };
